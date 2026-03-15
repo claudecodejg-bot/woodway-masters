@@ -183,7 +183,7 @@ function renderGolfers(golfers) {
     const oddsDisp = g.odds ? `${g.odds}-1` : 'N/A';
     return `
       <tr class="golfer-row ${g.status}">
-        <td>${escHtml(g.pickName)}</td>
+        <td><span class="player-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}</span></td>
         <td class="pos">${g.status === 'not-in-field' ? 'NIF' : (g.missedCut ? 'MC' : posDisp)}</td>
         <td class="score ${scoreClass(g.score)}">${g.status === 'not-in-field' ? '—' : fmtScore(g.score)}</td>
         <td><div class="rounds">${roundBadges(g.roundScores || {}, currentRound)}</div></td>
@@ -230,7 +230,7 @@ function renderPicksTab(rankings) {
       const posLabel = g.status === 'not-in-field' ? 'NIF'
                      : g.missedCut                 ? 'MC'
                      : g.position                  ? `T${g.position}` : '—';
-      return `<span class="pick-chip ${chipClass}">
+      return `<span class="pick-chip ${chipClass}" data-name="${escHtml(g.pickName)}">
         ${escHtml(g.pickName)}
         <span class="chip-pos">${posLabel}</span>
       </span>`;
@@ -276,7 +276,7 @@ function renderTournamentTab() {
 
     tr.innerHTML = `
       <td class="pos-col">${escHtml(String(posDisp))}</td>
-      <td>${escHtml(p.name || '')}</td>
+      <td><span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
       <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (mc ? 'MC' : '—')}</td>
       ${roundCells}
@@ -463,6 +463,65 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
+// ─── Player Modal ─────────────────────────────────────────────────────────────
+function buildPlayerToTeamsMap() {
+  const map = {};
+  allRankings.forEach((team, idx) => {
+    team.golfers.forEach(g => {
+      const key = NAME_ALIASES[normalizeName(g.pickName)] || normalizeName(g.pickName);
+      if (!map[key]) map[key] = [];
+      map[key].push({ team, rank: idx + 1 });
+    });
+  });
+  return map;
+}
+
+function showPlayerModal(playerName) {
+  const clickedKey = NAME_ALIASES[normalizeName(playerName)] || normalizeName(playerName);
+  const map        = buildPlayerToTeamsMap();
+  const teams      = map[clickedKey] || [];
+
+  const lbIndex = buildLeaderboardIndex(leaderboard);
+  const player  = lookupPlayer(playerName, lbIndex);
+
+  let infoText = 'Not in field';
+  if (player) {
+    const pos   = player.missedCut ? 'MC' : (player.position ? `T${player.position}` : '—');
+    const score = fmtScore(player.score);
+    infoText    = `Position: ${pos}  |  Score: ${score}`;
+  }
+
+  // detect ties for rank display
+  const teamsHtml = teams.length
+    ? teams.map(({ team, rank }) => {
+        const isTied   = allRankings.filter(t => t.total === team.total).length > 1;
+        const rankDisp = isTied ? `T${rank}` : `${rank}`;
+        const chips = team.golfers.map(g => {
+          const gKey      = NAME_ALIASES[normalizeName(g.pickName)] || normalizeName(g.pickName);
+          const isSelected = gKey === clickedKey;
+          const chipClass = isSelected              ? 'modal-chip modal-chip-selected'
+                          : g.status === 'cut'      ? 'modal-chip modal-chip-cut'
+                          : g.status === 'not-in-field' ? 'modal-chip modal-chip-nif'
+                          : 'modal-chip modal-chip-active';
+          const posLabel  = g.status === 'not-in-field' ? 'NIF'
+                          : g.missedCut                 ? 'MC'
+                          : g.position                  ? `T${g.position}` : '—';
+          return `<span class="${chipClass}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}</span></span>`;
+        }).join('');
+        return `<li><span class="modal-team-name"><span class="modal-team-rank">${rankDisp}</span>${escHtml(team.name)}</span><div class="modal-chips">${chips}</div></li>`;
+      }).join('')
+    : '<li class="modal-no-teams">Not picked by any team</li>';
+
+  document.getElementById('player-modal-name').textContent  = playerName;
+  document.getElementById('player-modal-info').textContent  = infoText;
+  document.getElementById('player-modal-teams').innerHTML   = teamsHtml;
+  document.getElementById('player-modal').classList.add('open');
+}
+
+function closePlayerModal() {
+  document.getElementById('player-modal').classList.remove('open');
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 async function init() {
   try {
@@ -492,6 +551,21 @@ async function init() {
 
     // Auto-refresh
     setInterval(refresh, REFRESH_INTERVAL_MS);
+
+    // Player modal
+    document.getElementById('modal-close-btn').addEventListener('click', closePlayerModal);
+    document.getElementById('player-modal').addEventListener('click', e => {
+      if (e.target === document.getElementById('player-modal')) closePlayerModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePlayerModal();
+    });
+    document.addEventListener('click', e => {
+      const link = e.target.closest('.player-link');
+      if (link && link.dataset.name) { showPlayerModal(link.dataset.name); return; }
+      const chip = e.target.closest('.pick-chip');
+      if (chip && chip.dataset.name) showPlayerModal(chip.dataset.name);
+    });
 
   } catch (e) {
     console.error('Init failed:', e);
