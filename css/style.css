@@ -1,0 +1,287 @@
+/* ─── Reset & base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #f0f4f0;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+header {
+  background: linear-gradient(135deg, #1a4c2e 0%, #2d7a4f 100%);
+  color: #fff;
+  padding: 20px 16px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header-titles h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.header-titles .subtitle {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.header-meta {
+  font-size: 0.78rem;
+  opacity: 0.75;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.header-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#search {
+  flex: 1;
+  min-width: 180px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  outline: none;
+}
+#search::placeholder { color: rgba(255,255,255,0.6); }
+#search:focus { background: rgba(255,255,255,0.25); }
+
+#refresh-btn {
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+#refresh-btn:hover { background: rgba(255,255,255,0.3); }
+
+/* ─── Main ─────────────────────────────────────────────────────────────────── */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.legend {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.legend span { display: flex; align-items: center; gap: 4px; }
+
+/* ─── Team leaderboard table ───────────────────────────────────────────────── */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+table.leaderboard {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+table.leaderboard thead tr {
+  background: #2d7a4f;
+  color: #fff;
+}
+
+table.leaderboard thead th {
+  padding: 11px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+table.leaderboard thead th.rank { width: 48px; text-align: center; }
+table.leaderboard thead th.earnings { text-align: right; }
+table.leaderboard thead th:last-child { width: 32px; }
+
+.team-row {
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+.team-row:hover { background: #f7fbf8; }
+.team-row.expanded { background: #eef6f1; }
+
+.team-row td { padding: 12px 14px; }
+.team-row td.rank { text-align: center; font-weight: 700; color: #2d7a4f; }
+.team-row td.team-name { font-weight: 600; }
+.team-row td.earnings { text-align: right; font-weight: 700; color: #1a4c2e; font-size: 0.95rem; }
+.team-row td.expand-icon { text-align: center; color: #999; font-size: 0.75rem; }
+
+/* Rank colors */
+.team-row:nth-child(4n-2) td.rank { background: #ffd700; color: #5a4400; border-radius: 3px; }  /* 1st */
+
+/* ─── Detail row ───────────────────────────────────────────────────────────── */
+.detail-row td { padding: 0; }
+.detail-row.hidden { display: none; }
+
+.golfer-detail {
+  background: #f7fbf8;
+  border-top: 2px solid #2d7a4f;
+  padding: 12px 16px;
+  overflow-x: auto;
+}
+
+table.golfer-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+table.golfer-table thead tr {
+  background: #e8f2ec;
+}
+table.golfer-table thead th {
+  padding: 7px 10px;
+  text-align: left;
+  font-weight: 600;
+  color: #1a4c2e;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.golfer-row td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.golfer-row:last-child td { border-bottom: none; }
+
+/* Status-based row colors */
+.golfer-row.cut { color: #999; background: #fafafa; }
+.golfer-row.cut td:first-child { text-decoration: line-through; }
+.golfer-row.not-in-field { color: #bbb; font-style: italic; background: #fafafa; }
+
+.golfer-row td.pos { font-weight: 600; text-align: center; width: 50px; }
+.golfer-row td.score { font-weight: 600; text-align: center; width: 50px; }
+.golfer-row td.odds-col { text-align: center; color: #555; width: 60px; }
+.golfer-row td.prize-col { text-align: right; color: #444; width: 110px; }
+.golfer-row td.pool-col { text-align: right; font-weight: 700; color: #1a4c2e; width: 120px; }
+
+/* ─── Round score badges ───────────────────────────────────────────────────── */
+.rounds { display: flex; gap: 3px; }
+.round-score {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 22px;
+  background: #e8f2ec;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1a4c2e;
+}
+.round-empty { background: #f0f0f0; color: #bbb; }
+
+/* ─── Status badges ────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.badge-cut { background: #ffe0e0; color: #c0392b; }
+.badge-nif { background: #e8e8e8; color: #888; }
+.badge-lead { background: #ffd700; color: #5a4400; }
+
+/* ─── Toast notification ───────────────────────────────────────────────────── */
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: #1a4c2e;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 999;
+  pointer-events: none;
+}
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ─── Loading state ────────────────────────────────────────────────────────── */
+#loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 1rem;
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: 24px 16px;
+  color: #999;
+  font-size: 0.75rem;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .header-titles h1 { font-size: 1.1rem; }
+  .header-meta { text-align: left; width: 100%; }
+
+  /* Main leaderboard — compact to fit screen */
+  table.leaderboard { table-layout: fixed; width: 100%; }
+  table.leaderboard thead th,
+  .team-row td { padding: 10px 8px; font-size: 0.82rem; }
+  table.leaderboard thead th.rank,
+  .team-row td.rank { width: 36px; }
+  table.leaderboard thead th:last-child,
+  .team-row td.expand-icon { width: 28px; }
+  /* Let team name and earnings share remaining width */
+  .team-row td.team-name { word-break: break-word; }
+  .team-row td.earnings { font-size: 0.85rem; white-space: nowrap; }
+
+  /* Golfer detail table */
+  table.golfer-table thead th,
+  .golfer-row td { font-size: 0.72rem; padding: 6px 5px; }
+  .golfer-row td.prize-col { display: none; }
+  table.golfer-table thead th:nth-child(6) { display: none; }
+}

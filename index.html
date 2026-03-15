@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Woodway Golf Pool</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="header-titles">
+      <h1>🏌️ Woodway Golf Pool</h1>
+      <div class="subtitle">
+        <span id="tournament-name">Loading…</span> &mdash;
+        <span id="tournament-status"></span>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div id="purse-display"></div>
+      <div id="last-updated"></div>
+    </div>
+  </div>
+  <div class="header-controls">
+    <input id="search" type="search" placeholder="Search team name…" autocomplete="off" />
+    <button id="refresh-btn">↻ Refresh</button>
+  </div>
+</header>
+
+<main>
+  <div class="legend">
+    <span><span class="badge badge-cut">MC</span> Missed Cut</span>
+    <span><span class="badge badge-nif">Not in Field</span> Not playing this week</span>
+    <span>Click any row to see golfer breakdown</span>
+  </div>
+
+  <div id="loading">Loading leaderboard…</div>
+
+  <div class="table-wrap" id="table-wrap" style="display:none">
+    <table class="leaderboard">
+      <thead>
+        <tr>
+          <th class="rank">#</th>
+          <th>Team</th>
+          <th class="earnings">Est. Pool Earnings</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="team-tbody"></tbody>
+    </table>
+  </div>
+</main>
+
+<footer>
+  Earnings are <em>estimates</em> based on current position &times; PGA Tour payout percentages.
+  Final payouts determined after tournament completion.
+  Data via ESPN. Auto-refreshes every 5 minutes.
+</footer>
+
+<div id="toast"></div>
+
+<script src="js/app.js"></script>
+<script>
+  // Show table once data loads
+  const origInit = window.init;
+  document.addEventListener('DOMContentLoaded', () => {
+    const observer = new MutationObserver(() => {
+      const tbody = document.getElementById('team-tbody');
+      if (tbody && tbody.children.length > 0) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('table-wrap').style.display = '';
+        observer.disconnect();
+      }
+    });
+    const tbody = document.getElementById('team-tbody');
+    if (tbody) observer.observe(tbody, { childList: true });
+  });
+</script>
+
+</body>
+</html>
