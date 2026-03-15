@@ -190,10 +190,12 @@ th.sortable.sort-desc .sort-icon { opacity: 1; }
 .team-row td.earnings { text-align: right; font-weight: 700; color: #1a4c2e; font-size: 0.95rem; }
 .team-row td.expand-icon { text-align: center; color: #999; font-size: 0.75rem; }
 
-/* Gold / Silver / Bronze ranks */
+/* Gold / Silver / Bronze / Winner ranks */
 .rank-1 td.rank { background: #ffd700; color: #5a4400 !important; border-radius: 3px; font-weight: 800; }
 .rank-2 td.rank { background: #d0d0d0; color: #444 !important; border-radius: 3px; font-weight: 800; }
 .rank-3 td.rank { background: #c87533; color: #fff !important; border-radius: 3px; font-weight: 800; }
+.rank-4 td.rank { background: #2d7a4f; color: #fff !important; border-radius: 3px; font-weight: 800; }
+.rank-5 td.rank { background: #2d7a4f; color: #fff !important; border-radius: 3px; font-weight: 800; }
 
 /* ─── Detail / expand row ──────────────────────────────────────────────────── */
 .detail-row td { padding: 0; }

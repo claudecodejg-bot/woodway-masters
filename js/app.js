@@ -153,7 +153,7 @@ function renderLeaderboard(rankings) {
     const rank     = idx + 1;
     const isTied   = idx > 0 && rankings[idx - 1].total === team.total;
     const rankDisp = isTied ? 'T' + rank : rank;
-    const rankClass = rank <= 3 ? `rank-${rank}` : '';
+    const rankClass = rank <= 5 ? `rank-${rank}` : '';
     const prevRank  = sameRoundPool ? (prevSnapshot.poolRanks || {})[team.name] : null;
     const move      = movementBadge(prevRank, rank);
 
