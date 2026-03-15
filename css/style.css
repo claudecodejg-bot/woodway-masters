@@ -372,6 +372,22 @@ table.tournament-table thead th.earnings  { width: 140px; }
   font-size: 1rem;
 }
 
+/* ─── Movement badges ───────────────────────────────────────────────────────── */
+.move-up, .move-down {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  margin-left: 4px;
+  vertical-align: middle;
+  line-height: 1;
+}
+.move-up   { color: #2d7a4f; }
+.move-down { color: #c0392b; }
+
+/* Widen rank/pos columns to accommodate movement badges */
+table.leaderboard thead th.rank { width: 72px; }
+.tourn-row td.pos-col { width: 72px; }
+
 /* ─── Player link ───────────────────────────────────────────────────────────── */
 .player-link {
   cursor: pointer;

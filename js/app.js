@@ -147,17 +147,21 @@ function renderLeaderboard(rankings) {
   const tbody = document.getElementById('team-tbody');
   tbody.innerHTML = '';
 
+  const sameRoundPool = prevSnapshot.round === (leaderboard.round || 0);
+
   rankings.forEach((team, idx) => {
     const rank     = idx + 1;
     const isTied   = idx > 0 && rankings[idx - 1].total === team.total;
     const rankDisp = isTied ? 'T' + rank : rank;
     const rankClass = rank <= 3 ? `rank-${rank}` : '';
+    const prevRank  = sameRoundPool ? (prevSnapshot.poolRanks || {})[team.name] : null;
+    const move      = movementBadge(prevRank, rank);
 
     const tr = document.createElement('tr');
     tr.className = `team-row ${rankClass}`;
     tr.setAttribute('data-team', idx);
     tr.innerHTML = `
-      <td class="rank">${rankDisp}</td>
+      <td class="rank">${rankDisp}${move}</td>
       <td class="team-name">${escHtml(team.name)}</td>
       <td class="earnings">${fmt$(team.total)}</td>
       <td class="expand-icon">▶</td>
@@ -254,12 +258,15 @@ function renderTournamentTab() {
   const currentRound = leaderboard.round || 0;
   tbody.innerHTML    = '';
 
+  const sameRoundTourn = prevSnapshot.round === currentRound;
   const players = [...(leaderboard.players || [])];
 
   players.forEach(p => {
     const mc         = p.missedCut;
     const todayScore = p.roundScores ? p.roundScores[`R${currentRound}`] : null;
     const posDisp    = mc ? 'MC' : (p.position ? p.position : '—');
+    const prevPos    = (!mc && sameRoundTourn) ? (prevSnapshot.tournamentPositions || {})[p.name] : null;
+    const move       = movementBadge(prevPos, p.position);
 
     const roundCells = [1,2,3,4].map(r => {
       const v        = p.roundScores ? p.roundScores[`R${r}`] : null;
@@ -275,7 +282,7 @@ function renderTournamentTab() {
     tr.setAttribute('data-prize', p.estimatedPrize || 0);
 
     tr.innerHTML = `
-      <td class="pos-col">${escHtml(String(posDisp))}</td>
+      <td class="pos-col">${escHtml(String(posDisp))}${move}</td>
       <td><span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
       <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (mc ? 'MC' : '—')}</td>
@@ -434,6 +441,40 @@ function applySearch(query) {
   }
 }
 
+// ─── Movement Tracking ────────────────────────────────────────────────────────
+let prevSnapshot = {};
+
+function loadSnapshot() {
+  try {
+    prevSnapshot = JSON.parse(localStorage.getItem('ww_snapshot') || '{}');
+  } catch(e) {
+    prevSnapshot = {};
+  }
+}
+
+function saveSnapshot(rankings) {
+  const round = leaderboard.round || 0;
+  const poolRanks = {};
+  rankings.forEach((team, idx) => { poolRanks[team.name] = idx + 1; });
+
+  const tournamentPositions = {};
+  (leaderboard.players || []).forEach(p => {
+    if (!p.missedCut && p.position) tournamentPositions[p.name] = p.position;
+  });
+
+  try {
+    localStorage.setItem('ww_snapshot', JSON.stringify({ round, poolRanks, tournamentPositions }));
+  } catch(e) {}
+}
+
+function movementBadge(prevPos, currPos) {
+  if (prevPos == null || currPos == null) return '';
+  const diff = prevPos - currPos; // positive = moved up (smaller number = better)
+  if (diff === 0) return '';
+  if (diff > 0) return `<span class="move-up">▲${diff}</span>`;
+  return `<span class="move-down">▼${Math.abs(diff)}</span>`;
+}
+
 // ─── Auto-refresh ─────────────────────────────────────────────────────────────
 const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 
@@ -442,10 +483,12 @@ async function refresh() {
     const ts = Date.now();
     leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
     allRankings = buildRankings();
+    loadSnapshot();
     renderHeader();
     renderLeaderboard(sortRankings(allRankings, sortState.pool));
     renderPicksTab(sortRankings(allRankings, sortState.picks));
     renderTournamentTab();
+    saveSnapshot(allRankings);
     updateSortIcons('#pool-table',       sortState.pool);
     updateSortIcons('#picks-table',      sortState.picks);
     updateSortIcons('#tournament-table', sortState.tournament);
@@ -527,10 +570,12 @@ async function init() {
   try {
     await loadAll();
     allRankings = buildRankings();
+    loadSnapshot();
     renderHeader();
     renderLeaderboard(sortRankings(allRankings, sortState.pool));
     renderPicksTab(sortRankings(allRankings, sortState.picks));
     renderTournamentTab();
+    saveSnapshot(allRankings);
     updateSortIcons('#pool-table',       sortState.pool);
     updateSortIcons('#picks-table',      sortState.picks);
     updateSortIcons('#tournament-table', sortState.tournament);
