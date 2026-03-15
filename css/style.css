@@ -12,7 +12,7 @@ body {
 header {
   background: linear-gradient(135deg, #1a4c2e 0%, #2d7a4f 100%);
   color: #fff;
-  padding: 20px 16px 16px;
+  padding: 20px 16px 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -81,9 +81,42 @@ header {
 }
 #refresh-btn:hover { background: rgba(255,255,255,0.3); }
 
+/* ─── Tab bar ──────────────────────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  margin-top: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  padding: 9px 18px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 8px 8px 0 0;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.2px;
+}
+.tab-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.tab-btn.active {
+  background: #f0f4f0;
+  color: #1a4c2e;
+}
+
+/* ─── Tab panels ───────────────────────────────────────────────────────────── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
 /* ─── Main ─────────────────────────────────────────────────────────────────── */
 main {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 16px;
 }
@@ -95,10 +128,11 @@ main {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 .legend span { display: flex; align-items: center; gap: 4px; }
 
-/* ─── Team leaderboard table ───────────────────────────────────────────────── */
+/* ─── Table shared styles ──────────────────────────────────────────────────── */
 .table-wrap {
   overflow-x: auto;
   border-radius: 10px;
@@ -124,12 +158,24 @@ table.leaderboard thead th {
   font-size: 0.8rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
 }
 
-table.leaderboard thead th.rank { width: 48px; text-align: center; }
+table.leaderboard thead th.rank { width: 52px; text-align: center; }
 table.leaderboard thead th.earnings { text-align: right; }
 table.leaderboard thead th:last-child { width: 32px; }
 
+/* Sortable column headers */
+th.sortable { cursor: pointer; }
+th.sortable:hover { background: rgba(255,255,255,0.15); }
+th.sortable.sort-asc .sort-icon::after  { content: ' ▲'; }
+th.sortable.sort-desc .sort-icon::after { content: ' ▼'; }
+th.sortable .sort-icon { opacity: 0.5; font-size: 0.7rem; }
+th.sortable.sort-asc .sort-icon,
+th.sortable.sort-desc .sort-icon { opacity: 1; }
+
+/* ─── Pool Leaderboard rows ────────────────────────────────────────────────── */
 .team-row {
   cursor: pointer;
   border-bottom: 1px solid #f0f0f0;
@@ -144,10 +190,12 @@ table.leaderboard thead th:last-child { width: 32px; }
 .team-row td.earnings { text-align: right; font-weight: 700; color: #1a4c2e; font-size: 0.95rem; }
 .team-row td.expand-icon { text-align: center; color: #999; font-size: 0.75rem; }
 
-/* Rank colors */
-.team-row:nth-child(4n-2) td.rank { background: #ffd700; color: #5a4400; border-radius: 3px; }  /* 1st */
+/* Gold / Silver / Bronze ranks */
+.rank-1 td.rank { background: #ffd700; color: #5a4400 !important; border-radius: 3px; font-weight: 800; }
+.rank-2 td.rank { background: #d0d0d0; color: #444 !important; border-radius: 3px; font-weight: 800; }
+.rank-3 td.rank { background: #c87533; color: #fff !important; border-radius: 3px; font-weight: 800; }
 
-/* ─── Detail row ───────────────────────────────────────────────────────────── */
+/* ─── Detail / expand row ──────────────────────────────────────────────────── */
 .detail-row td { padding: 0; }
 .detail-row.hidden { display: none; }
 
@@ -164,9 +212,7 @@ table.golfer-table {
   font-size: 0.82rem;
 }
 
-table.golfer-table thead tr {
-  background: #e8f2ec;
-}
+table.golfer-table thead tr { background: #e8f2ec; }
 table.golfer-table thead th {
   padding: 7px 10px;
   text-align: left;
@@ -185,16 +231,15 @@ table.golfer-table thead th {
 }
 .golfer-row:last-child td { border-bottom: none; }
 
-/* Status-based row colors */
 .golfer-row.cut { color: #999; background: #fafafa; }
 .golfer-row.cut td:first-child { text-decoration: line-through; }
 .golfer-row.not-in-field { color: #bbb; font-style: italic; background: #fafafa; }
 
-.golfer-row td.pos { font-weight: 600; text-align: center; width: 50px; }
+.golfer-row td.pos   { font-weight: 600; text-align: center; width: 50px; }
 .golfer-row td.score { font-weight: 600; text-align: center; width: 50px; }
-.golfer-row td.odds-col { text-align: center; color: #555; width: 60px; }
+.golfer-row td.odds-col  { text-align: center; color: #555; width: 60px; }
 .golfer-row td.prize-col { text-align: right; color: #444; width: 110px; }
-.golfer-row td.pool-col { text-align: right; font-weight: 700; color: #1a4c2e; width: 120px; }
+.golfer-row td.pool-col  { text-align: right; font-weight: 700; color: #1a4c2e; width: 120px; }
 
 /* ─── Round score badges ───────────────────────────────────────────────────── */
 .rounds { display: flex; gap: 3px; }
@@ -211,6 +256,82 @@ table.golfer-table thead th {
   color: #1a4c2e;
 }
 .round-empty { background: #f0f0f0; color: #bbb; }
+.round-today { background: #2d7a4f; color: #fff; }
+
+/* ─── Teams & Picks tab ────────────────────────────────────────────────────── */
+table.picks-table thead th:first-child { width: 22%; }
+table.picks-table thead th:nth-child(2) { width: 15%; }
+table.picks-table thead th:nth-child(3) { width: 63%; }
+
+.picks-row td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+.picks-row:hover { background: #f7fbf8; }
+.picks-row td.team-name { font-weight: 600; }
+.picks-row td.earnings   { text-align: right; font-weight: 700; color: #1a4c2e; }
+
+.picks-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.pick-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.pick-chip.chip-active {
+  background: #e8f4ed;
+  color: #1a4c2e;
+  border-color: #b5ddc7;
+}
+.pick-chip.chip-cut {
+  background: #ffe8e8;
+  color: #a03030;
+  border-color: #ffbbbb;
+  text-decoration: line-through;
+}
+.pick-chip.chip-nif {
+  background: #f0f0f0;
+  color: #999;
+  border-color: #ddd;
+  font-style: italic;
+}
+.pick-chip .chip-pos {
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(0,0,0,0.08);
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+/* ─── Tournament tab ───────────────────────────────────────────────────────── */
+table.tournament-table thead th.score-col { text-align: center; width: 55px; }
+table.tournament-table thead th.today-col { background: rgba(255,255,255,0.15); }
+table.tournament-table thead th.earnings  { width: 140px; }
+
+.tourn-row { border-bottom: 1px solid #f0f0f0; transition: background 0.1s; }
+.tourn-row:hover { background: #f7fbf8; }
+.tourn-row.missed-cut { color: #aaa; background: #fafafa; }
+.tourn-row.missed-cut td { font-style: italic; }
+
+.tourn-row td { padding: 10px 14px; }
+.tourn-row td.pos-col   { text-align: center; font-weight: 700; color: #2d7a4f; width: 52px; }
+.tourn-row td.score-col { text-align: center; font-weight: 600; }
+.tourn-row td.today-col {
+  text-align: center;
+  font-weight: 700;
+  background: #f4faf6;
+}
+.tourn-row td.prize-col { text-align: right; font-weight: 700; color: #1a4c2e; }
+
+/* Score coloring */
+.score-under { color: #c0392b; }
+.score-over  { color: #2c3e50; }
+.score-even  { color: #555; }
+
+/* Rank highlights for tournament */
+.tourn-row.pos-1 td.pos-col { color: #b8860b; font-size: 1rem; }
 
 /* ─── Status badges ────────────────────────────────────────────────────────── */
 .badge {
@@ -221,11 +342,11 @@ table.golfer-table thead th {
   font-weight: 700;
   letter-spacing: 0.3px;
 }
-.badge-cut { background: #ffe0e0; color: #c0392b; }
-.badge-nif { background: #e8e8e8; color: #888; }
+.badge-cut  { background: #ffe0e0; color: #c0392b; }
+.badge-nif  { background: #e8e8e8; color: #888; }
 .badge-lead { background: #ffd700; color: #5a4400; }
 
-/* ─── Toast notification ───────────────────────────────────────────────────── */
+/* ─── Toast ─────────────────────────────────────────────────────────────────── */
 #toast {
   position: fixed;
   bottom: 20px;
@@ -241,20 +362,17 @@ table.golfer-table thead th {
   z-index: 999;
   pointer-events: none;
 }
-#toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* ─── Loading state ────────────────────────────────────────────────────────── */
-#loading {
+/* ─── Loading ────────────────────────────────────────────────────────────────  */
+.loading-msg {
   text-align: center;
   padding: 40px;
   color: #666;
   font-size: 1rem;
 }
 
-/* ─── Footer ───────────────────────────────────────────────────────────────── */
+/* ─── Footer ────────────────────────────────────────────────────────────────── */
 footer {
   text-align: center;
   padding: 24px 16px;
@@ -262,26 +380,30 @@ footer {
   font-size: 0.75rem;
 }
 
-/* ─── Responsive ───────────────────────────────────────────────────────────── */
-@media (max-width: 600px) {
+/* ─── Responsive ─────────────────────────────────────────────────────────────  */
+@media (max-width: 700px) {
   .header-titles h1 { font-size: 1.1rem; }
   .header-meta { text-align: left; width: 100%; }
+  .tab-btn { padding: 8px 12px; font-size: 0.78rem; }
 
-  /* Main leaderboard — compact to fit screen */
-  table.leaderboard { table-layout: fixed; width: 100%; }
   table.leaderboard thead th,
-  .team-row td { padding: 10px 8px; font-size: 0.82rem; }
-  table.leaderboard thead th.rank,
-  .team-row td.rank { width: 36px; }
-  table.leaderboard thead th:last-child,
-  .team-row td.expand-icon { width: 28px; }
-  /* Let team name and earnings share remaining width */
-  .team-row td.team-name { word-break: break-word; }
-  .team-row td.earnings { font-size: 0.85rem; white-space: nowrap; }
+  .team-row td { padding: 9px 8px; font-size: 0.82rem; }
 
-  /* Golfer detail table */
-  table.golfer-table thead th,
-  .golfer-row td { font-size: 0.72rem; padding: 6px 5px; }
+  /* Tournament: hide R1-R4 on mobile, keep Today */
+  table.tournament-table th:nth-child(5),
+  table.tournament-table th:nth-child(6),
+  table.tournament-table th:nth-child(7),
+  table.tournament-table th:nth-child(8),
+  table.tournament-table td:nth-child(5),
+  table.tournament-table td:nth-child(6),
+  table.tournament-table td:nth-child(7),
+  table.tournament-table td:nth-child(8) { display: none; }
+
+  /* Picks: hide earnings column */
+  table.picks-table th:nth-child(2),
+  table.picks-table td:nth-child(2) { display: none; }
+
+  /* Pool leaderboard: hide expand icon */
   .golfer-row td.prize-col { display: none; }
   table.golfer-table thead th:nth-child(6) { display: none; }
 }

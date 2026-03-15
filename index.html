@@ -26,30 +26,86 @@
     <input id="search" type="search" placeholder="Search team name…" autocomplete="off" />
     <button id="refresh-btn">↻ Refresh</button>
   </div>
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="leaderboard">🏆 Pool Leaderboard</button>
+    <button class="tab-btn" data-tab="teams">👥 Teams &amp; Picks</button>
+    <button class="tab-btn" data-tab="tournament">⛳ Tournament</button>
+  </nav>
 </header>
 
 <main>
-  <div class="legend">
-    <span><span class="badge badge-cut">MC</span> Missed Cut</span>
-    <span><span class="badge badge-nif">Not in Field</span> Not playing this week</span>
-    <span>Click any row to see golfer breakdown</span>
+
+  <!-- ── Tab 1: Pool Leaderboard ── -->
+  <div id="tab-leaderboard" class="tab-panel active">
+    <div class="legend">
+      <span><span class="badge badge-cut">MC</span> Missed Cut</span>
+      <span><span class="badge badge-nif">NIF</span> Not in Field</span>
+      <span>Click any row to see golfer breakdown</span>
+    </div>
+    <div id="loading" class="loading-msg">Loading leaderboard…</div>
+    <div class="table-wrap" id="pool-table-wrap" style="display:none">
+      <table class="leaderboard" id="pool-table">
+        <thead>
+          <tr>
+            <th class="rank">#</th>
+            <th class="sortable" data-col="name">Team <span class="sort-icon">↕</span></th>
+            <th class="earnings sortable" data-col="earnings">Est. Pool Earnings <span class="sort-icon">↕</span></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="team-tbody"></tbody>
+      </table>
+    </div>
   </div>
 
-  <div id="loading">Loading leaderboard…</div>
-
-  <div class="table-wrap" id="table-wrap" style="display:none">
-    <table class="leaderboard">
-      <thead>
-        <tr>
-          <th class="rank">#</th>
-          <th>Team</th>
-          <th class="earnings">Est. Pool Earnings</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="team-tbody"></tbody>
-    </table>
+  <!-- ── Tab 2: Teams & Picks ── -->
+  <div id="tab-teams" class="tab-panel">
+    <div class="legend">
+      <span>All teams and their golfer selections</span>
+      <span><span class="badge badge-cut">MC</span> Missed Cut</span>
+      <span><span class="badge badge-nif">NIF</span> Not in Field</span>
+    </div>
+    <div class="table-wrap">
+      <table class="leaderboard picks-table" id="picks-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-col="name">Team <span class="sort-icon">↕</span></th>
+            <th class="earnings sortable" data-col="earnings">Est. Earnings <span class="sort-icon">↕</span></th>
+            <th>Golfer Picks</th>
+          </tr>
+        </thead>
+        <tbody id="picks-tbody"></tbody>
+      </table>
+    </div>
   </div>
+
+  <!-- ── Tab 3: Tournament Leaderboard ── -->
+  <div id="tab-tournament" class="tab-panel">
+    <div class="legend">
+      <span>Live tournament standings with estimated prize money</span>
+      <span><span class="badge badge-cut">MC</span> Missed Cut</span>
+      <span id="today-label"></span>
+    </div>
+    <div class="table-wrap">
+      <table class="leaderboard tournament-table" id="tournament-table">
+        <thead>
+          <tr>
+            <th class="rank sortable" data-col="pos">Pos <span class="sort-icon">↕</span></th>
+            <th class="sortable" data-col="name">Player <span class="sort-icon">↕</span></th>
+            <th class="score-col sortable" data-col="score">Total <span class="sort-icon">↕</span></th>
+            <th class="score-col today-col">Today</th>
+            <th class="score-col">R1</th>
+            <th class="score-col">R2</th>
+            <th class="score-col">R3</th>
+            <th class="score-col">R4</th>
+            <th class="earnings sortable" data-col="prize">Est. Winnings <span class="sort-icon">↕</span></th>
+          </tr>
+        </thead>
+        <tbody id="tournament-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -59,24 +115,6 @@
 </footer>
 
 <div id="toast"></div>
-
 <script src="js/app.js"></script>
-<script>
-  // Show table once data loads
-  const origInit = window.init;
-  document.addEventListener('DOMContentLoaded', () => {
-    const observer = new MutationObserver(() => {
-      const tbody = document.getElementById('team-tbody');
-      if (tbody && tbody.children.length > 0) {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('table-wrap').style.display = '';
-        observer.disconnect();
-      }
-    });
-    const tbody = document.getElementById('team-tbody');
-    if (tbody) observer.observe(tbody, { childList: true });
-  });
-</script>
-
 </body>
 </html>
