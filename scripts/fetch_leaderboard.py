@@ -35,13 +35,13 @@ def normalize_name(name):
 
 
 def prize_for_position(pos, purse, pct_table):
-    """Return prize money for a given 1-based position."""
-    if pos < 1:
+    """Return prize money for a given 1-based position.
+    Any position beyond the payout table earns the last-place amount
+    (PGA Tour pays all players who make the cut)."""
+    if pos < 1 or not pct_table:
         return 0
-    idx = pos - 1
-    if idx < len(pct_table):
-        return round(purse * pct_table[idx])
-    return 0
+    idx = min(pos - 1, len(pct_table) - 1)
+    return round(purse * pct_table[idx])
 
 
 def split_prize_for_ties(positions, purse, pct_table):
