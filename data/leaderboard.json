@@ -6,7 +6,7 @@
   "statusDisplay": "Final",
   "isComplete": true,
   "round": 4,
-  "lastUpdated": "2026-03-15T23:57:46.824256+00:00",
+  "lastUpdated": "2026-03-16T01:13:51.523599+00:00",
   "players": [
     {
       "name": "Cameron Young",
@@ -81,7 +81,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 1025000
+      "estimatedPrize": 925000
     },
     {
       "name": "Jacob Bridgeman",
@@ -96,7 +96,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 906250
+      "estimatedPrize": 925000
     },
     {
       "name": "Ludvig \u00c5berg",
@@ -111,7 +111,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 843750
+      "estimatedPrize": 925000
     },
     {
       "name": "Tommy Fleetwood",
@@ -126,7 +126,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 781250
+      "estimatedPrize": 731250
     },
     {
       "name": "Sepp Straka",
@@ -141,7 +141,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 732250
+      "estimatedPrize": 731250
     },
     {
       "name": "Justin Thomas",
@@ -156,7 +156,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 684500
+      "estimatedPrize": 731250
     },
     {
       "name": "Patrick Rodgers",
@@ -171,7 +171,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 643750
+      "estimatedPrize": 606250
     },
     {
       "name": "Brian Harman",
@@ -186,7 +186,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 609500
+      "estimatedPrize": 606250
     },
     {
       "name": "Sam Burns",
@@ -201,7 +201,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 578250
+      "estimatedPrize": 409025
     },
     {
       "name": "Akshay Bhatia",
@@ -216,7 +216,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 553250
+      "estimatedPrize": 409025
     },
     {
       "name": "Brooks Koepka",
@@ -231,7 +231,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 528250
+      "estimatedPrize": 409025
     },
     {
       "name": "Ryo Hisatsune",
@@ -246,7 +246,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 506250
+      "estimatedPrize": 409025
     },
     {
       "name": "Justin Rose",
@@ -261,7 +261,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 487500
+      "estimatedPrize": 409025
     },
     {
       "name": "Russell Henley",
@@ -276,7 +276,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 468750
+      "estimatedPrize": 409025
     },
     {
       "name": "Austin Smotherman",
@@ -291,7 +291,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 450000
+      "estimatedPrize": 409025
     },
     {
       "name": "Viktor Hovland",
@@ -306,7 +306,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 431250
+      "estimatedPrize": 409025
     },
     {
       "name": "Corey Conners",
@@ -321,7 +321,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 412500
+      "estimatedPrize": 409025
     },
     {
       "name": "Scottie Scheffler",
@@ -336,7 +336,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 393750
+      "estimatedPrize": 271250
     },
     {
       "name": "Michael Thorbjornsen",
@@ -351,7 +351,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 375000
+      "estimatedPrize": 271250
     },
     {
       "name": "J.J. Spaun",
@@ -366,7 +366,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 356250
+      "estimatedPrize": 221250
     },
     {
       "name": "Alex Smalley",
@@ -381,7 +381,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 340750
+      "estimatedPrize": 221250
     },
     {
       "name": "William Mouw",
@@ -396,7 +396,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 328250
+      "estimatedPrize": 221250
     },
     {
       "name": "Hideki Matsuyama",
@@ -411,7 +411,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 315750
+      "estimatedPrize": 178750
     },
     {
       "name": "Nicolai H\u00f8jgaard",
@@ -426,7 +426,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 306250
+      "estimatedPrize": 178750
     },
     {
       "name": "Chris Kirk",
@@ -441,7 +441,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 297000
+      "estimatedPrize": 178750
     },
     {
       "name": "Ryan Gerard",
@@ -456,7 +456,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 287500
+      "estimatedPrize": 178750
     },
     {
       "name": "Chad Ramey",
@@ -471,7 +471,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 278250
+      "estimatedPrize": 178750
     },
     {
       "name": "Eric Cole",
@@ -486,7 +486,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 268750
+      "estimatedPrize": 128250
     },
     {
       "name": "Jordan Spieth",
@@ -501,7 +501,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 259500
+      "estimatedPrize": 128250
     },
     {
       "name": "Patrick Cantlay",
@@ -516,7 +516,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 253250
+      "estimatedPrize": 128250
     },
     {
       "name": "Bud Cauley",
@@ -531,7 +531,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 247000
+      "estimatedPrize": 128250
     },
     {
       "name": "Andrew Putnam",
@@ -546,7 +546,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 240750
+      "estimatedPrize": 128250
     },
     {
       "name": "Alex Noren",
@@ -561,7 +561,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 234500
+      "estimatedPrize": 128250
     },
     {
       "name": "Max Homa",
@@ -576,7 +576,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 231250
+      "estimatedPrize": 128250
     },
     {
       "name": "Min Woo Lee",
@@ -591,7 +591,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 228250
+      "estimatedPrize": 128250
     },
     {
       "name": "Maverick McNealy",
@@ -606,7 +606,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 225000
+      "estimatedPrize": 128250
     },
     {
       "name": "Sahith Theegala",
@@ -621,7 +621,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 222000
+      "estimatedPrize": 128250
     },
     {
       "name": "Rickie Fowler",
@@ -636,7 +636,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 218750
+      "estimatedPrize": 91250
     },
     {
       "name": "Nick Taylor",
@@ -651,7 +651,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 215750
+      "estimatedPrize": 91250
     },
     {
       "name": "Wyndham Clark",
@@ -666,7 +666,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 212500
+      "estimatedPrize": 91250
     },
     {
       "name": "Joe Highsmith",
@@ -681,7 +681,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 209500
+      "estimatedPrize": 91250
     },
     {
       "name": "Rory McIlroy",
@@ -696,7 +696,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 206250
+      "estimatedPrize": 72125
     },
     {
       "name": "Taylor Pendrith",
@@ -711,7 +711,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 203250
+      "estimatedPrize": 72125
     },
     {
       "name": "Matti Schmid",
@@ -726,7 +726,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 200000
+      "estimatedPrize": 72125
     },
     {
       "name": "Keith Mitchell",
@@ -741,7 +741,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 197000
+      "estimatedPrize": 72125
     },
     {
       "name": "J.T. Poston",
@@ -756,7 +756,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 193750
+      "estimatedPrize": 61075
     },
     {
       "name": "Zach Bauchou",
@@ -771,7 +771,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 190750
+      "estimatedPrize": 61075
     },
     {
       "name": "Taylor Moore",
@@ -786,7 +786,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 187500
+      "estimatedPrize": 61075
     },
     {
       "name": "Max McGreevy",
@@ -801,7 +801,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 184500
+      "estimatedPrize": 61075
     },
     {
       "name": "Si Woo Kim",
@@ -816,7 +816,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 181250
+      "estimatedPrize": 61075
     },
     {
       "name": "Keegan Bradley",
@@ -831,7 +831,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 178250
+      "estimatedPrize": 61075
     },
     {
       "name": "Adam Scott",
@@ -846,7 +846,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 175000
+      "estimatedPrize": 58000
     },
     {
       "name": "Chris Gotterup",
@@ -861,7 +861,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 172000
+      "estimatedPrize": 58000
     },
     {
       "name": "Sam Stevens",
@@ -876,7 +876,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 168750
+      "estimatedPrize": 57250
     },
     {
       "name": "Kevin Roy",
@@ -891,7 +891,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 165750
+      "estimatedPrize": 57250
     },
     {
       "name": "Lee Hodges",
@@ -906,7 +906,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 162500
+      "estimatedPrize": 57250
     },
     {
       "name": "Jason Day",
@@ -921,7 +921,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 159500
+      "estimatedPrize": 57250
     },
     {
       "name": "Danny Walker",
@@ -936,7 +936,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 156250
+      "estimatedPrize": 57250
     },
     {
       "name": "Steven Fisk",
@@ -951,7 +951,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 153250
+      "estimatedPrize": 57250
     },
     {
       "name": "Rico Hoey",
@@ -966,7 +966,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 150000
+      "estimatedPrize": 57250
     },
     {
       "name": "Stephan Jaeger",
@@ -981,7 +981,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Kristoffer Reitan",
@@ -996,7 +996,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Daniel Berger",
@@ -1011,7 +1011,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Nico Echavarria",
@@ -1026,7 +1026,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Michael Brennan",
@@ -1041,7 +1041,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Ricky Castillo",
@@ -1056,7 +1056,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "S\u00e9amus Power",
@@ -1071,7 +1071,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Tony Finau",
@@ -1086,7 +1086,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "Takumi Kanaya",
@@ -1101,7 +1101,7 @@
       },
       "roundsCompleted": 4,
       "missedCut": false,
-      "estimatedPrize": 147000
+      "estimatedPrize": 57250
     },
     {
       "name": "A.J. Ewart",
