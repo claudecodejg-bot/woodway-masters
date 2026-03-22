@@ -2,11 +2,11 @@
   "tournament": "THE PLAYERS Championship",
   "eventId": "401811937",
   "purse": 25000000,
-  "status": "STATUS_IN_PROGRESS",
-  "statusDisplay": "In Progress",
-  "isComplete": false,
+  "status": "STATUS_FINAL",
+  "statusDisplay": "Final",
+  "isComplete": true,
   "round": 4,
-  "lastUpdated": "2026-03-22T21:52:47.296686+00:00",
+  "lastUpdated": "2026-03-22T22:56:48.659048+00:00",
   "players": [
     {
       "name": "Matt Fitzpatrick",
