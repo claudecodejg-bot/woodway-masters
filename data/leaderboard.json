@@ -6,7 +6,7 @@
   "statusDisplay": "In Progress",
   "isComplete": false,
   "round": 3,
-  "lastUpdated": "2026-03-28T21:57:40.950012+00:00",
+  "lastUpdated": "2026-03-28T23:02:31.187995+00:00",
   "players": [
     {
       "name": "Gary Woodland",
@@ -320,7 +320,7 @@
       "name": "Pontus Nyholm",
       "normalizedName": "pontus nyholm",
       "position": 23,
-      "score": "-4",
+      "score": "-7",
       "roundScores": {
         "R1": "-1",
         "R2": "-4",
@@ -1034,7 +1034,7 @@
       "name": "Brice Garnett",
       "normalizedName": "brice garnett",
       "position": 74,
-      "score": "-2",
+      "score": "+4",
       "roundScores": {
         "R1": "-1",
         "R2": "-2",
