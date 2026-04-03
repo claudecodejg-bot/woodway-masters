@@ -6,7 +6,7 @@
   "statusDisplay": "In Progress",
   "isComplete": false,
   "round": 2,
-  "lastUpdated": "2026-04-03T22:47:40.075489+00:00",
+  "lastUpdated": "2026-04-03T23:20:41.658319+00:00",
   "players": [
     {
       "name": "Robert MacIntyre",
@@ -1530,35 +1530,9 @@
       "estimatedPrize": 57250
     },
     {
-      "name": "Lucas Glover",
-      "normalizedName": "lucas glover",
-      "position": 118,
-      "score": "+3",
-      "roundScores": {
-        "R1": "E",
-        "R2": "+3"
-      },
-      "roundsCompleted": 2,
-      "missedCut": false,
-      "estimatedPrize": 57250
-    },
-    {
-      "name": "Webb Simpson",
-      "normalizedName": "webb simpson",
-      "position": 119,
-      "score": "+3",
-      "roundScores": {
-        "R1": "+1",
-        "R2": "+2"
-      },
-      "roundsCompleted": 2,
-      "missedCut": false,
-      "estimatedPrize": 57250
-    },
-    {
       "name": "Jackson Suber",
       "normalizedName": "jackson suber",
-      "position": 120,
+      "position": 118,
       "score": "+4",
       "roundScores": {
         "R1": "+5",
@@ -1571,7 +1545,7 @@
     {
       "name": "Matthieu Pavon",
       "normalizedName": "matthieu pavon",
-      "position": 121,
+      "position": 119,
       "score": "+4",
       "roundScores": {
         "R1": "+2",
@@ -1584,7 +1558,7 @@
     {
       "name": "Zecheng Dou",
       "normalizedName": "zecheng dou",
-      "position": 122,
+      "position": 120,
       "score": "+4",
       "roundScores": {
         "R1": "+2",
@@ -1597,7 +1571,7 @@
     {
       "name": "Joel Dahmen",
       "normalizedName": "joel dahmen",
-      "position": 123,
+      "position": 121,
       "score": "+4",
       "roundScores": {
         "R1": "+1",
@@ -1610,7 +1584,7 @@
     {
       "name": "Patrick Fishburn",
       "normalizedName": "patrick fishburn",
-      "position": 124,
+      "position": 122,
       "score": "+4",
       "roundScores": {
         "R1": "-1",
@@ -1623,7 +1597,7 @@
     {
       "name": "Rafael Campos",
       "normalizedName": "rafael campos",
-      "position": 125,
+      "position": 123,
       "score": "+4",
       "roundScores": {
         "R1": "E",
@@ -1636,7 +1610,7 @@
     {
       "name": "Frankie Capan III",
       "normalizedName": "frankie capan iii",
-      "position": 126,
+      "position": 124,
       "score": "+4",
       "roundScores": {
         "R1": "+2",
@@ -1649,7 +1623,7 @@
     {
       "name": "Chan Kim",
       "normalizedName": "chan kim",
-      "position": 127,
+      "position": 125,
       "score": "+5",
       "roundScores": {
         "R1": "E",
@@ -1662,7 +1636,7 @@
     {
       "name": "Jesper Svensson",
       "normalizedName": "jesper svensson",
-      "position": 128,
+      "position": 126,
       "score": "+6",
       "roundScores": {
         "R1": "+1",
@@ -1675,7 +1649,7 @@
     {
       "name": "Brice Garnett",
       "normalizedName": "brice garnett",
-      "position": 129,
+      "position": 127,
       "score": "+7",
       "roundScores": {
         "R1": "+3",
@@ -1688,7 +1662,7 @@
     {
       "name": "Austin Wylie",
       "normalizedName": "austin wylie",
-      "position": 130,
+      "position": 128,
       "score": "+8",
       "roundScores": {
         "R1": "+6",
@@ -1701,7 +1675,7 @@
     {
       "name": "Patrick Rodgers",
       "normalizedName": "patrick rodgers",
-      "position": 131,
+      "position": 129,
       "score": "+9",
       "roundScores": {
         "R1": "+5",
@@ -1714,11 +1688,37 @@
     {
       "name": "K.H. Lee",
       "normalizedName": "kh lee",
-      "position": 132,
+      "position": 130,
       "score": "+10",
       "roundScores": {
         "R1": "+5",
         "R2": "+5"
+      },
+      "roundsCompleted": 2,
+      "missedCut": false,
+      "estimatedPrize": 57250
+    },
+    {
+      "name": "Lucas Glover",
+      "normalizedName": "lucas glover",
+      "position": 131,
+      "score": "+3",
+      "roundScores": {
+        "R1": "E",
+        "R2": "+3"
+      },
+      "roundsCompleted": 2,
+      "missedCut": false,
+      "estimatedPrize": 57250
+    },
+    {
+      "name": "Webb Simpson",
+      "normalizedName": "webb simpson",
+      "position": 132,
+      "score": "+3",
+      "roundScores": {
+        "R1": "+1",
+        "R2": "+2"
       },
       "roundsCompleted": 2,
       "missedCut": false,
