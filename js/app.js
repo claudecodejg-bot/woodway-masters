@@ -115,10 +115,10 @@ function scoreClass(s) {
   return s.startsWith('-') ? 'score-under' : 'score-over';
 }
 
-function statusBadge(golfer) {
+function statusBadge(golfer, isTopEarner) {
   if (golfer.status === 'not-in-field') return '<span class="badge badge-nif">NIF</span>';
-  if (golfer.missedCut)                 return '<span class="badge badge-cut">MC</span>';
-  if (golfer.position === 1)            return '<span class="badge badge-lead">🏆 Lead</span>';
+  if (golfer.missedCut || golfer.projectedCut) return '<span class="badge badge-cut">MC</span>';
+  if (isTopEarner)                      return '<span class="badge badge-lead">🏆 Top</span>';
   return '';
 }
 
@@ -192,19 +192,21 @@ function renderLeaderboard(rankings) {
 
 function renderGolfers(golfers) {
   const currentRound = leaderboard.round || 0;
+  const maxEarnings = Math.max(...golfers.map(g => g.poolEarnings || 0));
   const rows = golfers.map(g => {
     const posDisp  = g.position ? String(g.position) : '—';
     const oddsDisp = g.odds ? `${g.odds}-1` : 'N/A';
+    const isTopEarner = g.poolEarnings > 0 && g.poolEarnings === maxEarnings;
     return `
       <tr class="golfer-row ${g.status}">
         <td><span class="player-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}</span></td>
-        <td class="pos">${g.status === 'not-in-field' ? 'NIF' : (g.missedCut ? 'MC' : posDisp)}</td>
+        <td class="pos">${g.status === 'not-in-field' ? 'NIF' : (g.missedCut || g.projectedCut ? 'MC' : posDisp)}</td>
         <td class="score ${scoreClass(g.score)}">${g.status === 'not-in-field' ? '—' : fmtScore(g.score)}</td>
         <td><div class="rounds">${roundBadges(g.roundScores || {}, currentRound)}</div></td>
         <td class="odds-col">${oddsDisp}</td>
         <td class="prize-col">${fmt$(g.prize)}</td>
         <td class="pool-col">${fmt$(g.poolEarnings)}</td>
-        <td>${statusBadge(g)}</td>
+        <td>${statusBadge(g, isTopEarner)}</td>
       </tr>`;
   }).join('');
 
@@ -213,7 +215,7 @@ function renderGolfers(golfers) {
       <thead>
         <tr>
           <th>Golfer</th><th>Pos</th><th>Score</th><th>Rounds</th>
-          <th>Odds</th><th>Est. Prize</th><th>Pool Earnings</th><th></th>
+          <th>Odds</th><th>Est. Earnings</th><th>Odds Adj Earnings</th><th></th>
         </tr>
       </thead>
       <tbody>${rows}</tbody>
@@ -309,11 +311,20 @@ function renderTournamentTab() {
     tr.setAttribute('data-name', (p.name || '').toLowerCase());
     tr.setAttribute('data-score', scoreToNum(p.score));
     tr.setAttribute('data-prize', p.estimatedPrize || 0);
+    tr.setAttribute('data-cut', isCut ? '1' : '0');
+
+    const todayNum = todayScore ? scoreToNum(todayScore) : 999;
+    tr.setAttribute('data-today', todayNum);
+    tr.setAttribute('data-r1', p.roundScores && p.roundScores.R1 ? scoreToNum(p.roundScores.R1) : 999);
+    tr.setAttribute('data-r2', p.roundScores && p.roundScores.R2 ? scoreToNum(p.roundScores.R2) : 999);
+    tr.setAttribute('data-r3', p.roundScores && p.roundScores.R3 ? scoreToNum(p.roundScores.R3) : 999);
+    tr.setAttribute('data-r4', p.roundScores && p.roundScores.R4 ? scoreToNum(p.roundScores.R4) : 999);
 
     const odds = oddsMap[p.normalizedName] || 0;
     const oddsAdj = isCut ? 0 : (p.estimatedPrize || 0) * odds;
 
     tr.setAttribute('data-odds-adj', oddsAdj);
+    tr.setAttribute('data-odds', odds || 0);
 
     tr.innerHTML = `
       <td class="pos-col">${escHtml(String(posDisp))}${move}</td>
@@ -431,25 +442,59 @@ function sortRankings(rankings, state) {
 function sortTournamentTable(state) {
   const tbody = document.getElementById('tournament-tbody');
   const rows  = Array.from(tbody.querySelectorAll('tr.tourn-row'));
-  rows.sort((a, b) => {
-    let va, vb;
+
+  // Remove existing cut line row before re-sorting
+  const cutLine = tbody.querySelector('.cut-line-row');
+  if (cutLine) cutLine.remove();
+
+  // Separate active and cut players
+  const active = rows.filter(r => r.dataset.cut === '0');
+  const cut    = rows.filter(r => r.dataset.cut === '1');
+
+  function getVal(row) {
+    const col = state.col;
+    if (col === 'name')   return row.dataset.name;
+    if (col === 'score')  return parseFloat(row.dataset.score);
+    if (col === 'prize')  return parseFloat(row.dataset.prize);
+    if (col === 'oddsAdj') return parseFloat(row.dataset.oddsAdj);
+    if (col === 'odds')   return parseFloat(row.dataset.odds);
+    if (col === 'today')  return parseFloat(row.dataset.today);
+    if (col === 'r1')     return parseFloat(row.dataset.r1);
+    if (col === 'r2')     return parseFloat(row.dataset.r2);
+    if (col === 'r3')     return parseFloat(row.dataset.r3);
+    if (col === 'r4')     return parseFloat(row.dataset.r4);
+    return parseFloat(row.dataset.pos); // pos default
+  }
+
+  function compare(a, b) {
+    const va = getVal(a), vb = getVal(b);
     if (state.col === 'name') {
-      va = a.dataset.name; vb = b.dataset.name;
       const r = va.localeCompare(vb);
       return state.dir === 'asc' ? r : -r;
     }
-    if (state.col === 'score') {
-      va = parseFloat(a.dataset.score); vb = parseFloat(b.dataset.score);
-    } else if (state.col === 'prize') {
-      va = parseFloat(a.dataset.prize); vb = parseFloat(b.dataset.prize);
-    } else if (state.col === 'oddsAdj') {
-      va = parseFloat(a.dataset.oddsAdj); vb = parseFloat(b.dataset.oddsAdj);
-    } else { // pos
-      va = parseFloat(a.dataset.pos); vb = parseFloat(b.dataset.pos);
-    }
     return state.dir === 'asc' ? va - vb : vb - va;
-  });
-  rows.forEach(r => tbody.appendChild(r));
+  }
+
+  active.sort(compare);
+  cut.sort(compare);
+
+  // Re-append: active rows, then cut line, then cut rows
+  tbody.innerHTML = '';
+  active.forEach(r => tbody.appendChild(r));
+
+  // Re-insert cut line divider
+  if (cut.length > 0) {
+    const currentRound = leaderboard.round || 0;
+    const divider = document.createElement('tr');
+    divider.className = 'cut-line-row';
+    const label = currentRound >= 3 ? 'Missed Cut' : 'Projected Cut Line';
+    const cutScore = leaderboard.cutLineScore || '';
+    const scoreLabel = cutScore ? ` (${cutScore})` : '';
+    divider.innerHTML = `<td colspan="11" class="cut-line-cell">✂ ${label}${scoreLabel}</td>`;
+    tbody.appendChild(divider);
+  }
+
+  cut.forEach(r => tbody.appendChild(r));
 }
 
 // ─── Search / Filter ──────────────────────────────────────────────────────────
@@ -594,7 +639,7 @@ function showPlayerModal(playerName) {
                           : g.missedCut                 ? 'MC'
                           : g.projectedCut              ? 'PC'
                           : g.position                  ? `T${g.position}` : '—';
-          const earningsLabel = isSelected ? ` ${fmtMM(g.poolEarnings)}` : '';
+          const earningsLabel = ` ${fmtMM(g.poolEarnings)}`;
           return `<span class="${chipClass}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}${earningsLabel}</span></span>`;
         }).join('');
         return `<li><span class="modal-team-name"><span class="modal-team-rank">${rankDisp}</span>${escHtml(team.name)}</span><span class="modal-team-earnings">${fmt$(team.total)}</span><div class="modal-chips">${chips}</div></li>`;
