@@ -396,6 +396,17 @@ table.tournament-table thead th.earnings  { width: 140px; }
 .move-up   { color: #2d7a4f; }
 .move-down { color: #c0392b; }
 
+.today-delta {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+.delta-up   { color: #2d7a4f; }
+.delta-down { color: #c0392b; }
+.delta-even { color: #999; }
+
 /* Widen rank/pos columns to accommodate movement badges */
 table.leaderboard thead th.rank { width: 72px; }
 .tourn-row td.pos-col { width: 72px; }

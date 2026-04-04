@@ -157,10 +157,14 @@ def main():
         # ESPN doesn't always expose status field clearly — use position >65 heuristic
         # or check if linescores only have 2 rounds with no round 3/4 data
         linescores = c.get("linescores", [])
-        rounds = [ls for ls in linescores if ls.get("period", 0) <= 4 and ls.get("value") is not None]
+        # Filter out WD rounds: value=0.0 with displayValue="-" means no actual round played
+        rounds = [ls for ls in linescores
+                  if ls.get("period", 0) <= 4
+                  and ls.get("value") is not None
+                  and not (ls.get("value") == 0 and ls.get("displayValue") == "-")]
         rounds_completed = len(rounds)
 
-        # If only 2 rounds and tournament is past round 2, player missed cut
+        # If only 2 rounds and tournament is past round 2, player missed cut or WD
         missed_cut = False
         if max_round >= 3 and rounds_completed <= 2:
             missed_cut = True

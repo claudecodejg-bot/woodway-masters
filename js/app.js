@@ -24,7 +24,7 @@ function normalizeName(name) {
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-let picks = [], oddsMap = {}, leaderboard = {}, purseData = {};
+let picks = [], oddsMap = {}, leaderboard = {}, purseData = {}, priorData = null;
 
 async function loadAll() {
   const [p, o, l, pu] = await Promise.all([
@@ -89,6 +89,13 @@ function scoreTeam(entry, lbIndex) {
     };
   });
 
+  // Sort golfers: active by poolEarnings desc, then cut/MC players last
+  golfers.sort((a, b) => {
+    if (a.status === 'cut' && b.status !== 'cut') return 1;
+    if (a.status !== 'cut' && b.status === 'cut') return -1;
+    return b.poolEarnings - a.poolEarnings;
+  });
+
   return { name: entry.name, total, golfers };
 }
 
@@ -97,6 +104,106 @@ function buildRankings() {
   return picks
     .map(e => scoreTeam(e, lbIndex))
     .sort((a, b) => b.total - a.total);
+}
+
+// ─── Prior-round standings (for daily movement) ─────────────────────────────
+function buildPriorRoundTotals() {
+  const currentRound = leaderboard.round || 0;
+  if (currentRound <= 1) return null; // no prior round to compare
+
+  const purse = purseData.purse || 0;
+  const pct   = purseData.payoutPercentages || [];
+  const players = leaderboard.players || [];
+
+  // Calculate each player's score through end of prior round
+  const priorScores = [];
+  for (const p of players) {
+    const rs = p.roundScores || {};
+    let total = 0;
+    let hasScores = false;
+    for (let r = 1; r < currentRound; r++) {
+      const v = rs[`R${r}`];
+      if (v && v !== '—') {
+        total += scoreToNum(v);
+        hasScores = true;
+      }
+    }
+    // Skip players who missed cut or had no prior-round scores
+    if (p.missedCut && !hasScores) continue;
+    priorScores.push({
+      normalizedName: p.normalizedName,
+      priorTotal: hasScores ? total : 999,
+      missedCut: p.missedCut || p.projectedCut
+    });
+  }
+
+  // Rank by prior-round score (lower is better)
+  priorScores.sort((a, b) => a.priorTotal - b.priorTotal);
+
+  // Group by score for tie handling
+  const posGroups = {};
+  let pos = 1;
+  for (let i = 0; i < priorScores.length; i++) {
+    if (priorScores[i].missedCut) {
+      priorScores[i].prize = 0;
+      continue;
+    }
+    if (i > 0 && priorScores[i].priorTotal === priorScores[i - 1].priorTotal) {
+      priorScores[i].pos = priorScores[i - 1].pos;
+    } else {
+      priorScores[i].pos = pos;
+    }
+    pos++;
+  }
+
+  // Calculate prizes with tie averaging
+  const tieGroups = {};
+  for (const p of priorScores) {
+    if (p.missedCut || p.pos == null) continue;
+    if (!tieGroups[p.pos]) tieGroups[p.pos] = [];
+    tieGroups[p.pos].push(p);
+  }
+  for (const [tiePos, group] of Object.entries(tieGroups)) {
+    const startPos = parseInt(tiePos);
+    let totalPrize = 0;
+    for (let i = 0; i < group.length; i++) {
+      const idx = Math.min(startPos - 1 + i, pct.length - 1);
+      totalPrize += purse * (pct[idx] || 0);
+    }
+    const avgPrize = totalPrize / group.length;
+    for (const p of group) p.prize = Math.round(avgPrize);
+  }
+
+  // Build lookup: normalizedName -> prior prize
+  const priorPrizeMap = {};
+  for (const p of priorScores) {
+    priorPrizeMap[p.normalizedName] = p.prize || 0;
+  }
+
+  // Build per-player prior odds-adjusted earnings
+  const playerPriorAdj = {};
+  for (const p of priorScores) {
+    const odds = oddsMap[p.normalizedName] || 0;
+    playerPriorAdj[p.normalizedName] = (p.prize || 0) * odds;
+  }
+
+  // Calculate prior-round team totals
+  const lbIndex = buildLeaderboardIndex(leaderboard);
+  const teamTotals = {};
+  for (const entry of picks) {
+    let total = 0;
+    for (const pickName of entry.players) {
+      const key = NAME_ALIASES[normalizeName(pickName)] || normalizeName(pickName);
+      const odds = oddsMap[normalizeName(pickName)] || oddsMap[key] || 0;
+      const player = lookupPlayer(pickName, lbIndex);
+      if (!player || player.missedCut || player.projectedCut) continue;
+      const priorPrize = priorPrizeMap[player.normalizedName] || 0;
+      total += priorPrize * odds;
+    }
+    teamTotals[entry.name] = total;
+  }
+
+  return { teamTotals, playerPriorAdj };
 }
 
 // ─── Formatting ───────────────────────────────────────────────────────────────
@@ -115,10 +222,9 @@ function scoreClass(s) {
   return s.startsWith('-') ? 'score-under' : 'score-over';
 }
 
-function statusBadge(golfer, isTopEarner) {
+function statusBadge(golfer) {
   if (golfer.status === 'not-in-field') return '<span class="badge badge-nif">NIF</span>';
   if (golfer.missedCut || golfer.projectedCut) return '<span class="badge badge-cut">MC</span>';
-  if (isTopEarner)                      return '<span class="badge badge-lead">🏆 Top</span>';
   return '';
 }
 
@@ -143,6 +249,7 @@ function renderHeader() {
     ? new Date(lb.lastUpdated).toLocaleString('en-US', { timeZoneName: 'short' })
     : '—';
   document.getElementById('tournament-name').textContent   = lb.tournament || 'Tournament';
+  document.getElementById('header-tournament').textContent = lb.tournament || 'Tournament';
   document.getElementById('tournament-status').textContent =
     lb.round ? `Round ${lb.round} — ${lb.statusDisplay || ''}` : (lb.statusDisplay || '');
   document.getElementById('purse-display').textContent     = `Purse: $${(lb.purse || 0).toLocaleString()}`;
@@ -158,6 +265,7 @@ function renderLeaderboard(rankings) {
   tbody.innerHTML = '';
 
   const sameRoundPool = prevSnapshot.round === (leaderboard.round || 0);
+  const priorTotals = priorData ? priorData.teamTotals : null;
 
   rankings.forEach((team, idx) => {
     const rank     = idx + 1;
@@ -167,13 +275,22 @@ function renderLeaderboard(rankings) {
     const prevRank  = sameRoundPool ? (prevSnapshot.poolRanks || {})[team.name] : null;
     const move      = movementBadge(prevRank, rank);
 
+    // Today's earnings change (computed from prior round standings)
+    let todayHtml = '';
+    if (priorTotals && priorTotals[team.name] != null) {
+      const delta = team.total - priorTotals[team.name];
+      if (delta > 0)      todayHtml = `<span class="today-delta delta-up">+${fmtMM(delta)}</span>`;
+      else if (delta < 0) todayHtml = `<span class="today-delta delta-down">-${fmtMM(Math.abs(delta))}</span>`;
+      else                todayHtml = `<span class="today-delta delta-even">—</span>`;
+    }
+
     const tr = document.createElement('tr');
     tr.className = `team-row ${rankClass}`;
     tr.setAttribute('data-team', idx);
     tr.innerHTML = `
       <td class="rank">${rankDisp}${move}</td>
       <td class="team-name">${escHtml(team.name)}</td>
-      <td class="earnings">${fmt$(team.total)}</td>
+      <td class="earnings">${fmt$(team.total)}${todayHtml}</td>
       <td class="expand-icon">▶</td>
     `;
     tr.addEventListener('click', () => toggleDetail(idx));
@@ -192,11 +309,21 @@ function renderLeaderboard(rankings) {
 
 function renderGolfers(golfers) {
   const currentRound = leaderboard.round || 0;
-  const maxEarnings = Math.max(...golfers.map(g => g.poolEarnings || 0));
+  const playerPrior = priorData ? priorData.playerPriorAdj : null;
   const rows = golfers.map(g => {
     const posDisp  = g.position ? String(g.position) : '—';
     const oddsDisp = g.odds ? `${g.odds}-1` : 'N/A';
-    const isTopEarner = g.poolEarnings > 0 && g.poolEarnings === maxEarnings;
+
+    let deltaHtml = '';
+    if (playerPrior) {
+      const gKey = NAME_ALIASES[normalizeName(g.pickName)] || normalizeName(g.pickName);
+      const prior = playerPrior[gKey] || 0;
+      const delta = g.poolEarnings - prior;
+      if (delta > 0)      deltaHtml = `<span class="today-delta delta-up">+${fmtMM(delta)}</span>`;
+      else if (delta < 0) deltaHtml = `<span class="today-delta delta-down">-${fmtMM(Math.abs(delta))}</span>`;
+      else                deltaHtml = `<span class="today-delta delta-even">—</span>`;
+    }
+
     return `
       <tr class="golfer-row ${g.status}">
         <td><span class="player-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}</span></td>
@@ -205,8 +332,8 @@ function renderGolfers(golfers) {
         <td><div class="rounds">${roundBadges(g.roundScores || {}, currentRound)}</div></td>
         <td class="odds-col">${oddsDisp}</td>
         <td class="prize-col">${fmt$(g.prize)}</td>
-        <td class="pool-col">${fmt$(g.poolEarnings)}</td>
-        <td>${statusBadge(g, isTopEarner)}</td>
+        <td class="pool-col">${fmt$(g.poolEarnings)}${deltaHtml}</td>
+        <td>${statusBadge(g)}</td>
       </tr>`;
   }).join('');
 
@@ -326,6 +453,17 @@ function renderTournamentTab() {
     tr.setAttribute('data-odds-adj', oddsAdj);
     tr.setAttribute('data-odds', odds || 0);
 
+    // Per-player daily delta for tournament tab
+    let tournDelta = '';
+    const playerPrior = priorData ? priorData.playerPriorAdj : null;
+    if (playerPrior && !isCut) {
+      const prior = playerPrior[p.normalizedName] || 0;
+      const delta = oddsAdj - prior;
+      if (delta > 0)      tournDelta = `<span class="today-delta delta-up">+${fmtMM(delta)}</span>`;
+      else if (delta < 0) tournDelta = `<span class="today-delta delta-down">-${fmtMM(Math.abs(delta))}</span>`;
+      else                tournDelta = `<span class="today-delta delta-even">—</span>`;
+    }
+
     tr.innerHTML = `
       <td class="pos-col">${escHtml(String(posDisp))}${move}</td>
       <td><span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
@@ -334,7 +472,7 @@ function renderTournamentTab() {
       ${roundCells}
       <td class="prize-col">${isCut ? '—' : fmt$(p.estimatedPrize)}</td>
       <td class="odds-col" style="text-align:center">${odds ? odds + '-1' : '—'}</td>
-      <td class="prize-col">${isCut ? '—' : (odds ? fmt$(oddsAdj) : '—')}</td>
+      <td class="prize-col">${isCut ? '—' : (odds ? fmt$(oddsAdj) + tournDelta : '—')}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -414,7 +552,8 @@ function toggleSort(table, col) {
     state.dir = state.dir === 'asc' ? 'desc' : 'asc';
   } else {
     state.col = col;
-    state.dir = col === 'name' ? 'asc' : (col === 'pos' ? 'asc' : 'desc');
+    const ascCols = ['name', 'pos', 'score', 'today', 'r1', 'r2', 'r3', 'r4'];
+    state.dir = ascCols.includes(col) ? 'asc' : 'desc';
   }
 }
 
@@ -538,7 +677,9 @@ function loadSnapshot() {
 function saveSnapshot(rankings) {
   const round = leaderboard.round || 0;
   const poolRanks = {};
-  rankings.forEach((team, idx) => { poolRanks[team.name] = idx + 1; });
+  rankings.forEach((team, idx) => {
+    poolRanks[team.name] = idx + 1;
+  });
 
   const tournamentPositions = {};
   (leaderboard.players || []).forEach(p => {
@@ -566,6 +707,7 @@ async function refresh() {
     const ts = Date.now();
     leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
     allRankings = buildRankings();
+    priorData = buildPriorRoundTotals();
     loadSnapshot();
     renderHeader();
     renderLeaderboard(sortRankings(allRankings, sortState.pool));
@@ -661,6 +803,7 @@ async function init() {
   try {
     await loadAll();
     allRankings = buildRankings();
+    priorData = buildPriorRoundTotals();
     loadSnapshot();
     renderHeader();
     renderLeaderboard(sortRankings(allRankings, sortState.pool));
