@@ -102,6 +102,12 @@ function buildRankings() {
 // ─── Formatting ───────────────────────────────────────────────────────────────
 function fmt$(n) { return n ? '$' + Math.round(n).toLocaleString() : '$0'; }
 
+function fmtMM(n) {
+  if (!n) return '0.0mm';
+  const mm = n / 1000000;
+  return mm >= 10 ? mm.toFixed(1) + 'mm' : mm.toFixed(1) + 'mm';
+}
+
 function fmtScore(s) { return (!s || s === 'E') ? 'E' : s; }
 
 function scoreClass(s) {
@@ -560,10 +566,16 @@ function showPlayerModal(playerName) {
   const player  = lookupPlayer(playerName, lbIndex);
 
   let infoText = 'Not in field';
+  let playerOddsAdj = '';
   if (player) {
     const pos   = player.missedCut ? 'MC' : player.projectedCut ? 'PC' : (player.position ? `T${player.position}` : '—');
     const score = fmtScore(player.score);
-    infoText    = `Position: ${pos}  |  Score: ${score}`;
+    const odds  = oddsMap[player.normalizedName] || 0;
+    const prize = player.estimatedPrize || 0;
+    const isCut = player.missedCut || player.projectedCut;
+    const oddsAdj = isCut ? 0 : prize * odds;
+    playerOddsAdj = odds ? fmtMM(oddsAdj) : '—';
+    infoText    = `Position: ${pos}  |  Score: ${score}  |  Odds: ${odds ? odds + '-1' : '—'}  |  Odds Adj: ${playerOddsAdj}`;
   }
 
   // detect ties for rank display
@@ -582,9 +594,10 @@ function showPlayerModal(playerName) {
                           : g.missedCut                 ? 'MC'
                           : g.projectedCut              ? 'PC'
                           : g.position                  ? `T${g.position}` : '—';
-          return `<span class="${chipClass}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}</span></span>`;
+          const earningsLabel = isSelected ? ` ${fmtMM(g.poolEarnings)}` : '';
+          return `<span class="${chipClass}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}${earningsLabel}</span></span>`;
         }).join('');
-        return `<li><span class="modal-team-name"><span class="modal-team-rank">${rankDisp}</span>${escHtml(team.name)}</span><div class="modal-chips">${chips}</div></li>`;
+        return `<li><span class="modal-team-name"><span class="modal-team-rank">${rankDisp}</span>${escHtml(team.name)}</span><span class="modal-team-earnings">${fmt$(team.total)}</span><div class="modal-chips">${chips}</div></li>`;
       }).join('')
     : '<li class="modal-no-teams">Not picked by any team</li>';
 

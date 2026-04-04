@@ -498,11 +498,11 @@ table.leaderboard thead th.rank { width: 72px; }
   font-weight: 700;
   color: #1a4c2e;
   white-space: nowrap;
-  min-width: 110px;
   padding-top: 2px;
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .modal-team-rank {
@@ -518,6 +518,15 @@ table.leaderboard thead th.rank { width: 72px; }
   font-size: 0.7rem;
   font-weight: 800;
   flex-shrink: 0;
+}
+
+.modal-team-earnings {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2d7a4f;
+  white-space: nowrap;
+  margin-left: auto;
+  padding-top: 2px;
 }
 
 .modal-chips {
