@@ -265,7 +265,7 @@ function renderTournamentTab() {
 
   const sameRoundTourn = prevSnapshot.round === currentRound;
   const players = [...(leaderboard.players || [])];
-  const totalCols = 10; // pos, player, total, today, R1-R4, winnings, odds adj
+  const totalCols = 11; // pos, player, total, today, R1-R4, winnings, odds, odds adj
 
   // Determine if we need a cut line divider
   let cutLineInserted = false;
@@ -316,6 +316,7 @@ function renderTournamentTab() {
       <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (isCut ? (mc ? 'MC' : 'PC') : '—')}</td>
       ${roundCells}
       <td class="prize-col">${isCut ? '—' : fmt$(p.estimatedPrize)}</td>
+      <td class="odds-col" style="text-align:center">${odds ? odds + '-1' : '—'}</td>
       <td class="prize-col">${isCut ? '—' : (odds ? fmt$(oddsAdj) : '—')}</td>
     `;
     tbody.appendChild(tr);
