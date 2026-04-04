@@ -39,7 +39,6 @@
   <div id="tab-leaderboard" class="tab-panel active">
     <div class="legend">
       <span><span class="badge badge-cut">MC</span> Missed Cut</span>
-      <span><span class="badge badge-nif">NIF</span> Not in Field</span>
       <span>Click any row to see golfer breakdown</span>
     </div>
     <div id="loading" class="loading-msg">Loading leaderboard…</div>
@@ -63,7 +62,6 @@
     <div class="legend">
       <span>All teams and their golfer selections</span>
       <span><span class="badge badge-cut">MC</span> Missed Cut</span>
-      <span><span class="badge badge-nif">NIF</span> Not in Field</span>
     </div>
     <div class="table-wrap">
       <table class="leaderboard picks-table" id="picks-table">
@@ -99,6 +97,7 @@
             <th class="score-col">R3</th>
             <th class="score-col">R4</th>
             <th class="earnings sortable" data-col="prize">Est. Winnings <span class="sort-icon">↕</span></th>
+            <th class="earnings sortable" data-col="oddsAdj">Odds Adj Earnings <span class="sort-icon">↕</span></th>
           </tr>
         </thead>
         <tbody id="tournament-tbody"></tbody>
@@ -126,6 +125,6 @@
   </div>
 </div>
 
-<script src="js/app.js?v=2"></script>
+<script src="js/app.js?v=4"></script>
 </body>
 </html>

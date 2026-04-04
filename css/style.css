@@ -317,6 +317,16 @@ table.tournament-table thead th.earnings  { width: 140px; }
 .tourn-row.missed-cut { color: #aaa; background: #fafafa; }
 .tourn-row.missed-cut td { font-style: italic; }
 
+.cut-line-row { background: #c0392b; }
+.cut-line-cell {
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
 .tourn-row td { padding: 10px 14px; }
 .tourn-row td.pos-col   { text-align: center; font-weight: 700; color: #2d7a4f; width: 52px; }
 .tourn-row td.score-col { text-align: center; font-weight: 600; }

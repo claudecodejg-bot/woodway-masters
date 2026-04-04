@@ -70,9 +70,9 @@ function scoreTeam(entry, lbIndex) {
     const player = lookupPlayer(pickName, lbIndex);
 
     let status, prize = 0, poolEarnings = 0;
-    if (!player)             { status = 'not-in-field'; }
-    else if (player.missedCut) { status = 'cut'; prize = 0; }
-    else                     { status = 'active'; prize = player.estimatedPrize || 0; }
+    if (!player)                                    { status = 'not-in-field'; }
+    else if (player.missedCut || player.projectedCut) { status = 'cut'; prize = 0; }
+    else                                            { status = 'active'; prize = player.estimatedPrize || 0; }
 
     if (odds && status === 'active') { poolEarnings = prize * odds; }
     total += poolEarnings;
@@ -84,6 +84,7 @@ function scoreTeam(entry, lbIndex) {
       score:       player ? player.score : null,
       roundScores: player ? player.roundScores : {},
       missedCut:   player ? player.missedCut : false,
+      projectedCut: player ? player.projectedCut : false,
       odds, prize, poolEarnings, status,
     };
   });
@@ -236,6 +237,7 @@ function renderPicksTab(rankings) {
                       : 'chip-active';
       const posLabel = g.status === 'not-in-field' ? 'NIF'
                      : g.missedCut                 ? 'MC'
+                     : g.projectedCut              ? 'PC'
                      : g.position                  ? `T${g.position}` : '—';
       return `<span class="pick-chip ${chipClass}" data-name="${escHtml(g.pickName)}">
         ${escHtml(g.pickName)}
@@ -263,34 +265,58 @@ function renderTournamentTab() {
 
   const sameRoundTourn = prevSnapshot.round === currentRound;
   const players = [...(leaderboard.players || [])];
+  const totalCols = 10; // pos, player, total, today, R1-R4, winnings, odds adj
+
+  // Determine if we need a cut line divider
+  let cutLineInserted = false;
 
   players.forEach(p => {
     const mc         = p.missedCut;
+    const pc         = p.projectedCut;
+    const isCut      = mc || pc;
     const todayScore = p.roundScores ? p.roundScores[`R${currentRound}`] : null;
-    const posDisp    = mc ? 'MC' : (p.position ? p.position : '—');
-    const prevPos    = (!mc && sameRoundTourn) ? (prevSnapshot.tournamentPositions || {})[p.name] : null;
-    const move       = movementBadge(prevPos, p.position);
+    const posDisp    = mc ? 'MC' : pc ? 'PC' : (p.position ? p.position : '—');
+    const prevPos    = (!isCut && sameRoundTourn) ? (prevSnapshot.tournamentPositions || {})[p.name] : null;
+    const move       = isCut ? '' : movementBadge(prevPos, p.position);
+
+    // Insert cut line divider before the first cut/projected-cut player
+    if (isCut && !cutLineInserted) {
+      cutLineInserted = true;
+      const divider = document.createElement('tr');
+      divider.className = 'cut-line-row';
+      const label = currentRound >= 3 ? 'Missed Cut' : 'Projected Cut Line';
+      const cutScore = leaderboard.cutLineScore || '';
+      const scoreLabel = cutScore ? ` (${cutScore})` : '';
+      divider.innerHTML = `<td colspan="${totalCols}" class="cut-line-cell">✂ ${label}${scoreLabel}</td>`;
+      tbody.appendChild(divider);
+    }
 
     const roundCells = [1,2,3,4].map(r => {
       const v        = p.roundScores ? p.roundScores[`R${r}`] : null;
-      const isToday  = r === currentRound && v && !mc;
+      const isToday  = r === currentRound && v && !isCut;
       return `<td class="score-col ${isToday ? 'today-col' : ''} ${scoreClass(v)}">${v || '—'}</td>`;
     }).join('');
 
     const tr = document.createElement('tr');
-    tr.className = `tourn-row${mc ? ' missed-cut' : ''}${p.position === 1 ? ' pos-1' : ''}`;
-    tr.setAttribute('data-pos', mc ? 9999 : (p.position || 9998));
+    tr.className = `tourn-row${isCut ? ' missed-cut' : ''}${p.position === 1 ? ' pos-1' : ''}`;
+    tr.setAttribute('data-pos', isCut ? 9999 : (p.position || 9998));
     tr.setAttribute('data-name', (p.name || '').toLowerCase());
     tr.setAttribute('data-score', scoreToNum(p.score));
     tr.setAttribute('data-prize', p.estimatedPrize || 0);
+
+    const odds = oddsMap[p.normalizedName] || 0;
+    const oddsAdj = isCut ? 0 : (p.estimatedPrize || 0) * odds;
+
+    tr.setAttribute('data-odds-adj', oddsAdj);
 
     tr.innerHTML = `
       <td class="pos-col">${escHtml(String(posDisp))}${move}</td>
       <td><span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
-      <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (mc ? 'MC' : '—')}</td>
+      <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (isCut ? (mc ? 'MC' : 'PC') : '—')}</td>
       ${roundCells}
-      <td class="prize-col">${mc ? '—' : fmt$(p.estimatedPrize)}</td>
+      <td class="prize-col">${isCut ? '—' : fmt$(p.estimatedPrize)}</td>
+      <td class="prize-col">${isCut ? '—' : (odds ? fmt$(oddsAdj) : '—')}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -409,6 +435,8 @@ function sortTournamentTable(state) {
       va = parseFloat(a.dataset.score); vb = parseFloat(b.dataset.score);
     } else if (state.col === 'prize') {
       va = parseFloat(a.dataset.prize); vb = parseFloat(b.dataset.prize);
+    } else if (state.col === 'oddsAdj') {
+      va = parseFloat(a.dataset.oddsAdj); vb = parseFloat(b.dataset.oddsAdj);
     } else { // pos
       va = parseFloat(a.dataset.pos); vb = parseFloat(b.dataset.pos);
     }
@@ -532,7 +560,7 @@ function showPlayerModal(playerName) {
 
   let infoText = 'Not in field';
   if (player) {
-    const pos   = player.missedCut ? 'MC' : (player.position ? `T${player.position}` : '—');
+    const pos   = player.missedCut ? 'MC' : player.projectedCut ? 'PC' : (player.position ? `T${player.position}` : '—');
     const score = fmtScore(player.score);
     infoText    = `Position: ${pos}  |  Score: ${score}`;
   }
@@ -551,6 +579,7 @@ function showPlayerModal(playerName) {
                           : 'modal-chip modal-chip-active';
           const posLabel  = g.status === 'not-in-field' ? 'NIF'
                           : g.missedCut                 ? 'MC'
+                          : g.projectedCut              ? 'PC'
                           : g.position                  ? `T${g.position}` : '—';
           return `<span class="${chipClass}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}</span></span>`;
         }).join('');

@@ -182,12 +182,41 @@ def main():
             "roundScores": round_scores,
             "roundsCompleted": rounds_completed,
             "missedCut": missed_cut,
+            "projectedCut": False,
             "estimatedPrize": estimated_prize
         })
 
-    # Sort: active players by position, then missed cut players
-    active = sorted([p for p in players if not p["missedCut"]], key=lambda x: x["position"])
-    cut = sorted([p for p in players if p["missedCut"]], key=lambda x: x["name"])
+    # Projected cut for Rounds 1-2: top 65 and ties make the cut
+    cut_line_score = None
+    if max_round <= 2:
+        # Sort by position to find the cut line
+        by_pos = sorted(players, key=lambda x: x["position"])
+        # Find the score at position 65 (PGA cut = top 65 + ties)
+        cut_pos_score = None
+        for p in by_pos:
+            if p["position"] >= 65:
+                cut_pos_score = p["score"]
+                break
+        if cut_pos_score is not None:
+            cut_line_score = cut_pos_score
+            for p in players:
+                # Players whose score is worse than (higher than) the cut line score
+                # need numeric comparison: E=0, -3=-3, +2=2
+                def score_to_num(s):
+                    if not s or s == "E":
+                        return 0
+                    return int(s.replace("+", ""))
+                player_num = score_to_num(p["score"])
+                cut_num = score_to_num(cut_pos_score)
+                if player_num > cut_num:
+                    p["projectedCut"] = True
+                    p["estimatedPrize"] = 0
+
+    # Sort: active players by position, then missed/projected cut players
+    active = sorted([p for p in players if not p["missedCut"] and not p["projectedCut"]],
+                    key=lambda x: x["position"])
+    cut = sorted([p for p in players if p["missedCut"] or p["projectedCut"]],
+                 key=lambda x: x["name"])
     players_sorted = active + cut
 
     output = {
@@ -198,6 +227,7 @@ def main():
         "statusDisplay": status_display,
         "isComplete": is_complete,
         "round": max_round,
+        "cutLineScore": cut_line_score,
         "lastUpdated": datetime.now(timezone.utc).isoformat(),
         "players": players_sorted
     }
