@@ -31,6 +31,10 @@ def normalize_name(name):
     name = unicodedata.normalize("NFD", name)
     name = "".join(c for c in name if unicodedata.category(c) != "Mn")
     name = name.replace(".", "")   # J.J. Spaun → JJ Spaun
+    # Handle special characters not decomposed by NFD
+    name = name.replace("ø", "o").replace("Ø", "O")
+    name = name.replace("đ", "d").replace("Đ", "D")
+    name = name.replace("ł", "l").replace("Ł", "L")
     return name.lower().strip()
 
 

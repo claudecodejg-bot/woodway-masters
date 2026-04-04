@@ -16,6 +16,9 @@ function normalizeName(name) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/\./g, '')
+    .replace(/ø/g, 'o').replace(/Ø/g, 'O')
+    .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+    .replace(/ł/g, 'l').replace(/Ł/g, 'L')
     .toLowerCase()
     .trim();
 }
@@ -323,7 +326,7 @@ function switchTab(tabName) {
 // ─── Sort state ───────────────────────────────────────────────────────────────
 const sortState = {
   pool:       { col: 'earnings', dir: 'desc' },
-  picks:      { col: 'earnings', dir: 'desc' },
+  picks:      { col: 'name',     dir: 'asc'  },
   tournament: { col: 'pos',      dir: 'asc'  },
 };
 

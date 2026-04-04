@@ -1,16 +1,16 @@
 {
-  "tournament": "THE PLAYERS Championship",
-  "eventId": "401811937",
-  "purse": 25000000,
-  "_payoutNote": "Calibrated against 2026 Players Championship actual payouts. Positions 1-4 confirmed exact. Positions 5+ use group averages from tied finish data. Apply same table to Masters (adjust purse amount only — verify Masters structure closer to April 10).",
+  "tournament": "Valero Texas Open",
+  "eventId": "401811940",
+  "purse": 9800000,
+  "_payoutNote": "Valero Texas Open 2026 - test tournament. Using standard PGA Tour payout structure.",
   "payoutPercentages": [
-    0.18000,
-    0.10900,
-    0.06900,
-    0.04900,
-    0.03700,
-    0.03700,
-    0.03700,
+    0.18,
+    0.109,
+    0.069,
+    0.049,
+    0.037,
+    0.037,
+    0.037,
     0.02925,
     0.02925,
     0.02925,
@@ -59,8 +59,8 @@
     0.002443,
     0.002443,
     0.002443,
-    0.002320,
-    0.002320,
-    0.002290
+    0.00232,
+    0.00232,
+    0.00229
   ]
 }

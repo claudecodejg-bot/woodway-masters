@@ -2,10 +2,10 @@
   {
     "name": "A.J. Conley",
     "players": [
-      "Jose Luis Ballester",
-      "Nicolas Echavarria",
+      "Mark Hubbard",
+      "S.H. Kim",
       "Tom Hoge",
-      "Zach Johnson",
+      "Chandler Phillips",
       "Chris Kirk",
       "JT Poston"
     ]
@@ -15,53 +15,53 @@
     "players": [
       "Ludvig Aberg",
       "Tommy Fleetwood",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Scottie Scheffler",
+      "Carson Young",
+      "Steven Fisk",
+      "Patrick Rodgers",
       "Jordan Spieth"
     ]
   },
   {
     "name": "Andrew McMaster 2",
     "players": [
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Joaquin Niemann",
-      "Jon Rahm",
-      "Scottie Scheffler",
+      "Carson Young",
+      "Steven Fisk",
+      "Dylan Wu",
+      "Ryan Palmer",
+      "Patrick Rodgers",
       "Jordan Spieth"
     ]
   },
   {
     "name": "Angus Bass",
     "players": [
-      "Byeong Hun An",
+      "Bronson Burgoon",
       "Robert MacIntyre",
-      "Collin Morikawa",
+      "Steven Fisk",
       "Matthieu Pavon",
-      "Jon Rahm",
+      "Ryan Palmer",
       "Sepp Straka"
     ]
   },
   {
     "name": "Anne Tully",
     "players": [
-      "Corey Conners",
-      "Bryson DeChambeau",
+      "Jordan Smith",
+      "Adam Svensson",
       "Tony Finau",
-      "Tyrrell Hatton",
-      "Collin Morikawa",
+      "Bud Cauley",
+      "Steven Fisk",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Betsy Kelly",
     "players": [
-      "Akshay Bhatia",
-      "Corey Conners",
+      "Sudarshan Yellamaraju",
+      "Jordan Smith",
       "Tom Hoge",
-      "Collin Morikawa",
-      "Scottie Scheffler",
+      "Steven Fisk",
+      "Patrick Rodgers",
       "Sepp Straka"
     ]
   },
@@ -69,43 +69,43 @@
     "name": "Bill Parrett 1",
     "players": [
       "Ludvig Aberg",
-      "Min Woo Lee",
+      "Zach Bauchou",
       "Hideki Matsuyama",
-      "Rory McIlroy",
-      "Scottie Scheffler",
-      "Justin Thomas"
+      "Carson Young",
+      "Patrick Rodgers",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Bill Parrett 2",
     "players": [
-      "Bryson DeChambeau",
-      "Rory McIlroy",
-      "Jon Rahm",
-      "Justin Rose",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Adam Svensson",
+      "Carson Young",
+      "Ryan Palmer",
+      "Garrick Higgo",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Bill Phelan 1",
     "players": [
-      "Keegan Bradley",
-      "Patrick Cantlay",
-      "Bryson DeChambeau",
+      "Luke Clanton",
+      "Frankie Capan III",
+      "Adam Svensson",
       "Billy Horschel",
-      "Viktor Hovland",
-      "Brooks Koepka"
+      "Gordon Sargent",
+      "Dan Brown"
     ]
   },
   {
     "name": "Bill Phelan 2",
     "players": [
-      "Wyndham Clark",
-      "Shane Lowry",
-      "Collin Morikawa",
-      "Patrick Reed",
-      "Scottie Scheffler",
+      "Keith Mitchell",
+      "Eric Cole",
+      "Steven Fisk",
+      "Charley Hoffman",
+      "Patrick Rodgers",
       "Will Zalatoris"
     ]
   },
@@ -114,20 +114,20 @@
     "players": [
       "Ludvig Aberg",
       "Tommy Fleetwood",
-      "Viktor Hovland",
-      "Brooks Koepka",
+      "Gordon Sargent",
+      "Dan Brown",
       "Maverick McNealy",
-      "Cameron Smith"
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Bill Van de Graaf 1",
     "players": [
       "Lucas Glover",
-      "Zach Johnson",
-      "Phil Mickelson",
+      "Chandler Phillips",
+      "Hank Lebioda",
       "Matthieu Pavon",
-      "Adam Scott",
+      "Kristoffer Reitan",
       "Sepp Straka"
     ]
   },
@@ -135,9 +135,9 @@
     "name": "Bill Van de Graaf 2",
     "players": [
       "Ludvig Aberg",
-      "Akshay Bhatia",
+      "Sudarshan Yellamaraju",
       "Russell Henley",
-      "Min Woo Lee",
+      "Zach Bauchou",
       "Sepp Straka",
       "Kevin Yu"
     ]
@@ -145,34 +145,34 @@
   {
     "name": "Bo Harrigan 1",
     "players": [
-      "Akshay Bhatia",
-      "Sam Burns",
-      "Min Woo Lee",
+      "Sudarshan Yellamaraju",
+      "Kevin Streelman",
+      "Zach Bauchou",
       "Robert MacIntyre",
-      "Rory McIlroy",
-      "Scottie Scheffler"
+      "Carson Young",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Bo Harrigan 2",
     "players": [
       "Russell Henley",
-      "Min Woo Lee",
+      "Zach Bauchou",
       "Denny McCarthy",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Scottie Scheffler"
+      "Carson Young",
+      "Steven Fisk",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Bo Harrigan 3",
     "players": [
-      "Akshay Bhatia",
-      "Sam Burns",
+      "Sudarshan Yellamaraju",
+      "Kevin Streelman",
       "Russell Henley",
-      "Min Woo Lee",
-      "Rory McIlroy",
-      "Scottie Scheffler"
+      "Zach Bauchou",
+      "Carson Young",
+      "Patrick Rodgers"
     ]
   },
   {
@@ -180,64 +180,64 @@
     "players": [
       "Christiaan Bezuidenhout",
       "Russell Henley",
-      "Brooks Koepka",
+      "Dan Brown",
       "Robert MacIntyre",
-      "Scottie Scheffler",
+      "Patrick Rodgers",
       "Sepp Straka"
     ]
   },
   {
     "name": "Bo Harrigan 5",
     "players": [
-      "Sam Burns",
+      "Kevin Streelman",
       "Russell Henley",
-      "Min Woo Lee",
+      "Zach Bauchou",
       "Denny McCarthy",
-      "Collin Morikawa",
-      "Scottie Scheffler"
+      "Steven Fisk",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Bob Parr",
     "players": [
-      "Patrick Cantlay",
+      "Frankie Capan III",
       "Tony Finau",
-      "Viktor Hovland",
+      "Gordon Sargent",
       "Tom Kim",
-      "Joaquin Niemann",
-      "Jon Rahm"
+      "Dylan Wu",
+      "Ryan Palmer"
     ]
   },
   {
     "name": "Brian Lavigne 1",
     "players": [
-      "Keegan Bradley",
-      "Sam Burns",
+      "Luke Clanton",
+      "Kevin Streelman",
       "Chris Kirk",
-      "Shane Lowry",
-      "Justin Thomas",
-      "Cameron Young"
+      "Eric Cole",
+      "Peter Malnati",
+      "Austin Wylie"
     ]
   },
   {
     "name": "Brian Lavigne 2",
     "players": [
-      "Keegan Bradley",
+      "Luke Clanton",
       "Chris Kirk",
-      "Rory McIlroy",
-      "Adam Scott",
+      "Carson Young",
+      "Kristoffer Reitan",
       "Jordan Spieth",
-      "Cameron Young"
+      "Austin Wylie"
     ]
   },
   {
     "name": "Brian Lavigne 3",
     "players": [
-      "Akshay Bhatia",
-      "Keegan Bradley",
-      "Bryson DeChambeau",
-      "Min Woo Lee",
-      "Rory McIlroy",
+      "Sudarshan Yellamaraju",
+      "Luke Clanton",
+      "Adam Svensson",
+      "Zach Bauchou",
+      "Carson Young",
       "Matthieu Pavon"
     ]
   },
@@ -245,8 +245,8 @@
     "name": "Bryan Icenhower 1",
     "players": [
       "Russell Henley",
-      "Shane Lowry",
-      "Rory McIlroy",
+      "Eric Cole",
+      "Carson Young",
       "Sepp Straka",
       "Kevin Yu",
       "Will Zalatoris"
@@ -258,18 +258,18 @@
       "Michael Kim",
       "Chris Kirk",
       "Robert MacIntyre",
-      "Adam Scott",
+      "Kristoffer Reitan",
       "JJ Spaun",
-      "Cameron Young"
+      "Austin Wylie"
     ]
   },
   {
     "name": "Bryan Icenhower 3",
     "players": [
-      "Keegan Bradley",
-      "Corey Conners",
-      "Shane Lowry",
-      "Aaron Rai",
+      "Luke Clanton",
+      "Jordan Smith",
+      "Eric Cole",
+      "Michael Thorbjornsen",
       "JJ Spaun",
       "Kevin Yu"
     ]
@@ -277,33 +277,33 @@
   {
     "name": "Bryan Icenhower 4",
     "players": [
-      "Akshay Bhatia",
-      "Thomas Detry",
+      "Sudarshan Yellamaraju",
+      "Adrien Dumont de Chassart",
       "Lucas Glover",
       "Russell Henley",
       "Matthieu Pavon",
-      "Cameron Young"
+      "Austin Wylie"
     ]
   },
   {
     "name": "Buster Byrnes",
     "players": [
-      "Daniel Berger",
-      "Matthew Fitzpatrick",
+      "Takumi Kanaya",
+      "Jimmy Stanger",
       "Tommy Fleetwood",
       "Tom Hoge",
       "JT Poston",
-      "Bubba Watson"
+      "Nick Hardy"
     ]
   },
   {
     "name": "Cal Farley",
     "players": [
-      "Keegan Bradley",
-      "Nicolas Echavarria",
+      "Luke Clanton",
+      "S.H. Kim",
       "Lucas Glover",
       "Brian Harman",
-      "Nicolai Hojgaard",
+      "Johnny Keefer",
       "Matthieu Pavon"
     ]
   },
@@ -311,32 +311,32 @@
     "name": "Casey Kilcullen",
     "players": [
       "Ludvig Aberg",
-      "Viktor Hovland",
-      "Collin Morikawa",
-      "Davis Riley",
-      "Adam Scott",
-      "Cameron Young"
+      "Gordon Sargent",
+      "Steven Fisk",
+      "Jackson Suber",
+      "Kristoffer Reitan",
+      "Austin Wylie"
     ]
   },
   {
     "name": "Charles Bauer 1",
     "players": [
-      "Keegan Bradley",
-      "Sam Burns",
-      "Wyndham Clark",
-      "Shane Lowry",
-      "Scottie Scheffler",
+      "Luke Clanton",
+      "Kevin Streelman",
+      "Keith Mitchell",
+      "Eric Cole",
+      "Patrick Rodgers",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Charles Bauer 2",
     "players": [
-      "Laurie Canter",
+      "Joel Dahmen",
       "Tom Hoge",
-      "Dustin Johnson",
+      "Marcelo Rozo",
       "Chris Kirk",
-      "Rory McIlroy",
+      "Carson Young",
       "Nick Taylor"
     ]
   },
@@ -344,55 +344,55 @@
     "name": "Charlie Broll",
     "players": [
       "Ludvig Aberg",
-      "Fred Couples",
-      "Noah Kent",
-      "Bernhard Langer",
-      "Patrick Reed",
-      "Cameron Smith"
+      "Davis Thompson",
+      "Brandt Snedeker",
+      "Emiliano Grillo",
+      "Charley Hoffman",
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Charlie Kammerer 1",
     "players": [
-      "Byeong Hun An",
+      "Bronson Burgoon",
       "Tom Hoge",
       "Patton Kizzire",
-      "Collin Morikawa",
+      "Steven Fisk",
       "JJ Spaun",
-      "Hiroshi Tai"
+      "Neal Shipley"
     ]
   },
   {
     "name": "Charlie Kammerer 2",
     "players": [
-      "Harris English",
-      "Justin Hastings",
+      "Kensei Hirata",
+      "Andrew Putnam",
       "Billy Horschel",
-      "Collin Morikawa",
-      "Adam Scott",
+      "Steven Fisk",
+      "Kristoffer Reitan",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Charlie Kammerer 3",
     "players": [
-      "Thomas Detry",
+      "Adrien Dumont de Chassart",
       "Brian Harman",
-      "Justin Hastings",
+      "Andrew Putnam",
       "Matthieu Pavon",
-      "Adam Scott",
+      "Kristoffer Reitan",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Chip Mahoney 1",
     "players": [
-      "Patrick Cantlay",
+      "Frankie Capan III",
       "Tommy Fleetwood",
       "Hideki Matsuyama",
-      "Rory McIlroy",
+      "Carson Young",
       "Jordan Spieth",
-      "Justin Thomas"
+      "Peter Malnati"
     ]
   },
   {
@@ -401,53 +401,53 @@
       "Ludvig Aberg",
       "Tommy Fleetwood",
       "Tom Kim",
-      "Rory McIlroy",
-      "Patrick Reed",
-      "Cameron Smith"
+      "Carson Young",
+      "Charley Hoffman",
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Chip Mahoney 3",
     "players": [
-      "Jason Day",
+      "Jimmy Walker",
       "Tony Finau",
-      "Viktor Hovland",
-      "Dustin Johnson",
-      "Scottie Scheffler",
-      "Justin Thomas"
+      "Gordon Sargent",
+      "Marcelo Rozo",
+      "Patrick Rodgers",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Chip Mahoney 4",
     "players": [
-      "Jose Luis Ballester",
+      "Mark Hubbard",
       "Rafael Campos",
-      "Justin Hastings",
-      "Bernhard Langer",
-      "Jose Maria Olazabal",
-      "Mike Weir"
+      "Andrew Putnam",
+      "Emiliano Grillo",
+      "Matt Kuchar",
+      "Jeffrey Kang"
     ]
   },
   {
     "name": "Chip Mahoney 5",
     "players": [
-      "Bryson DeChambeau",
-      "Thomas Detry",
-      "Noah Kent",
-      "Phil Mickelson",
-      "Collin Morikawa",
-      "Justin Rose"
+      "Adam Svensson",
+      "Adrien Dumont de Chassart",
+      "Brandt Snedeker",
+      "Hank Lebioda",
+      "Steven Fisk",
+      "Garrick Higgo"
     ]
   },
   {
     "name": "Chris Pohle 1",
     "players": [
-      "Akshay Bhatia",
+      "Sudarshan Yellamaraju",
       "Tony Finau",
-      "Matthew Fitzpatrick",
-      "Viktor Hovland",
-      "Xander Schauffele",
-      "Mike Weir"
+      "Jimmy Stanger",
+      "Gordon Sargent",
+      "Marco Penge",
+      "Jeffrey Kang"
     ]
   },
   {
@@ -455,28 +455,28 @@
     "players": [
       "Ludvig Aberg",
       "Russell Henley",
-      "Sungjae Im",
-      "Dustin Johnson",
-      "Rory McIlroy",
-      "Jon Rahm"
+      "Rickie Fowler",
+      "Marcelo Rozo",
+      "Carson Young",
+      "Ryan Palmer"
     ]
   },
   {
     "name": "Chris Tiscornia 1",
     "players": [
-      "Cameron Davis",
-      "Nicolai Hojgaard",
-      "Bernhard Langer",
+      "Lee Hodges",
+      "Johnny Keefer",
+      "Emiliano Grillo",
       "Maverick McNealy",
       "Matthieu Pavon",
-      "Cameron Young"
+      "Austin Wylie"
     ]
   },
   {
     "name": "Chris Tiscornia 2",
     "players": [
-      "Cameron Davis",
-      "Matthew Fitzpatrick",
+      "Lee Hodges",
+      "Jimmy Stanger",
       "Lucas Glover",
       "Max Homa",
       "Matthieu Pavon",
@@ -488,20 +488,20 @@
     "players": [
       "Tommy Fleetwood",
       "Tom Kim",
-      "Min Woo Lee",
-      "Rory McIlroy",
+      "Zach Bauchou",
+      "Carson Young",
       "Jordan Spieth",
-      "Justin Thomas"
+      "Peter Malnati"
     ]
   },
   {
     "name": "Craig Costigan",
     "players": [
       "Ludvig Aberg",
-      "Akshay Bhatia",
-      "Bryson DeChambeau",
-      "Harris English",
-      "Sergio Garcia",
+      "Sudarshan Yellamaraju",
+      "Adam Svensson",
+      "Kensei Hirata",
+      "Andrew Novak",
       "Brian Harman"
     ]
   },
@@ -509,52 +509,52 @@
     "name": "Dan McAuliffe 1",
     "players": [
       "Ludvig Aberg",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Jon Rahm",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Carson Young",
+      "Steven Fisk",
+      "Ryan Palmer",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Dan McAuliffe 2",
     "players": [
-      "Patrick Cantlay",
-      "Bryson DeChambeau",
-      "Shane Lowry",
-      "Rory McIlroy",
+      "Frankie Capan III",
+      "Adam Svensson",
+      "Eric Cole",
+      "Carson Young",
       "Jordan Spieth",
-      "Justin Thomas"
+      "Peter Malnati"
     ]
   },
   {
     "name": "Dan McAuliffe 3",
     "players": [
-      "Akshay Bhatia",
-      "Corey Conners",
+      "Sudarshan Yellamaraju",
+      "Jordan Smith",
       "Tommy Fleetwood",
-      "Brooks Koepka",
-      "Scottie Scheffler",
+      "Dan Brown",
+      "Patrick Rodgers",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Dan McMahon",
     "players": [
-      "Akshay Bhatia",
-      "Min Woo Lee",
-      "Shane Lowry",
-      "Jon Rahm",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Sudarshan Yellamaraju",
+      "Zach Bauchou",
+      "Eric Cole",
+      "Ryan Palmer",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Darby Fox",
     "players": [
-      "Cameron Davis",
-      "Harris English",
-      "Matthew Fitzpatrick",
+      "Lee Hodges",
+      "Kensei Hirata",
+      "Jimmy Stanger",
       "Tom Hoge",
       "Billy Horschel",
       "Nick Taylor"
@@ -563,22 +563,22 @@
   {
     "name": "Dave Snediker",
     "players": [
-      "Keegan Bradley",
-      "Jason Day",
-      "Nicolai Hojgaard",
+      "Luke Clanton",
+      "Jimmy Walker",
+      "Johnny Keefer",
       "Tom Kim",
-      "Shane Lowry",
+      "Eric Cole",
       "Sepp Straka"
     ]
   },
   {
     "name": "David Durkin 1",
     "players": [
-      "Wyndham Clark",
+      "Keith Mitchell",
       "Billy Horschel",
       "Maverick McNealy",
-      "Patrick Reed",
-      "Justin Rose",
+      "Charley Hoffman",
+      "Garrick Higgo",
       "Will Zalatoris"
     ]
   },
@@ -587,7 +587,7 @@
     "players": [
       "Brian Harman",
       "Billy Horschel",
-      "Min Woo Lee",
+      "Zach Bauchou",
       "Maverick McNealy",
       "Sepp Straka",
       "Will Zalatoris"
@@ -596,12 +596,12 @@
   {
     "name": "David Durkin 3",
     "players": [
-      "Akshay Bhatia",
+      "Sudarshan Yellamaraju",
       "Brian Harman",
-      "Min Woo Lee",
-      "Shane Lowry",
+      "Zach Bauchou",
+      "Eric Cole",
       "Maverick McNealy",
-      "Patrick Reed"
+      "Charley Hoffman"
     ]
   },
   {
@@ -609,10 +609,10 @@
     "players": [
       "Ludvig Aberg",
       "Tommy Fleetwood",
-      "Shane Lowry",
-      "Rory McIlroy",
-      "Scottie Scheffler",
-      "Cameron Smith"
+      "Eric Cole",
+      "Carson Young",
+      "Patrick Rodgers",
+      "Pontus Nyholm"
     ]
   },
   {
@@ -621,95 +621,95 @@
       "Billy Horschel",
       "Maverick McNealy",
       "Matthieu Pavon",
-      "Aaron Rai",
-      "Justin Rose",
+      "Michael Thorbjornsen",
+      "Garrick Higgo",
       "Sepp Straka"
     ]
   },
   {
     "name": "David Williams 3",
     "players": [
-      "Corey Conners",
-      "Thomas Detry",
+      "Jordan Smith",
+      "Adrien Dumont de Chassart",
       "Lucas Glover",
       "Tom Hoge",
       "Stephan Jaeger",
-      "Adam Scott"
+      "Kristoffer Reitan"
     ]
   },
   {
     "name": "David Yim",
     "players": [
-      "Corey Conners",
-      "Cameron Davis",
+      "Jordan Smith",
+      "Lee Hodges",
       "Russell Henley",
       "Hideki Matsuyama",
-      "Collin Morikawa",
+      "Steven Fisk",
       "Sepp Straka"
     ]
   },
   {
     "name": "Devon Falvey 1",
     "players": [
-      "Corey Conners",
-      "Matthew Fitzpatrick",
-      "Shane Lowry",
+      "Jordan Smith",
+      "Jimmy Stanger",
+      "Eric Cole",
       "Matthieu Pavon",
-      "Adam Scott",
+      "Kristoffer Reitan",
       "JJ Spaun"
     ]
   },
   {
     "name": "Devon Falvey 2",
     "players": [
-      "Corey Conners",
-      "Sergio Garcia",
+      "Jordan Smith",
+      "Andrew Novak",
       "Russell Henley",
       "Max Homa",
-      "Phil Mickelson",
+      "Hank Lebioda",
       "JJ Spaun"
     ]
   },
   {
     "name": "Drew Baird",
     "players": [
-      "Sam Burns",
-      "Bryson DeChambeau",
+      "Kevin Streelman",
+      "Adam Svensson",
       "Max Homa",
       "Tom Kim",
-      "Jon Rahm",
+      "Ryan Palmer",
       "Sepp Straka"
     ]
   },
   {
     "name": "Ed Stearns 1",
     "players": [
-      "Angel Cabrera",
+      "Austin Smotherman",
       "Russell Henley",
-      "Phil Mickelson",
-      "Patrick Reed",
-      "Charl Schwartzel",
-      "Adam Scott"
+      "Hank Lebioda",
+      "Charley Hoffman",
+      "Justin Lower",
+      "Kristoffer Reitan"
     ]
   },
   {
     "name": "Ed Stearns 2",
     "players": [
-      "Sergio Garcia",
-      "Tyrrell Hatton",
-      "Bernhard Langer",
+      "Andrew Novak",
+      "Bud Cauley",
+      "Emiliano Grillo",
       "Robert MacIntyre",
-      "Xander Schauffele",
-      "Adam Scott"
+      "Marco Penge",
+      "Kristoffer Reitan"
     ]
   },
   {
     "name": "Ed Stearns 3",
     "players": [
-      "Angel Cabrera",
-      "Fred Couples",
+      "Austin Smotherman",
+      "Davis Thompson",
       "Tom Hoge",
-      "Bernhard Langer",
+      "Emiliano Grillo",
       "Matthieu Pavon",
       "Adam Schenk"
     ]
@@ -717,9 +717,9 @@
   {
     "name": "Ed Sullivan",
     "players": [
-      "Bryson DeChambeau",
-      "Harris English",
-      "Matthew Fitzpatrick",
+      "Adam Svensson",
+      "Kensei Hirata",
+      "Jimmy Stanger",
       "Max Homa",
       "Billy Horschel",
       "Maverick McNealy"
@@ -728,10 +728,10 @@
   {
     "name": "Eric Rogers",
     "players": [
-      "Corey Conners",
+      "Jordan Smith",
       "Russell Henley",
-      "Shane Lowry",
-      "Rory McIlroy",
+      "Eric Cole",
+      "Carson Young",
       "Sepp Straka",
       "Kevin Yu"
     ]
@@ -739,34 +739,34 @@
   {
     "name": "Evan Cohen 1",
     "players": [
-      "Keegan Bradley",
+      "Luke Clanton",
       "Tony Finau",
       "Max Homa",
-      "Shane Lowry",
-      "Rory McIlroy",
-      "Xander Schauffele"
+      "Eric Cole",
+      "Carson Young",
+      "Marco Penge"
     ]
   },
   {
     "name": "Evan Cohen 2",
     "players": [
-      "Matthew Fitzpatrick",
-      "Tyrrell Hatton",
-      "Viktor Hovland",
-      "Xander Schauffele",
-      "Justin Thomas",
+      "Jimmy Stanger",
+      "Bud Cauley",
+      "Gordon Sargent",
+      "Marco Penge",
+      "Peter Malnati",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Frankie Granito",
     "players": [
-      "Bryson DeChambeau",
-      "Sergio Garcia",
+      "Adam Svensson",
+      "Andrew Novak",
       "Brian Harman",
       "Robert MacIntyre",
-      "Collin Morikawa",
-      "Cameron Smith"
+      "Steven Fisk",
+      "Pontus Nyholm"
     ]
   },
   {
@@ -775,7 +775,7 @@
       "Russell Henley",
       "Denny McCarthy",
       "Maverick McNealy",
-      "Collin Morikawa",
+      "Steven Fisk",
       "Sepp Straka",
       "Will Zalatoris"
     ]
@@ -783,22 +783,22 @@
   {
     "name": "George Close 2",
     "players": [
-      "Akshay Bhatia",
-      "Keegan Bradley",
-      "Noah Kent",
-      "Brooks Koepka",
-      "Rory McIlroy",
-      "Patrick Reed"
+      "Sudarshan Yellamaraju",
+      "Luke Clanton",
+      "Brandt Snedeker",
+      "Dan Brown",
+      "Carson Young",
+      "Charley Hoffman"
     ]
   },
   {
     "name": "Gil Rotchford",
     "players": [
-      "Keegan Bradley",
-      "Viktor Hovland",
-      "Rory McIlroy",
-      "Justin Rose",
-      "Justin Thomas",
+      "Luke Clanton",
+      "Gordon Sargent",
+      "Carson Young",
+      "Garrick Higgo",
+      "Peter Malnati",
       "Will Zalatoris"
     ]
   },
@@ -806,130 +806,130 @@
     "name": "Greg Lesko",
     "players": [
       "Ludvig Aberg",
-      "Angel Cabrera",
-      "Bryson DeChambeau",
+      "Austin Smotherman",
+      "Adam Svensson",
       "Brian Harman",
       "Michael Kim",
-      "Brooks Koepka"
+      "Dan Brown"
     ]
   },
   {
     "name": "Griffin Thrush 1",
     "players": [
-      "Keegan Bradley",
-      "Bryson DeChambeau",
+      "Luke Clanton",
+      "Adam Svensson",
       "Tommy Fleetwood",
       "Russell Henley",
-      "Brooks Koepka",
-      "Cameron Smith"
+      "Dan Brown",
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Griffin Thrush 2",
     "players": [
-      "Keegan Bradley",
-      "Bryson DeChambeau",
+      "Luke Clanton",
+      "Adam Svensson",
       "Tommy Fleetwood",
       "Billy Horschel",
-      "Justin Rose",
-      "Cameron Smith"
+      "Garrick Higgo",
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Griffin Thrush 3",
     "players": [
       "Christiaan Bezuidenhout",
-      "Wyndham Clark",
-      "Min Woo Lee",
-      "Collin Morikawa",
-      "Cameron Smith",
-      "Justin Thomas"
+      "Keith Mitchell",
+      "Zach Bauchou",
+      "Steven Fisk",
+      "Pontus Nyholm",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Griffin Thrush 4",
     "players": [
       "Ludvig Aberg",
-      "Keegan Bradley",
-      "Bryson DeChambeau",
+      "Luke Clanton",
+      "Adam Svensson",
       "Tommy Fleetwood",
-      "Sungjae Im",
-      "Shane Lowry"
+      "Rickie Fowler",
+      "Eric Cole"
     ]
   },
   {
     "name": "Griffin Thrush 5",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Brooks Koepka",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Xander Schauffele"
+      "Adam Svensson",
+      "Dan Brown",
+      "Carson Young",
+      "Steven Fisk",
+      "Marco Penge"
     ]
   },
   {
     "name": "Gunnar Granito",
     "players": [
-      "Wyndham Clark",
+      "Keith Mitchell",
       "Brian Harman",
       "Max Homa",
-      "Min Woo Lee",
-      "Adam Scott",
-      "Sahith Theegala"
+      "Zach Bauchou",
+      "Kristoffer Reitan",
+      "Mackenzie Hughes"
     ]
   },
   {
     "name": "Harrison Pierce 1",
     "players": [
-      "Corey Conners",
-      "Jason Day",
+      "Jordan Smith",
+      "Jimmy Walker",
       "Lucas Glover",
       "Jordan Spieth",
-      "Sahith Theegala",
-      "Cameron Young"
+      "Mackenzie Hughes",
+      "Austin Wylie"
     ]
   },
   {
     "name": "Harrison Pierce 2",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Brooks Koepka",
-      "Rory McIlroy",
-      "Jon Rahm",
-      "Scottie Scheffler"
+      "Adam Svensson",
+      "Dan Brown",
+      "Carson Young",
+      "Ryan Palmer",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Howard Morgan",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Jon Rahm",
-      "Scottie Scheffler"
+      "Adam Svensson",
+      "Carson Young",
+      "Steven Fisk",
+      "Ryan Palmer",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "James Cassidy",
     "players": [
-      "Angel Cabrera",
-      "Bryson DeChambeau",
-      "Sergio Garcia",
-      "Phil Mickelson",
-      "Joaquin Niemann",
-      "Scottie Scheffler"
+      "Austin Smotherman",
+      "Adam Svensson",
+      "Andrew Novak",
+      "Hank Lebioda",
+      "Dylan Wu",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Jane Charlton 1",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Jon Rahm",
-      "Scottie Scheffler",
+      "Adam Svensson",
+      "Ryan Palmer",
+      "Patrick Rodgers",
       "Jordan Spieth",
       "Will Zalatoris"
     ]
@@ -938,63 +938,63 @@
     "name": "Jane Charlton 2",
     "players": [
       "Tommy Fleetwood",
-      "Sergio Garcia",
+      "Andrew Novak",
       "Russell Henley",
-      "Rory McIlroy",
-      "Joaquin Niemann",
-      "Justin Thomas"
+      "Carson Young",
+      "Dylan Wu",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Jane Tully",
     "players": [
-      "Bryson DeChambeau",
-      "Brooks Koepka",
-      "Min Woo Lee",
-      "Phil Mickelson",
-      "Jon Rahm",
-      "Justin Thomas"
+      "Adam Svensson",
+      "Dan Brown",
+      "Zach Bauchou",
+      "Hank Lebioda",
+      "Ryan Palmer",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Jason Carney 1",
     "players": [
       "Ludvig Aberg",
-      "Keegan Bradley",
+      "Luke Clanton",
       "Brian Harman",
-      "Min Woo Lee",
-      "Scottie Scheffler",
-      "Justin Thomas"
+      "Zach Bauchou",
+      "Patrick Rodgers",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Jason Carney 2",
     "players": [
-      "Sam Burns",
-      "Matthew Fitzpatrick",
-      "Shane Lowry",
-      "Rory McIlroy",
-      "Sahith Theegala",
-      "Justin Thomas"
+      "Kevin Streelman",
+      "Jimmy Stanger",
+      "Eric Cole",
+      "Carson Young",
+      "Mackenzie Hughes",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Jason Carney 3",
     "players": [
-      "Keegan Bradley",
-      "Patrick Cantlay",
-      "Wyndham Clark",
-      "Bryson DeChambeau",
+      "Luke Clanton",
+      "Frankie Capan III",
+      "Keith Mitchell",
+      "Adam Svensson",
       "Tom Kim",
-      "Xander Schauffele"
+      "Marco Penge"
     ]
   },
   {
     "name": "Jes Santoro",
     "players": [
-      "Keegan Bradley",
+      "Luke Clanton",
       "Lucas Glover",
-      "Aaron Rai",
+      "Michael Thorbjornsen",
       "JJ Spaun",
       "Kevin Yu",
       "Will Zalatoris"
@@ -1003,9 +1003,9 @@
   {
     "name": "Jill Hanau",
     "players": [
-      "Akshay Bhatia",
-      "Keegan Bradley",
-      "Jason Day",
+      "Sudarshan Yellamaraju",
+      "Luke Clanton",
+      "Jimmy Walker",
       "Tony Finau",
       "Russell Henley",
       "Billy Horschel"
@@ -1015,33 +1015,33 @@
     "name": "Jim Bailey",
     "players": [
       "Ludvig Aberg",
-      "Akshay Bhatia",
-      "Bryson DeChambeau",
-      "Shane Lowry",
-      "Rory McIlroy",
-      "Scottie Scheffler"
+      "Sudarshan Yellamaraju",
+      "Adam Svensson",
+      "Eric Cole",
+      "Carson Young",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Jim Kelly",
     "players": [
-      "Akshay Bhatia",
-      "Corey Conners",
+      "Sudarshan Yellamaraju",
+      "Jordan Smith",
       "Tom Hoge",
-      "Rory McIlroy",
-      "Collin Morikawa",
+      "Carson Young",
+      "Steven Fisk",
       "JT Poston"
     ]
   },
   {
     "name": "John Briggs",
     "players": [
-      "Viktor Hovland",
-      "Shane Lowry",
-      "Collin Morikawa",
-      "Jon Rahm",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Gordon Sargent",
+      "Eric Cole",
+      "Steven Fisk",
+      "Ryan Palmer",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
@@ -1049,52 +1049,52 @@
     "players": [
       "Ludvig Aberg",
       "Tony Finau",
-      "Brooks Koepka",
-      "Collin Morikawa",
-      "Patrick Reed",
-      "Hiroshi Tai"
+      "Dan Brown",
+      "Steven Fisk",
+      "Charley Hoffman",
+      "Neal Shipley"
     ]
   },
   {
     "name": "Josh Thomas 2",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Tommy Fleetwood",
-      "Sergio Garcia",
-      "Rory McIlroy",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Andrew Novak",
+      "Carson Young",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Josh Thomas 3",
     "players": [
-      "Akshay Bhatia",
-      "Bryson DeChambeau",
-      "Sergio Garcia",
-      "Viktor Hovland",
-      "Rory McIlroy",
+      "Sudarshan Yellamaraju",
+      "Adam Svensson",
+      "Andrew Novak",
+      "Gordon Sargent",
+      "Carson Young",
       "Jordan Spieth"
     ]
   },
   {
     "name": "Karen Charlton",
     "players": [
-      "Byeong Hun An",
+      "Bronson Burgoon",
       "Christiaan Bezuidenhout",
       "Billy Horschel",
-      "Scottie Scheffler",
+      "Patrick Rodgers",
       "Jordan Spieth",
-      "Justin Thomas"
+      "Peter Malnati"
     ]
   },
   {
     "name": "Kevin O'Hanlon",
     "players": [
-      "Akshay Bhatia",
-      "Keegan Bradley",
+      "Sudarshan Yellamaraju",
+      "Luke Clanton",
       "Brian Harman",
-      "Aaron Rai",
+      "Michael Thorbjornsen",
       "JJ Spaun",
       "Sepp Straka"
     ]
@@ -1102,11 +1102,11 @@
   {
     "name": "Larry Castellani 1",
     "players": [
-      "Fred Couples",
-      "Bryson DeChambeau",
+      "Davis Thompson",
+      "Adam Svensson",
       "Tony Finau",
-      "Min Woo Lee",
-      "Collin Morikawa",
+      "Zach Bauchou",
+      "Steven Fisk",
       "Will Zalatoris"
     ]
   },
@@ -1114,20 +1114,20 @@
     "name": "Larry Castellani 2",
     "players": [
       "Ludvig Aberg",
-      "Fred Couples",
-      "Cameron Davis",
+      "Davis Thompson",
+      "Lee Hodges",
       "Hideki Matsuyama",
-      "Rory McIlroy",
-      "Scottie Scheffler"
+      "Carson Young",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Larry Castellani 3",
     "players": [
-      "Matthew Fitzpatrick",
-      "Shane Lowry",
-      "Jose Maria Olazabal",
-      "Scottie Scheffler",
+      "Jimmy Stanger",
+      "Eric Cole",
+      "Matt Kuchar",
+      "Patrick Rodgers",
       "JJ Spaun",
       "Jordan Spieth"
     ]
@@ -1136,53 +1136,53 @@
     "name": "Larry Castellani 4",
     "players": [
       "Ludvig Aberg",
-      "Matthew Fitzpatrick",
+      "Jimmy Stanger",
       "Billy Horschel",
-      "Brooks Koepka",
-      "Sahith Theegala",
-      "Danny Willett"
+      "Dan Brown",
+      "Mackenzie Hughes",
+      "John VanDerLaan"
     ]
   },
   {
     "name": "Larry Castellani 5",
     "players": [
-      "Wyndham Clark",
+      "Keith Mitchell",
       "Russell Henley",
-      "Dustin Johnson",
-      "Joaquin Niemann",
-      "Scottie Scheffler",
-      "Cameron Young"
+      "Marcelo Rozo",
+      "Dylan Wu",
+      "Patrick Rodgers",
+      "Austin Wylie"
     ]
   },
   {
     "name": "Leigh Charlton",
     "players": [
-      "Sergio Garcia",
-      "Viktor Hovland",
-      "Rory McIlroy",
-      "Jon Rahm",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Andrew Novak",
+      "Gordon Sargent",
+      "Carson Young",
+      "Ryan Palmer",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Mark Hojnacki",
     "players": [
-      "Shane Lowry",
+      "Eric Cole",
       "Hideki Matsuyama",
-      "Collin Morikawa",
-      "Xander Schauffele",
+      "Steven Fisk",
+      "Marco Penge",
       "Sepp Straka",
-      "Sahith Theegala"
+      "Mackenzie Hughes"
     ]
   },
   {
     "name": "Mark Schoenholtz 1",
     "players": [
-      "Akshay Bhatia",
-      "Wyndham Clark",
-      "Sungjae Im",
-      "Adam Scott",
+      "Sudarshan Yellamaraju",
+      "Keith Mitchell",
+      "Rickie Fowler",
+      "Kristoffer Reitan",
       "Sepp Straka",
       "Will Zalatoris"
     ]
@@ -1190,55 +1190,55 @@
   {
     "name": "Mark Schoenholtz 2",
     "players": [
-      "Jason Day",
+      "Jimmy Walker",
       "Lucas Glover",
       "Max Homa",
       "Tom Kim",
-      "Patrick Reed",
-      "Cameron Young"
+      "Charley Hoffman",
+      "Austin Wylie"
     ]
   },
   {
     "name": "Mark Underwood 1",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Brian Harman",
-      "Nicolai Hojgaard",
+      "Johnny Keefer",
       "Hideki Matsuyama",
-      "Collin Morikawa",
-      "Scottie Scheffler"
+      "Steven Fisk",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Mark Underwood 2",
     "players": [
-      "Thomas Detry",
+      "Adrien Dumont de Chassart",
       "Russell Henley",
-      "Viktor Hovland",
-      "Rory McIlroy",
-      "Xander Schauffele",
+      "Gordon Sargent",
+      "Carson Young",
+      "Marco Penge",
       "Jordan Spieth"
     ]
   },
   {
     "name": "Matt McBride",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Tommy Fleetwood",
-      "Min Woo Lee",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Scottie Scheffler"
+      "Zach Bauchou",
+      "Carson Young",
+      "Steven Fisk",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Michael Morici 1",
     "players": [
       "Ludvig Aberg",
-      "Corey Conners",
+      "Jordan Smith",
       "Tommy Fleetwood",
-      "Collin Morikawa",
-      "Justin Rose",
+      "Steven Fisk",
+      "Garrick Higgo",
       "Will Zalatoris"
     ]
   },
@@ -1246,10 +1246,10 @@
     "name": "Michael Morici 2",
     "players": [
       "Ludvig Aberg",
-      "Keegan Bradley",
-      "Jason Day",
-      "Viktor Hovland",
-      "Cameron Smith",
+      "Luke Clanton",
+      "Jimmy Walker",
+      "Gordon Sargent",
+      "Pontus Nyholm",
       "Sepp Straka"
     ]
   },
@@ -1260,28 +1260,28 @@
       "Nick Dunlap",
       "Tommy Fleetwood",
       "Max Homa",
-      "Zach Johnson",
-      "Joaquin Niemann"
+      "Chandler Phillips",
+      "Dylan Wu"
     ]
   },
   {
     "name": "Mike Frankenfield 1",
     "players": [
-      "Sergio Garcia",
+      "Andrew Novak",
       "Brian Harman",
-      "Tyrrell Hatton",
+      "Bud Cauley",
       "Max Homa",
-      "Justin Rose",
-      "Xander Schauffele"
+      "Garrick Higgo",
+      "Marco Penge"
     ]
   },
   {
     "name": "Mike Frankenfield 2",
     "players": [
-      "Patrick Cantlay",
-      "Shane Lowry",
+      "Frankie Capan III",
+      "Eric Cole",
       "Robert MacIntyre",
-      "Joaquin Niemann",
+      "Dylan Wu",
       "JJ Spaun",
       "Sepp Straka"
     ]
@@ -1290,9 +1290,9 @@
     "name": "Mike Frankenfield 3",
     "players": [
       "Ludvig Aberg",
-      "Wyndham Clark",
-      "Bryson DeChambeau",
-      "Brooks Koepka",
+      "Keith Mitchell",
+      "Adam Svensson",
+      "Dan Brown",
       "Maverick McNealy",
       "Will Zalatoris"
     ]
@@ -1300,10 +1300,10 @@
   {
     "name": "Mike Frankenfield 4",
     "players": [
-      "Akshay Bhatia",
-      "Wyndham Clark",
-      "Jason Day",
-      "Min Woo Lee",
+      "Sudarshan Yellamaraju",
+      "Keith Mitchell",
+      "Jimmy Walker",
+      "Zach Bauchou",
       "Sepp Straka",
       "Will Zalatoris"
     ]
@@ -1312,32 +1312,32 @@
     "name": "Mike Frankenfield 5",
     "players": [
       "Tommy Fleetwood",
-      "Nicolai Hojgaard",
-      "Collin Morikawa",
-      "Cameron Smith",
-      "Sahith Theegala",
-      "Danny Willett"
+      "Johnny Keefer",
+      "Steven Fisk",
+      "Pontus Nyholm",
+      "Mackenzie Hughes",
+      "John VanDerLaan"
     ]
   },
   {
     "name": "Mike Godina 1",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Russell Henley",
-      "Shane Lowry",
+      "Eric Cole",
       "Hideki Matsuyama",
-      "Rory McIlroy",
-      "Collin Morikawa"
+      "Carson Young",
+      "Steven Fisk"
     ]
   },
   {
     "name": "Mike Godina 10",
     "players": [
-      "Corey Conners",
-      "Bryson DeChambeau",
+      "Jordan Smith",
+      "Adam Svensson",
       "Robert MacIntyre",
-      "Collin Morikawa",
-      "Scottie Scheffler",
+      "Steven Fisk",
+      "Patrick Rodgers",
       "Will Zalatoris"
     ]
   },
@@ -1345,8 +1345,8 @@
     "name": "Mike Godina 2",
     "players": [
       "Lucas Glover",
-      "Shane Lowry",
-      "Aaron Rai",
+      "Eric Cole",
+      "Michael Thorbjornsen",
       "JJ Spaun",
       "Sepp Straka",
       "Kevin Yu"
@@ -1356,53 +1356,53 @@
     "name": "Mike Godina 3",
     "players": [
       "Ludvig Aberg",
-      "Patrick Cantlay",
-      "Brooks Koepka",
-      "Rory McIlroy",
-      "Jon Rahm",
-      "Scottie Scheffler"
+      "Frankie Capan III",
+      "Dan Brown",
+      "Carson Young",
+      "Ryan Palmer",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Mike Godina 4",
     "players": [
-      "Akshay Bhatia",
-      "Patrick Cantlay",
+      "Sudarshan Yellamaraju",
+      "Frankie Capan III",
       "Tony Finau",
-      "Viktor Hovland",
-      "Brooks Koepka",
-      "Scottie Scheffler"
+      "Gordon Sargent",
+      "Dan Brown",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Mike Godina 5",
     "players": [
-      "Bryson DeChambeau",
-      "Brooks Koepka",
-      "Collin Morikawa",
-      "Xander Schauffele",
-      "Scottie Scheffler",
-      "Justin Thomas"
+      "Adam Svensson",
+      "Dan Brown",
+      "Steven Fisk",
+      "Marco Penge",
+      "Patrick Rodgers",
+      "Peter Malnati"
     ]
   },
   {
     "name": "Mike Godina 6",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Viktor Hovland",
-      "Brooks Koepka",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Adam Svensson",
+      "Gordon Sargent",
+      "Dan Brown",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Mike Godina 7",
     "players": [
-      "Patrick Cantlay",
-      "Shane Lowry",
+      "Frankie Capan III",
+      "Eric Cole",
       "Hideki Matsuyama",
-      "Rory McIlroy",
+      "Carson Young",
       "Jordan Spieth",
       "Will Zalatoris"
     ]
@@ -1411,98 +1411,98 @@
     "name": "Mike Godina 8",
     "players": [
       "Ludvig Aberg",
-      "Keegan Bradley",
+      "Luke Clanton",
       "Tony Finau",
       "Tommy Fleetwood",
       "Brian Harman",
-      "Phil Mickelson"
+      "Hank Lebioda"
     ]
   },
   {
     "name": "Mike Godina 9",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Billy Horschel",
-      "Min Woo Lee",
-      "Shane Lowry",
-      "Scottie Scheffler",
+      "Zach Bauchou",
+      "Eric Cole",
+      "Patrick Rodgers",
       "Jordan Spieth"
     ]
   },
   {
     "name": "Mike King",
     "players": [
-      "Keegan Bradley",
-      "Bryson DeChambeau",
+      "Luke Clanton",
+      "Adam Svensson",
       "Tony Finau",
-      "Brooks Koepka",
-      "Phil Mickelson",
-      "Justin Rose"
+      "Dan Brown",
+      "Hank Lebioda",
+      "Garrick Higgo"
     ]
   },
   {
     "name": "Moira Cassidy",
     "players": [
-      "Keegan Bradley",
-      "Min Woo Lee",
-      "Collin Morikawa",
-      "Justin Rose",
-      "Scottie Scheffler",
+      "Luke Clanton",
+      "Zach Bauchou",
+      "Steven Fisk",
+      "Garrick Higgo",
+      "Patrick Rodgers",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Nate Broll",
     "players": [
-      "Akshay Bhatia",
-      "Rasmus Hojgaard",
+      "Sudarshan Yellamaraju",
+      "Haotong Li",
       "Tom Kim",
       "Denny McCarthy",
-      "Xander Schauffele",
+      "Marco Penge",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Nick Langeveld",
     "players": [
-      "Daniel Berger",
-      "Corey Conners",
-      "Bryson DeChambeau",
+      "Takumi Kanaya",
+      "Jordan Smith",
+      "Adam Svensson",
       "Billy Horschel",
-      "Xander Schauffele",
+      "Marco Penge",
       "JJ Spaun"
     ]
   },
   {
     "name": "Pat Landers",
     "players": [
-      "Keegan Bradley",
+      "Luke Clanton",
       "Max Homa",
-      "Zach Johnson",
+      "Chandler Phillips",
       "Maverick McNealy",
-      "Adam Scott",
+      "Kristoffer Reitan",
       "JJ Spaun"
     ]
   },
   {
     "name": "Pat O'Connell",
     "players": [
-      "Jason Day",
+      "Jimmy Walker",
       "Tommy Fleetwood",
       "Michael Kim",
-      "Min Woo Lee",
+      "Zach Bauchou",
       "Maverick McNealy",
-      "Justin Thomas"
+      "Peter Malnati"
     ]
   },
   {
     "name": "Paul Ceglarski",
     "players": [
-      "Keegan Bradley",
-      "Patrick Cantlay",
-      "Bryson DeChambeau",
-      "Min Woo Lee",
-      "Jon Rahm",
+      "Luke Clanton",
+      "Frankie Capan III",
+      "Adam Svensson",
+      "Zach Bauchou",
+      "Ryan Palmer",
       "Jordan Spieth"
     ]
   },
@@ -1510,21 +1510,21 @@
     "name": "Paul Sullivan 1",
     "players": [
       "Tony Finau",
-      "Tyrrell Hatton",
+      "Bud Cauley",
       "Max Homa",
       "Billy Horschel",
-      "Min Woo Lee",
-      "Shane Lowry"
+      "Zach Bauchou",
+      "Eric Cole"
     ]
   },
   {
     "name": "Paul Sullivan 2",
     "players": [
       "Ludvig Aberg",
-      "Akshay Bhatia",
-      "Rasmus Hojgaard",
-      "Min Woo Lee",
-      "Shane Lowry",
+      "Sudarshan Yellamaraju",
+      "Haotong Li",
+      "Zach Bauchou",
+      "Eric Cole",
       "Matthieu Pavon"
     ]
   },
@@ -1533,18 +1533,18 @@
     "players": [
       "Christiaan Bezuidenhout",
       "Nick Dunlap",
-      "Shane Lowry",
+      "Eric Cole",
       "Robert MacIntyre",
-      "Aaron Rai",
+      "Michael Thorbjornsen",
       "Jhonattan Vegas"
     ]
   },
   {
     "name": "Pete Hunsinger",
     "players": [
-      "Jose Luis Ballester",
+      "Mark Hubbard",
       "Christiaan Bezuidenhout",
-      "Nicolas Echavarria",
+      "S.H. Kim",
       "Tom Hoge",
       "Denny McCarthy",
       "Matt McCarty"
@@ -1553,7 +1553,7 @@
   {
     "name": "Peter Brannigan 1",
     "players": [
-      "Nicolas Echavarria",
+      "S.H. Kim",
       "Lucas Glover",
       "Tom Hoge",
       "Chris Kirk",
@@ -1567,9 +1567,9 @@
       "Billy Horschel",
       "Robert MacIntyre",
       "Maverick McNealy",
-      "Taylor Pendrith",
-      "Adam Scott",
-      "Cameron Young"
+      "Joe Highsmith",
+      "Kristoffer Reitan",
+      "Austin Wylie"
     ]
   },
   {
@@ -1577,19 +1577,19 @@
     "players": [
       "Ludvig Aberg",
       "Tommy Fleetwood",
-      "Viktor Hovland",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Scottie Scheffler"
+      "Gordon Sargent",
+      "Carson Young",
+      "Steven Fisk",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Peter O'Grady",
     "players": [
-      "Corey Conners",
-      "Bryson DeChambeau",
-      "Shane Lowry",
-      "Collin Morikawa",
+      "Jordan Smith",
+      "Adam Svensson",
+      "Eric Cole",
+      "Steven Fisk",
       "JJ Spaun",
       "Will Zalatoris"
     ]
@@ -1597,64 +1597,64 @@
   {
     "name": "Peyton Horn",
     "players": [
-      "Keegan Bradley",
-      "Corey Conners",
+      "Luke Clanton",
+      "Jordan Smith",
       "Brian Harman",
-      "Viktor Hovland",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Gordon Sargent",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "PK Brannigan",
     "players": [
       "Christiaan Bezuidenhout",
-      "Patrick Cantlay",
-      "Matthew Fitzpatrick",
-      "Sungjae Im",
+      "Frankie Capan III",
+      "Jimmy Stanger",
+      "Rickie Fowler",
       "Robert MacIntyre",
-      "Adam Scott"
+      "Kristoffer Reitan"
     ]
   },
   {
     "name": "Randy Heck",
     "players": [
       "Ludvig Aberg",
-      "Keegan Bradley",
-      "Viktor Hovland",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Scottie Scheffler"
+      "Luke Clanton",
+      "Gordon Sargent",
+      "Carson Young",
+      "Steven Fisk",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Robert Ranieri",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Tom Kim",
-      "Collin Morikawa",
-      "Xander Schauffele",
-      "Scottie Scheffler",
+      "Steven Fisk",
+      "Marco Penge",
+      "Patrick Rodgers",
       "Will Zalatoris"
     ]
   },
   {
     "name": "Ross Kronberg",
     "players": [
-      "Jason Day",
-      "Bryson DeChambeau",
+      "Jimmy Walker",
+      "Adam Svensson",
       "Robert MacIntyre",
-      "Rory McIlroy",
-      "Scottie Scheffler",
-      "Cameron Smith"
+      "Carson Young",
+      "Patrick Rodgers",
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Ryan O'Connor",
     "players": [
-      "Keegan Bradley",
-      "Patrick Cantlay",
-      "Wyndham Clark",
+      "Luke Clanton",
+      "Frankie Capan III",
+      "Keith Mitchell",
       "Max Homa",
       "Billy Horschel",
       "Will Zalatoris"
@@ -1663,11 +1663,11 @@
   {
     "name": "Sam Sullivan",
     "players": [
-      "Daniel Berger",
-      "Keegan Bradley",
-      "Corey Conners",
-      "Shane Lowry",
-      "Collin Morikawa",
+      "Takumi Kanaya",
+      "Luke Clanton",
+      "Jordan Smith",
+      "Eric Cole",
+      "Steven Fisk",
       "Jordan Spieth"
     ]
   },
@@ -1675,20 +1675,20 @@
     "name": "Simon Seguss",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Jon Rahm",
-      "Scottie Scheffler"
+      "Adam Svensson",
+      "Carson Young",
+      "Steven Fisk",
+      "Ryan Palmer",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Sloan Bohlen",
     "players": [
       "Ludvig Aberg",
-      "Corey Conners",
-      "Shane Lowry",
-      "Scottie Scheffler",
+      "Jordan Smith",
+      "Eric Cole",
+      "Patrick Rodgers",
       "JJ Spaun",
       "Will Zalatoris"
     ]
@@ -1696,34 +1696,34 @@
   {
     "name": "Steve McVey",
     "players": [
-      "Patrick Cantlay",
-      "Bryson DeChambeau",
-      "Shane Lowry",
+      "Frankie Capan III",
+      "Adam Svensson",
+      "Eric Cole",
       "Maverick McNealy",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Tim Tully 1",
     "players": [
-      "Laurie Canter",
+      "Joel Dahmen",
       "Tommy Fleetwood",
-      "Sergio Garcia",
+      "Andrew Novak",
       "Billy Horschel",
       "Maverick McNealy",
-      "Joaquin Niemann"
+      "Dylan Wu"
     ]
   },
   {
     "name": "Tim Tully 2",
     "players": [
-      "Daniel Berger",
-      "Thomas Detry",
+      "Takumi Kanaya",
+      "Adrien Dumont de Chassart",
       "Tom Hoge",
       "Maverick McNealy",
       "Sepp Straka",
-      "Cameron Young"
+      "Austin Wylie"
     ]
   },
   {
@@ -1731,9 +1731,9 @@
     "players": [
       "Ludvig Aberg",
       "Max Homa",
-      "Viktor Hovland",
-      "Justin Thomas",
-      "Cameron Young",
+      "Gordon Sargent",
+      "Peter Malnati",
+      "Austin Wylie",
       "Will Zalatoris"
     ]
   },
@@ -1741,53 +1741,53 @@
     "name": "Tom Cassidy",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Brooks Koepka",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Xander Schauffele"
+      "Adam Svensson",
+      "Dan Brown",
+      "Carson Young",
+      "Steven Fisk",
+      "Marco Penge"
     ]
   },
   {
     "name": "Tom Richardson 1",
     "players": [
-      "Sam Burns",
+      "Kevin Streelman",
       "Brian Harman",
-      "Bernhard Langer",
+      "Emiliano Grillo",
       "Maverick McNealy",
-      "Patrick Reed",
-      "Justin Rose"
+      "Charley Hoffman",
+      "Garrick Higgo"
     ]
   },
   {
     "name": "Tom Richardson 2",
     "players": [
-      "Daniel Berger",
-      "Sam Burns",
-      "Corey Conners",
-      "Cameron Davis",
+      "Takumi Kanaya",
+      "Kevin Streelman",
+      "Jordan Smith",
+      "Lee Hodges",
       "Denny McCarthy",
-      "Cameron Smith"
+      "Pontus Nyholm"
     ]
   },
   {
     "name": "Victor Calaba 1",
     "players": [
       "Ludvig Aberg",
-      "Bryson DeChambeau",
-      "Rory McIlroy",
-      "Collin Morikawa",
-      "Jon Rahm",
-      "Scottie Scheffler"
+      "Adam Svensson",
+      "Carson Young",
+      "Steven Fisk",
+      "Ryan Palmer",
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Victor Calaba 2",
     "players": [
-      "Bryson DeChambeau",
+      "Adam Svensson",
       "Tommy Fleetwood",
-      "Rory McIlroy",
-      "Collin Morikawa",
+      "Carson Young",
+      "Steven Fisk",
       "Sepp Straka",
       "Will Zalatoris"
     ]
@@ -1796,11 +1796,11 @@
     "name": "Victor Calaba 3",
     "players": [
       "Ludvig Aberg",
-      "Akshay Bhatia",
-      "Bryson DeChambeau",
-      "Collin Morikawa",
-      "Xander Schauffele",
-      "Scottie Scheffler"
+      "Sudarshan Yellamaraju",
+      "Adam Svensson",
+      "Steven Fisk",
+      "Marco Penge",
+      "Patrick Rodgers"
     ]
   },
   {
@@ -1808,30 +1808,30 @@
     "players": [
       "Ludvig Aberg",
       "Christiaan Bezuidenhout",
-      "Corey Conners",
-      "Matthew Fitzpatrick",
+      "Jordan Smith",
+      "Jimmy Stanger",
       "Russell Henley",
-      "Scottie Scheffler"
+      "Patrick Rodgers"
     ]
   },
   {
     "name": "Ward Savage 2",
     "players": [
-      "Cameron Davis",
+      "Lee Hodges",
       "Austin Eckroat",
-      "Justin Hastings",
+      "Andrew Putnam",
       "Chris Kirk",
-      "Charl Schwartzel",
-      "Cameron Young"
+      "Justin Lower",
+      "Austin Wylie"
     ]
   },
   {
     "name": "Will Harned",
     "players": [
       "Ludvig Aberg",
-      "Akshay Bhatia",
+      "Sudarshan Yellamaraju",
       "Tommy Fleetwood",
-      "Rory McIlroy",
+      "Carson Young",
       "Jordan Spieth",
       "Sepp Straka"
     ]
@@ -1839,12 +1839,12 @@
   {
     "name": "Willis Brucker",
     "players": [
-      "Harris English",
+      "Kensei Hirata",
       "Tony Finau",
-      "Matthew Fitzpatrick",
+      "Jimmy Stanger",
       "Max Homa",
-      "Adam Scott",
-      "Cameron Smith"
+      "Kristoffer Reitan",
+      "Pontus Nyholm"
     ]
   }
 ]
