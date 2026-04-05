@@ -126,24 +126,43 @@ def main():
             if p <= 4 and ls.get("value") is not None:
                 max_round = max(max_round, p)
 
-    # Build position map to handle ties (group by order)
-    # ESPN 'order' field = position rank (ties share the same order)
-    position_groups = {}
-    for c in competitors:
-        pos = c.get("order", 999)
-        if pos not in position_groups:
-            position_groups[pos] = []
-        position_groups[pos].append(c)
+    # Build position map to handle ties by grouping on SCORE, not ESPN order.
+    # ESPN 'order' gives sequential positions even for ties, so we must
+    # detect ties by identical scores and split prize money accordingly.
+    # Sort competitors by ESPN order first to establish ranking order.
+    competitors.sort(key=lambda c: c.get("order", 999))
 
-    # Calculate prize for tied groups
-    prize_cache = {}
-    for pos, group in position_groups.items():
+    # Group consecutive players by score to detect ties
+    # We also need to skip missed-cut players (they get no prize)
+    score_groups = []  # list of (start_pos, [competitors])
+    current_pos = 1
+    i = 0
+    while i < len(competitors):
+        c = competitors[i]
+        score = c.get("score", "E")
+        group = [c]
+        j = i + 1
+        while j < len(competitors) and competitors[j].get("score", "E") == score:
+            group.append(competitors[j])
+            j += 1
+        score_groups.append((current_pos, group))
+        current_pos += len(group)
+        i = j
+
+    # Calculate prize for each group, splitting ties evenly
+    # Map ESPN order -> (tied_position, prize)
+    position_prize_map = {}  # order -> (position, prize)
+    for start_pos, group in score_groups:
         if len(group) == 1:
-            prize_cache[pos] = prize_for_position(pos, purse, pct_table)
+            c = group[0]
+            order = c.get("order", 999)
+            position_prize_map[order] = (start_pos, prize_for_position(start_pos, purse, pct_table))
         else:
-            tied_positions = list(range(pos, pos + len(group)))
+            tied_positions = list(range(start_pos, start_pos + len(group)))
             avg_prize = split_prize_for_ties(tied_positions, purse, pct_table)
-            prize_cache[pos] = avg_prize
+            for c in group:
+                order = c.get("order", 999)
+                position_prize_map[order] = (start_pos, avg_prize)
 
     # Build player list
     players = []
@@ -176,15 +195,26 @@ def main():
             if 1 <= period <= 4:
                 round_scores[f"R{period}"] = ls.get("displayValue", "")
 
-        estimated_prize = 0 if missed_cut else prize_cache.get(pos, 0)
+        # Thru: count hole-by-hole scores in the current round
+        thru = None
+        for ls in linescores:
+            if ls.get("period") == max_round:
+                hole_scores = ls.get("linescores", [])
+                completed_holes = sum(1 for h in hole_scores if h.get("value") is not None)
+                thru = completed_holes if completed_holes < 18 else "F"
+                break
+
+        tied_pos, prize_amount = position_prize_map.get(pos, (pos, 0))
+        estimated_prize = 0 if missed_cut else prize_amount
 
         players.append({
             "name": full_name,
             "normalizedName": normalize_name(full_name),
-            "position": pos,
+            "position": tied_pos,
             "score": score,
             "roundScores": round_scores,
             "roundsCompleted": rounds_completed,
+            "thru": thru,
             "missedCut": missed_cut,
             "projectedCut": False,
             "estimatedPrize": estimated_prize
