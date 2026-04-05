@@ -258,7 +258,12 @@ table.golfer-table thead th {
   color: #1a4c2e;
 }
 .round-empty { background: #f0f0f0; color: #bbb; }
+.round-over  { background: #fde8e8; color: #a33; }
+.round-even  { background: #e8e8e8; color: #666; }
 .round-today { background: #2d7a4f; color: #fff; }
+.round-today-under { background: #2d7a4f; color: #fff; }
+.round-today-over  { background: #c0392b; color: #fff; }
+.round-today-even  { background: #666;    color: #fff; }
 
 /* ─── Teams & Picks tab ────────────────────────────────────────────────────── */
 table.picks-table thead th:first-child { width: 22%; }

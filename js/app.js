@@ -203,7 +203,12 @@ function buildPriorRoundTotals() {
     teamTotals[entry.name] = total;
   }
 
-  return { teamTotals, playerPriorAdj };
+  // Rank teams by prior-round totals
+  const teamRanks = {};
+  const sorted = Object.entries(teamTotals).sort((a, b) => b[1] - a[1]);
+  sorted.forEach(([name], idx) => { teamRanks[name] = idx + 1; });
+
+  return { teamTotals, teamRanks, playerPriorAdj };
 }
 
 // ─── Formatting ───────────────────────────────────────────────────────────────
@@ -232,7 +237,12 @@ function roundBadges(rs, currentRound) {
   return [1,2,3,4].map(r => {
     const v = rs[`R${r}`];
     const isToday = r === currentRound && v;
-    return `<span class="round-score ${v ? (isToday ? 'round-today' : '') : 'round-empty'}">${v || '—'}</span>`;
+    let cls = 'round-score';
+    if (!v)           cls += ' round-empty';
+    else if (isToday) cls += v.startsWith('-') ? ' round-today-under' : (v === 'E' ? ' round-today-even' : ' round-today-over');
+    else if (!v.startsWith('-') && v !== 'E') cls += ' round-over';
+    else if (v === 'E') cls += ' round-even';
+    return `<span class="${cls}">${v || '—'}</span>`;
   }).join('');
 }
 
@@ -264,17 +274,14 @@ function renderLeaderboard(rankings) {
   const tbody = document.getElementById('team-tbody');
   tbody.innerHTML = '';
 
-  const sameRoundPool = prevSnapshot.round === (leaderboard.round || 0);
   const priorTotals = priorData ? priorData.teamTotals : null;
+  const priorRanks  = priorData ? priorData.teamRanks : null;
 
   rankings.forEach((team, idx) => {
     const rank     = idx + 1;
     const isTied   = idx > 0 && rankings[idx - 1].total === team.total;
     const rankDisp = isTied ? 'T' + rank : rank;
     const rankClass = rank <= 5 ? `rank-${rank}` : '';
-    const prevRank  = sameRoundPool ? (prevSnapshot.poolRanks || {})[team.name] : null;
-    const move      = movementBadge(prevRank, rank);
-
     // Today's earnings change (computed from prior round standings)
     let todayHtml = '';
     if (priorTotals && priorTotals[team.name] != null) {
@@ -288,7 +295,7 @@ function renderLeaderboard(rankings) {
     tr.className = `team-row ${rankClass}`;
     tr.setAttribute('data-team', idx);
     tr.innerHTML = `
-      <td class="rank">${rankDisp}${move}</td>
+      <td class="rank">${rankDisp}</td>
       <td class="team-name">${escHtml(team.name)}</td>
       <td class="earnings">${fmt$(team.total)}${todayHtml}</td>
       <td class="expand-icon">▶</td>
@@ -400,7 +407,7 @@ function renderTournamentTab() {
 
   const sameRoundTourn = prevSnapshot.round === currentRound;
   const players = [...(leaderboard.players || [])];
-  const totalCols = 11; // pos, player, total, today, R1-R4, winnings, odds, odds adj
+  const totalCols = 12; // pos, player, total, today, thru, R1-R4, winnings, odds, odds adj
 
   // Determine if we need a cut line divider
   let cutLineInserted = false;
@@ -411,8 +418,6 @@ function renderTournamentTab() {
     const isCut      = mc || pc;
     const todayScore = p.roundScores ? p.roundScores[`R${currentRound}`] : null;
     const posDisp    = mc ? 'MC' : pc ? 'PC' : (p.position ? p.position : '—');
-    const prevPos    = (!isCut && sameRoundTourn) ? (prevSnapshot.tournamentPositions || {})[p.name] : null;
-    const move       = isCut ? '' : movementBadge(prevPos, p.position);
 
     // Insert cut line divider before the first cut/projected-cut player
     if (isCut && !cutLineInserted) {
@@ -441,7 +446,10 @@ function renderTournamentTab() {
     tr.setAttribute('data-cut', isCut ? '1' : '0');
 
     const todayNum = todayScore ? scoreToNum(todayScore) : 999;
+    const thru = p.thru != null ? p.thru : '—';
+    const thruNum = thru === 'F' ? 18 : (typeof thru === 'number' ? thru : -1);
     tr.setAttribute('data-today', todayNum);
+    tr.setAttribute('data-thru', thruNum);
     tr.setAttribute('data-r1', p.roundScores && p.roundScores.R1 ? scoreToNum(p.roundScores.R1) : 999);
     tr.setAttribute('data-r2', p.roundScores && p.roundScores.R2 ? scoreToNum(p.roundScores.R2) : 999);
     tr.setAttribute('data-r3', p.roundScores && p.roundScores.R3 ? scoreToNum(p.roundScores.R3) : 999);
@@ -465,10 +473,11 @@ function renderTournamentTab() {
     }
 
     tr.innerHTML = `
-      <td class="pos-col">${escHtml(String(posDisp))}${move}</td>
+      <td class="pos-col">${escHtml(String(posDisp))}</td>
       <td><span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
       <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (isCut ? (mc ? 'MC' : 'PC') : '—')}</td>
+      <td class="score-col">${isCut ? '—' : thru}</td>
       ${roundCells}
       <td class="prize-col">${isCut ? '—' : fmt$(p.estimatedPrize)}</td>
       <td class="odds-col" style="text-align:center">${odds ? odds + '-1' : '—'}</td>
@@ -598,6 +607,7 @@ function sortTournamentTable(state) {
     if (col === 'oddsAdj') return parseFloat(row.dataset.oddsAdj);
     if (col === 'odds')   return parseFloat(row.dataset.odds);
     if (col === 'today')  return parseFloat(row.dataset.today);
+    if (col === 'thru')   return parseFloat(row.dataset.thru);
     if (col === 'r1')     return parseFloat(row.dataset.r1);
     if (col === 'r2')     return parseFloat(row.dataset.r2);
     if (col === 'r3')     return parseFloat(row.dataset.r3);
@@ -629,7 +639,7 @@ function sortTournamentTable(state) {
     const label = currentRound >= 3 ? 'Missed Cut' : 'Projected Cut Line';
     const cutScore = leaderboard.cutLineScore || '';
     const scoreLabel = cutScore ? ` (${cutScore})` : '';
-    divider.innerHTML = `<td colspan="11" class="cut-line-cell">✂ ${label}${scoreLabel}</td>`;
+    divider.innerHTML = `<td colspan="12" class="cut-line-cell">✂ ${label}${scoreLabel}</td>`;
     tbody.appendChild(divider);
   }
 
