@@ -7,46 +7,29 @@
   "isComplete": false,
   "round": 4,
   "cutLineScore": null,
-  "lastUpdated": "2026-04-05T18:22:51.295337+00:00",
+  "lastUpdated": "2026-04-05T19:09:05.375575+00:00",
   "players": [
     {
-      "name": "Ryo Hisatsune",
-      "normalizedName": "ryo hisatsune",
+      "name": "Andrew Putnam",
+      "normalizedName": "andrew putnam",
       "position": 1,
       "score": "-15",
       "roundScores": {
-        "R1": "-4",
-        "R2": "-4",
+        "R1": "-6",
+        "R2": "-2",
         "R3": "-5",
         "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 6,
+      "thru": 8,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 3234000
-    },
-    {
-      "name": "Ludvig \u00c5berg",
-      "normalizedName": "ludvig aberg",
-      "position": 1,
-      "score": "-15",
-      "roundScores": {
-        "R1": "-5",
-        "R2": "-5",
-        "R3": "-3",
-        "R4": "-2"
-      },
-      "roundsCompleted": 4,
-      "thru": 4,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 3234000
+      "estimatedPrize": 4200000
     },
     {
       "name": "Matt Wallace",
       "normalizedName": "matt wallace",
-      "position": 3,
+      "position": 2,
       "score": "-14",
       "roundScores": {
         "R1": "-1",
@@ -55,32 +38,66 @@
         "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 12,
+      "thru": 15,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 1078000
+      "estimatedPrize": 1260000
     },
     {
-      "name": "Michael Kim",
-      "normalizedName": "michael kim",
-      "position": 3,
+      "name": "J.J. Spaun",
+      "normalizedName": "jj spaun",
+      "position": 2,
       "score": "-14",
       "roundScores": {
-        "R1": "E",
-        "R2": "-7",
+        "R1": "-3",
+        "R2": "-3",
         "R3": "-6",
+        "R4": "-2"
+      },
+      "roundsCompleted": 4,
+      "thru": 10,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 1260000
+    },
+    {
+      "name": "Ryo Hisatsune",
+      "normalizedName": "ryo hisatsune",
+      "position": 2,
+      "score": "-14",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "-4",
+        "R3": "-5",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
+      "thru": 8,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 1260000
+    },
+    {
+      "name": "Ludvig \u00c5berg",
+      "normalizedName": "ludvig aberg",
+      "position": 2,
+      "score": "-14",
+      "roundScores": {
+        "R1": "-5",
+        "R2": "-5",
+        "R3": "-3",
         "R4": "-1"
       },
       "roundsCompleted": 4,
       "thru": 7,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 1078000
+      "estimatedPrize": 1260000
     },
     {
       "name": "Robert MacIntyre",
       "normalizedName": "robert macintyre",
-      "position": 3,
+      "position": 2,
       "score": "-14",
       "roundScores": {
         "R1": "-6",
@@ -89,72 +106,72 @@
         "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 4,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 1078000
-    },
-    {
-      "name": "J.J. Spaun",
-      "normalizedName": "jj spaun",
-      "position": 6,
-      "score": "-13",
-      "roundScores": {
-        "R1": "-3",
-        "R2": "-3",
-        "R3": "-6",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
       "thru": 7,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 750750
-    },
-    {
-      "name": "Andrew Putnam",
-      "normalizedName": "andrew putnam",
-      "position": 6,
-      "score": "-13",
-      "roundScores": {
-        "R1": "-6",
-        "R2": "-2",
-        "R3": "-5",
-        "R4": "E"
-      },
-      "roundsCompleted": 4,
-      "thru": 5,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 750750
+      "estimatedPrize": 1260000
     },
     {
       "name": "Si Woo Kim",
       "normalizedName": "si woo kim",
-      "position": 8,
-      "score": "-11",
+      "position": 7,
+      "score": "-12",
       "roundScores": {
         "R1": "-2",
         "R2": "-2",
         "R3": "-2",
-        "R4": "-5"
+        "R4": "-6"
       },
       "roundsCompleted": 4,
-      "thru": 12,
+      "thru": 15,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 588000
+      "estimatedPrize": 626500
     },
     {
       "name": "Davis Thompson",
       "normalizedName": "davis thompson",
-      "position": 8,
-      "score": "-11",
+      "position": 7,
+      "score": "-12",
       "roundScores": {
         "R1": "-6",
         "R2": "+1",
         "R3": "-4",
-        "R4": "-2"
+        "R4": "-3"
+      },
+      "roundsCompleted": 4,
+      "thru": 14,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 626500
+    },
+    {
+      "name": "Michael Kim",
+      "normalizedName": "michael kim",
+      "position": 7,
+      "score": "-12",
+      "roundScores": {
+        "R1": "E",
+        "R2": "-7",
+        "R3": "-6",
+        "R4": "+1"
+      },
+      "roundsCompleted": 4,
+      "thru": 9,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 626500
+    },
+    {
+      "name": "Kevin Yu",
+      "normalizedName": "kevin yu",
+      "position": 10,
+      "score": "-11",
+      "roundScores": {
+        "R1": "-3",
+        "R2": "-2",
+        "R3": "-6",
+        "R4": "E"
       },
       "roundsCompleted": 4,
       "thru": 11,
@@ -163,26 +180,9 @@
       "estimatedPrize": 588000
     },
     {
-      "name": "Kevin Yu",
-      "normalizedName": "kevin yu",
-      "position": 8,
-      "score": "-11",
-      "roundScores": {
-        "R1": "-3",
-        "R2": "-2",
-        "R3": "-6",
-        "R4": "E"
-      },
-      "roundsCompleted": 4,
-      "thru": 9,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 588000
-    },
-    {
       "name": "Chandler Phillips",
       "normalizedName": "chandler phillips",
-      "position": 8,
+      "position": 10,
       "score": "-11",
       "roundScores": {
         "R1": "E",
@@ -191,27 +191,10 @@
         "R4": "+1"
       },
       "roundsCompleted": 4,
-      "thru": 7,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 588000
-    },
-    {
-      "name": "Hideki Matsuyama",
-      "normalizedName": "hideki matsuyama",
-      "position": 12,
-      "score": "-10",
-      "roundScores": {
-        "R1": "-2",
-        "R2": "-3",
-        "R3": "-2",
-        "R4": "-3"
-      },
-      "roundsCompleted": 4,
       "thru": 10,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 378000
+      "estimatedPrize": 588000
     },
     {
       "name": "Maverick McNealy",
@@ -225,61 +208,27 @@
         "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 8,
+      "thru": 10,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 378000
+      "estimatedPrize": 420000
     },
     {
-      "name": "Austin Eckroat",
-      "normalizedName": "austin eckroat",
+      "name": "Sudarshan Yellamaraju",
+      "normalizedName": "sudarshan yellamaraju",
       "position": 12,
       "score": "-10",
       "roundScores": {
-        "R1": "-4",
-        "R2": "-2",
-        "R3": "-3",
-        "R4": "-1"
+        "R1": "-3",
+        "R2": "+1",
+        "R3": "-6",
+        "R4": "-2"
       },
       "roundsCompleted": 4,
       "thru": 8,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 378000
-    },
-    {
-      "name": "Kristoffer Reitan",
-      "normalizedName": "kristoffer reitan",
-      "position": 12,
-      "score": "-10",
-      "roundScores": {
-        "R1": "-2",
-        "R2": "-4",
-        "R3": "-3",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 7,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 378000
-    },
-    {
-      "name": "Sam Ryder",
-      "normalizedName": "sam ryder",
-      "position": 12,
-      "score": "-10",
-      "roundScores": {
-        "R1": "-5",
-        "R2": "-3",
-        "R3": "-3",
-        "R4": "+1"
-      },
-      "roundsCompleted": 4,
-      "thru": 6,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 378000
+      "estimatedPrize": 420000
     },
     {
       "name": "Bud Cauley",
@@ -293,66 +242,83 @@
         "R4": "-1"
       },
       "roundsCompleted": 4,
-      "thru": 5,
+      "thru": 7,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 378000
+      "estimatedPrize": 420000
     },
     {
-      "name": "Marco Penge",
-      "normalizedName": "marco penge",
-      "position": 18,
+      "name": "Hideki Matsuyama",
+      "normalizedName": "hideki matsuyama",
+      "position": 15,
+      "score": "-9",
+      "roundScores": {
+        "R1": "-2",
+        "R2": "-3",
+        "R3": "-2",
+        "R4": "-2"
+      },
+      "roundsCompleted": 4,
+      "thru": 13,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 304500
+    },
+    {
+      "name": "Austin Eckroat",
+      "normalizedName": "austin eckroat",
+      "position": 15,
       "score": "-9",
       "roundScores": {
         "R1": "-4",
-        "R2": "E",
-        "R3": "-6",
-        "R4": "+1"
+        "R2": "-2",
+        "R3": "-3",
+        "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 12,
+      "thru": 11,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 273000
+      "estimatedPrize": 304500
     },
     {
-      "name": "Eric Cole",
-      "normalizedName": "eric cole",
-      "position": 18,
+      "name": "Nick Taylor",
+      "normalizedName": "nick taylor",
+      "position": 15,
       "score": "-9",
       "roundScores": {
-        "R1": "-5",
+        "R1": "-2",
         "R2": "E",
         "R3": "-3",
-        "R4": "-1"
+        "R4": "-4"
       },
       "roundsCompleted": 4,
       "thru": 9,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 273000
+      "estimatedPrize": 304500
     },
     {
-      "name": "Tommy Fleetwood",
-      "normalizedName": "tommy fleetwood",
-      "position": 18,
+      "name": "Paul Waring",
+      "normalizedName": "paul waring",
+      "position": 15,
       "score": "-9",
       "roundScores": {
-        "R1": "-5",
+        "R1": "E",
         "R2": "-2",
-        "R3": "-1",
-        "R4": "-1"
+        "R3": "-4",
+        "R4": "-3"
       },
       "roundsCompleted": 4,
-      "thru": 7,
+      "thru": 9,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 273000
+      "estimatedPrize": 304500
     },
     {
       "name": "John Parry",
       "normalizedName": "john parry",
-      "position": 18,
+      "position": 15,
       "score": "-9",
       "roundScores": {
         "R1": "-6",
@@ -361,32 +327,49 @@
         "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 6,
+      "thru": 9,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 273000
+      "estimatedPrize": 304500
     },
     {
-      "name": "Sudarshan Yellamaraju",
-      "normalizedName": "sudarshan yellamaraju",
-      "position": 18,
+      "name": "Tommy Fleetwood",
+      "normalizedName": "tommy fleetwood",
+      "position": 15,
       "score": "-9",
       "roundScores": {
-        "R1": "-3",
-        "R2": "+1",
-        "R3": "-6",
+        "R1": "-5",
+        "R2": "-2",
+        "R3": "-1",
         "R4": "-1"
       },
       "roundsCompleted": 4,
-      "thru": 6,
+      "thru": 9,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 273000
+      "estimatedPrize": 304500
+    },
+    {
+      "name": "Kristoffer Reitan",
+      "normalizedName": "kristoffer reitan",
+      "position": 15,
+      "score": "-9",
+      "roundScores": {
+        "R1": "-2",
+        "R2": "-4",
+        "R3": "-3",
+        "R4": "E"
+      },
+      "roundsCompleted": 4,
+      "thru": 9,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 304500
     },
     {
       "name": "J.T. Poston",
       "normalizedName": "jt poston",
-      "position": 18,
+      "position": 15,
       "score": "-9",
       "roundScores": {
         "R1": "E",
@@ -395,120 +378,18 @@
         "R4": "-4"
       },
       "roundsCompleted": 4,
-      "thru": 5,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 273000
-    },
-    {
-      "name": "Doug Ghim",
-      "normalizedName": "doug ghim",
-      "position": 24,
-      "score": "-8",
-      "roundScores": {
-        "R1": "-3",
-        "R2": "-1",
-        "R3": "-3",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 12,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 181650
-    },
-    {
-      "name": "Austin Smotherman",
-      "normalizedName": "austin smotherman",
-      "position": 24,
-      "score": "-8",
-      "roundScores": {
-        "R1": "-4",
-        "R2": "+1",
-        "R3": "-4",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 9,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 181650
-    },
-    {
-      "name": "S.H. Kim",
-      "normalizedName": "sh kim",
-      "position": 24,
-      "score": "-8",
-      "roundScores": {
-        "R1": "-4",
-        "R2": "+1",
-        "R3": "-4",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
       "thru": 8,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 181650
+      "estimatedPrize": 304500
     },
     {
-      "name": "Andrew Novak",
-      "normalizedName": "andrew novak",
-      "position": 24,
+      "name": "Eric Cole",
+      "normalizedName": "eric cole",
+      "position": 23,
       "score": "-8",
       "roundScores": {
-        "R1": "-4",
-        "R2": "-2",
-        "R3": "-1",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 8,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 181650
-    },
-    {
-      "name": "Alex Smalley",
-      "normalizedName": "alex smalley",
-      "position": 24,
-      "score": "-8",
-      "roundScores": {
-        "R1": "-4",
-        "R2": "-4",
-        "R3": "-1",
-        "R4": "+1"
-      },
-      "roundsCompleted": 4,
-      "thru": 5,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 181650
-    },
-    {
-      "name": "Tony Finau",
-      "normalizedName": "tony finau",
-      "position": 24,
-      "score": "-8",
-      "roundScores": {
-        "R1": "-6",
-        "R2": "-3",
-        "R3": "-1",
-        "R4": "+2"
-      },
-      "roundsCompleted": 4,
-      "thru": 4,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 181650
-    },
-    {
-      "name": "Adam Schenk",
-      "normalizedName": "adam schenk",
-      "position": 30,
-      "score": "-7",
-      "roundScores": {
-        "R1": "-4",
+        "R1": "-5",
         "R2": "E",
         "R3": "-3",
         "R4": "E"
@@ -517,12 +398,182 @@
       "thru": 12,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 124695
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Marco Penge",
+      "normalizedName": "marco penge",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "E",
+        "R3": "-6",
+        "R4": "+2"
+      },
+      "roundsCompleted": 4,
+      "thru": 15,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Doug Ghim",
+      "normalizedName": "doug ghim",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-3",
+        "R2": "-1",
+        "R3": "-3",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
+      "thru": 14,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Mac Meissner",
+      "normalizedName": "mac meissner",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-1",
+        "R2": "-2",
+        "R3": "-4",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
+      "thru": 12,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Zach Bauchou",
+      "normalizedName": "zach bauchou",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "-2",
+        "R3": "+1",
+        "R4": "-3"
+      },
+      "roundsCompleted": 4,
+      "thru": 11,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Andrew Novak",
+      "normalizedName": "andrew novak",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "-2",
+        "R3": "-1",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
+      "thru": 11,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Austin Smotherman",
+      "normalizedName": "austin smotherman",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "+1",
+        "R3": "-4",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
+      "thru": 11,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "S.H. Kim",
+      "normalizedName": "sh kim",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "+1",
+        "R3": "-4",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
+      "thru": 11,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Sam Ryder",
+      "normalizedName": "sam ryder",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-5",
+        "R2": "-3",
+        "R3": "-3",
+        "R4": "+3"
+      },
+      "roundsCompleted": 4,
+      "thru": 9,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "Alex Smalley",
+      "normalizedName": "alex smalley",
+      "position": 23,
+      "score": "-8",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "-4",
+        "R3": "-1",
+        "R4": "+1"
+      },
+      "roundsCompleted": 4,
+      "thru": 8,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170705
+    },
+    {
+      "name": "A.J. Ewart",
+      "normalizedName": "aj ewart",
+      "position": 33,
+      "score": "-7",
+      "roundScores": {
+        "R1": "-2",
+        "R2": "-2",
+        "R3": "-3",
+        "R4": "E"
+      },
+      "roundsCompleted": 4,
+      "thru": 15,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 113358
     },
     {
       "name": "Sami V\u00e4lim\u00e4ki",
       "normalizedName": "sami valimaki",
-      "position": 30,
+      "position": 33,
       "score": "-7",
       "roundScores": {
         "R1": "-3",
@@ -531,32 +582,15 @@
         "R4": "+1"
       },
       "roundsCompleted": 4,
-      "thru": 10,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 124695
-    },
-    {
-      "name": "Zach Bauchou",
-      "normalizedName": "zach bauchou",
-      "position": 30,
-      "score": "-7",
-      "roundScores": {
-        "R1": "-4",
-        "R2": "-2",
-        "R3": "+1",
-        "R4": "-2"
-      },
-      "roundsCompleted": 4,
-      "thru": 9,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 124695
+      "estimatedPrize": 113358
     },
     {
       "name": "Chris Kirk",
       "normalizedName": "chris kirk",
-      "position": 30,
+      "position": 33,
       "score": "-7",
       "roundScores": {
         "R1": "-2",
@@ -565,100 +599,66 @@
         "R4": "+1"
       },
       "roundsCompleted": 4,
-      "thru": 8,
+      "thru": 10,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 124695
+      "estimatedPrize": 113358
     },
     {
-      "name": "Nick Taylor",
-      "normalizedName": "nick taylor",
-      "position": 30,
+      "name": "Matt McCarty",
+      "normalizedName": "matt mccarty",
+      "position": 33,
       "score": "-7",
       "roundScores": {
-        "R1": "-2",
-        "R2": "E",
-        "R3": "-3",
-        "R4": "-2"
+        "R1": "+2",
+        "R2": "-4",
+        "R3": "-2",
+        "R4": "-3"
+      },
+      "roundsCompleted": 4,
+      "thru": 9,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 113358
+    },
+    {
+      "name": "Tony Finau",
+      "normalizedName": "tony finau",
+      "position": 33,
+      "score": "-7",
+      "roundScores": {
+        "R1": "-6",
+        "R2": "-3",
+        "R3": "-1",
+        "R4": "+3"
       },
       "roundsCompleted": 4,
       "thru": 7,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 124695
+      "estimatedPrize": 113358
     },
     {
-      "name": "Paul Waring",
-      "normalizedName": "paul waring",
-      "position": 30,
-      "score": "-7",
+      "name": "Billy Horschel",
+      "normalizedName": "billy horschel",
+      "position": 38,
+      "score": "-6",
       "roundScores": {
-        "R1": "E",
-        "R2": "-2",
-        "R3": "-4",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 6,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 124695
-    },
-    {
-      "name": "Kevin Roy",
-      "normalizedName": "kevin roy",
-      "position": 30,
-      "score": "-7",
-      "roundScores": {
-        "R1": "-5",
+        "R1": "-1",
         "R2": "-4",
-        "R3": "+2",
-        "R4": "E"
+        "R3": "+1",
+        "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 4,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 124695
-    },
-    {
-      "name": "Taylor Moore",
-      "normalizedName": "taylor moore",
-      "position": 37,
-      "score": "-6",
-      "roundScores": {
-        "R1": "-3",
-        "R2": "-1",
-        "R3": "-1",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 12,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 92536
-    },
-    {
-      "name": "A.J. Ewart",
-      "normalizedName": "aj ewart",
-      "position": 37,
-      "score": "-6",
-      "roundScores": {
-        "R1": "-2",
-        "R2": "-2",
-        "R3": "-3",
-        "R4": "+1"
-      },
-      "roundsCompleted": 4,
-      "thru": 12,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 92536
+      "estimatedPrize": 90829
     },
     {
       "name": "Alex Noren",
       "normalizedName": "alex noren",
-      "position": 37,
+      "position": 38,
       "score": "-6",
       "roundScores": {
         "R1": "-2",
@@ -667,15 +667,15 @@
         "R4": "+1"
       },
       "roundsCompleted": 4,
-      "thru": 10,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 92536
+      "estimatedPrize": 90829
     },
     {
       "name": "Christiaan Bezuidenhout",
       "normalizedName": "christiaan bezuidenhout",
-      "position": 37,
+      "position": 38,
       "score": "-6",
       "roundScores": {
         "R1": "-1",
@@ -684,32 +684,15 @@
         "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 9,
+      "thru": 11,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 92536
-    },
-    {
-      "name": "Mac Meissner",
-      "normalizedName": "mac meissner",
-      "position": 37,
-      "score": "-6",
-      "roundScores": {
-        "R1": "-1",
-        "R2": "-2",
-        "R3": "-4",
-        "R4": "+1"
-      },
-      "roundsCompleted": 4,
-      "thru": 9,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 92536
+      "estimatedPrize": 90829
     },
     {
       "name": "Thorbj\u00f8rn Olesen",
       "normalizedName": "thorbjorn olesen",
-      "position": 37,
+      "position": 38,
       "score": "-6",
       "roundScores": {
         "R1": "-3",
@@ -718,27 +701,44 @@
         "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 5,
+      "thru": 7,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 92536
+      "estimatedPrize": 90829
     },
     {
-      "name": "Christo Lamprecht",
-      "normalizedName": "christo lamprecht",
+      "name": "Kevin Roy",
+      "normalizedName": "kevin roy",
+      "position": 38,
+      "score": "-6",
+      "roundScores": {
+        "R1": "-5",
+        "R2": "-4",
+        "R3": "+2",
+        "R4": "+1"
+      },
+      "roundsCompleted": 4,
+      "thru": 7,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 90829
+    },
+    {
+      "name": "Taylor Moore",
+      "normalizedName": "taylor moore",
       "position": 43,
       "score": "-5",
       "roundScores": {
-        "R1": "-5",
-        "R2": "+1",
-        "R3": "+2",
-        "R4": "-3"
+        "R1": "-3",
+        "R2": "-1",
+        "R3": "-1",
+        "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 12,
+      "thru": 15,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 68386
     },
     {
       "name": "Brandt Snedeker",
@@ -752,27 +752,27 @@
         "R4": "-1"
       },
       "roundsCompleted": 4,
-      "thru": 11,
+      "thru": 14,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 68386
     },
     {
-      "name": "Hank Lebioda",
-      "normalizedName": "hank lebioda",
+      "name": "Adam Schenk",
+      "normalizedName": "adam schenk",
       "position": 43,
       "score": "-5",
       "roundScores": {
-        "R1": "E",
-        "R2": "-4",
-        "R3": "-4",
-        "R4": "+3"
+        "R1": "-4",
+        "R2": "E",
+        "R3": "-3",
+        "R4": "+2"
       },
       "roundsCompleted": 4,
-      "thru": 11,
+      "thru": 14,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 68386
     },
     {
       "name": "Brian Harman",
@@ -786,27 +786,10 @@
         "R4": "-1"
       },
       "roundsCompleted": 4,
-      "thru": 10,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
-    },
-    {
-      "name": "Billy Horschel",
-      "normalizedName": "billy horschel",
-      "position": 43,
-      "score": "-5",
-      "roundScores": {
-        "R1": "-1",
-        "R2": "-4",
-        "R3": "+1",
-        "R4": "-1"
-      },
-      "roundsCompleted": 4,
-      "thru": 10,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 68386
     },
     {
       "name": "Beau Hossler",
@@ -820,10 +803,10 @@
         "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 10,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 68386
     },
     {
       "name": "Adrien Dumont de Chassart",
@@ -837,32 +820,32 @@
         "R4": "E"
       },
       "roundsCompleted": 4,
-      "thru": 8,
+      "thru": 10,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 68386
     },
     {
-      "name": "Matt McCarty",
-      "normalizedName": "matt mccarty",
-      "position": 43,
-      "score": "-5",
+      "name": "Christo Lamprecht",
+      "normalizedName": "christo lamprecht",
+      "position": 49,
+      "score": "-4",
       "roundScores": {
-        "R1": "+2",
-        "R2": "-4",
-        "R3": "-2",
-        "R4": "-1"
+        "R1": "-5",
+        "R2": "+1",
+        "R3": "+2",
+        "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 7,
+      "thru": 14,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 64730
+      "estimatedPrize": 52248
     },
     {
       "name": "Adam Svensson",
       "normalizedName": "adam svensson",
-      "position": 51,
+      "position": 49,
       "score": "-4",
       "roundScores": {
         "R1": "-4",
@@ -871,15 +854,32 @@
         "R4": "+3"
       },
       "roundsCompleted": 4,
-      "thru": 11,
+      "thru": 14,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 51240
+      "estimatedPrize": 52248
+    },
+    {
+      "name": "Hank Lebioda",
+      "normalizedName": "hank lebioda",
+      "position": 49,
+      "score": "-4",
+      "roundScores": {
+        "R1": "E",
+        "R2": "-4",
+        "R3": "-4",
+        "R4": "+4"
+      },
+      "roundsCompleted": 4,
+      "thru": 14,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 52248
     },
     {
       "name": "Stephan Jaeger",
       "normalizedName": "stephan jaeger",
-      "position": 51,
+      "position": 49,
       "score": "-4",
       "roundScores": {
         "R1": "E",
@@ -888,27 +888,61 @@
         "R4": "+4"
       },
       "roundsCompleted": 4,
+      "thru": 13,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 52248
+    },
+    {
+      "name": "David Ford",
+      "normalizedName": "david ford",
+      "position": 49,
+      "score": "-4",
+      "roundScores": {
+        "R1": "-4",
+        "R2": "+1",
+        "R3": "E",
+        "R4": "-1"
+      },
+      "roundsCompleted": 4,
       "thru": 10,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 51240
+      "estimatedPrize": 52248
     },
     {
-      "name": "Steven Fisk",
-      "normalizedName": "steven fisk",
-      "position": 51,
-      "score": "-4",
+      "name": "Chad Ramey",
+      "normalizedName": "chad ramey",
+      "position": 54,
+      "score": "-3",
       "roundScores": {
-        "R1": "-6",
-        "R2": "-2",
-        "R3": "+1",
-        "R4": "+3"
+        "R1": "E",
+        "R2": "-4",
+        "R3": "-1",
+        "R4": "+2"
       },
       "roundsCompleted": 4,
-      "thru": 5,
+      "thru": 15,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 51240
+      "estimatedPrize": 49770
+    },
+    {
+      "name": "Erik van Rooyen",
+      "normalizedName": "erik van rooyen",
+      "position": 54,
+      "score": "-3",
+      "roundScores": {
+        "R1": "E",
+        "R2": "-3",
+        "R3": "-1",
+        "R4": "+1"
+      },
+      "roundsCompleted": 4,
+      "thru": 14,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 49770
     },
     {
       "name": "Kevin Streelman",
@@ -922,117 +956,49 @@
         "R4": "+2"
       },
       "roundsCompleted": 4,
-      "thru": 10,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 49980
+      "estimatedPrize": 49770
     },
     {
-      "name": "David Ford",
-      "normalizedName": "david ford",
+      "name": "Steven Fisk",
+      "normalizedName": "steven fisk",
       "position": 54,
       "score": "-3",
       "roundScores": {
-        "R1": "-4",
-        "R2": "+1",
-        "R3": "E",
-        "R4": "E"
+        "R1": "-6",
+        "R2": "-2",
+        "R3": "+1",
+        "R4": "+4"
       },
       "roundsCompleted": 4,
       "thru": 8,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 49980
+      "estimatedPrize": 49770
     },
     {
-      "name": "Peter Malnati",
-      "normalizedName": "peter malnati",
-      "position": 54,
-      "score": "-3",
+      "name": "Mark Hubbard",
+      "normalizedName": "mark hubbard",
+      "position": 58,
+      "score": "-2",
       "roundScores": {
-        "R1": "-3",
-        "R2": "+1",
+        "R1": "-7",
+        "R2": "+5",
         "R3": "+3",
-        "R4": "-4"
-      },
-      "roundsCompleted": 4,
-      "thru": 5,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49980
-    },
-    {
-      "name": "Chad Ramey",
-      "normalizedName": "chad ramey",
-      "position": 57,
-      "score": "-2",
-      "roundScores": {
-        "R1": "E",
-        "R2": "-4",
-        "R3": "-1",
-        "R4": "+3"
-      },
-      "roundsCompleted": 4,
-      "thru": 12,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 48384
-    },
-    {
-      "name": "Takumi Kanaya",
-      "normalizedName": "takumi kanaya",
-      "position": 57,
-      "score": "-2",
-      "roundScores": {
-        "R1": "-1",
-        "R2": "-2",
-        "R3": "+4",
         "R4": "-3"
       },
       "roundsCompleted": 4,
-      "thru": 11,
+      "thru": 9,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 48384
-    },
-    {
-      "name": "Erik van Rooyen",
-      "normalizedName": "erik van rooyen",
-      "position": 57,
-      "score": "-2",
-      "roundScores": {
-        "R1": "E",
-        "R2": "-3",
-        "R3": "-1",
-        "R4": "+2"
-      },
-      "roundsCompleted": 4,
-      "thru": 11,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 48384
-    },
-    {
-      "name": "Vince Whaley",
-      "normalizedName": "vince whaley",
-      "position": 57,
-      "score": "-2",
-      "roundScores": {
-        "R1": "-1",
-        "R2": "-2",
-        "R3": "+1",
-        "R4": "E"
-      },
-      "roundsCompleted": 4,
-      "thru": 8,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 48384
+      "estimatedPrize": 48195
     },
     {
       "name": "Bronson Burgoon",
       "normalizedName": "bronson burgoon",
-      "position": 57,
+      "position": 58,
       "score": "-2",
       "roundScores": {
         "R1": "+3",
@@ -1041,72 +1007,72 @@
         "R4": "-1"
       },
       "roundsCompleted": 4,
-      "thru": 6,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 48384
-    },
-    {
-      "name": "Jeffrey Kang",
-      "normalizedName": "jeffrey kang",
-      "position": 62,
-      "score": "-1",
-      "roundScores": {
-        "R1": "-5",
-        "R2": "+2",
-        "R3": "+1",
-        "R4": "+1"
-      },
-      "roundsCompleted": 4,
       "thru": 9,
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 47880
+      "estimatedPrize": 48195
     },
     {
-      "name": "Jordan Spieth",
-      "normalizedName": "jordan spieth",
+      "name": "Peter Malnati",
+      "normalizedName": "peter malnati",
+      "position": 58,
+      "score": "-2",
+      "roundScores": {
+        "R1": "-3",
+        "R2": "+1",
+        "R3": "+3",
+        "R4": "-3"
+      },
+      "roundsCompleted": 4,
+      "thru": 8,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 48195
+    },
+    {
+      "name": "Rico Hoey",
+      "normalizedName": "rico hoey",
+      "position": 58,
+      "score": "-2",
+      "roundScores": {
+        "R1": "-2",
+        "R2": "E",
+        "R3": "+2",
+        "R4": "-2"
+      },
+      "roundsCompleted": 4,
+      "thru": 8,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 48195
+    },
+    {
+      "name": "Takumi Kanaya",
+      "normalizedName": "takumi kanaya",
       "position": 62,
       "score": "-1",
       "roundScores": {
         "R1": "-1",
-        "R2": "-1",
-        "R3": "E",
-        "R4": "+1"
-      },
-      "roundsCompleted": 4,
-      "thru": 7,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 47880
-    },
-    {
-      "name": "Mark Hubbard",
-      "normalizedName": "mark hubbard",
-      "position": 62,
-      "score": "-1",
-      "roundScores": {
-        "R1": "-7",
-        "R2": "+5",
-        "R3": "+3",
+        "R2": "-2",
+        "R3": "+4",
         "R4": "-2"
       },
       "roundsCompleted": 4,
-      "thru": 6,
+      "thru": 14,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 47880
     },
     {
-      "name": "Gordon Sargent",
-      "normalizedName": "gordon sargent",
-      "position": 65,
-      "score": "E",
+      "name": "Vince Whaley",
+      "normalizedName": "vince whaley",
+      "position": 62,
+      "score": "-1",
       "roundScores": {
-        "R1": "E",
-        "R2": "-5",
-        "R3": "+3",
-        "R4": "+2"
+        "R1": "-1",
+        "R2": "-2",
+        "R3": "+1",
+        "R4": "+1"
       },
       "roundsCompleted": 4,
       "thru": 10,
@@ -1115,49 +1081,49 @@
       "estimatedPrize": 47880
     },
     {
-      "name": "Joe Highsmith",
-      "normalizedName": "joe highsmith",
-      "position": 65,
+      "name": "Gordon Sargent",
+      "normalizedName": "gordon sargent",
+      "position": 64,
       "score": "E",
       "roundScores": {
-        "R1": "-3",
-        "R2": "-3",
-        "R3": "+4",
+        "R1": "E",
+        "R2": "-5",
+        "R3": "+3",
         "R4": "+2"
       },
       "roundsCompleted": 4,
-      "thru": 8,
+      "thru": 13,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 47880
     },
     {
-      "name": "Rico Hoey",
-      "normalizedName": "rico hoey",
-      "position": 65,
+      "name": "Jeffrey Kang",
+      "normalizedName": "jeffrey kang",
+      "position": 64,
       "score": "E",
       "roundScores": {
-        "R1": "-2",
-        "R2": "E",
-        "R3": "+2",
-        "R4": "E"
+        "R1": "-5",
+        "R2": "+2",
+        "R3": "+1",
+        "R4": "+2"
       },
       "roundsCompleted": 4,
-      "thru": 5,
+      "thru": 12,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 47880
     },
     {
-      "name": "Danny Walker",
-      "normalizedName": "danny walker",
-      "position": 68,
-      "score": "+2",
+      "name": "Jordan Spieth",
+      "normalizedName": "jordan spieth",
+      "position": 64,
+      "score": "E",
       "roundScores": {
-        "R1": "-3",
-        "R2": "E",
-        "R3": "+5",
-        "R4": "E"
+        "R1": "-1",
+        "R2": "-1",
+        "R3": "E",
+        "R4": "+2"
       },
       "roundsCompleted": 4,
       "thru": 9,
@@ -1168,16 +1134,33 @@
     {
       "name": "Will Zalatoris",
       "normalizedName": "will zalatoris",
-      "position": 68,
-      "score": "+2",
+      "position": 67,
+      "score": "+1",
       "roundScores": {
         "R1": "-5",
         "R2": "+2",
         "R3": "+5",
-        "R4": "E"
+        "R4": "-1"
       },
       "roundsCompleted": 4,
-      "thru": 9,
+      "thru": 11,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 47880
+    },
+    {
+      "name": "Joe Highsmith",
+      "normalizedName": "joe highsmith",
+      "position": 68,
+      "score": "+2",
+      "roundScores": {
+        "R1": "-3",
+        "R2": "-3",
+        "R3": "+4",
+        "R4": "+4"
+      },
+      "roundsCompleted": 4,
+      "thru": 11,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 47880
@@ -1194,7 +1177,24 @@
         "R4": "+1"
       },
       "roundsCompleted": 4,
-      "thru": 8,
+      "thru": 10,
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 47880
+    },
+    {
+      "name": "Danny Walker",
+      "normalizedName": "danny walker",
+      "position": 70,
+      "score": "+3",
+      "roundScores": {
+        "R1": "-3",
+        "R2": "E",
+        "R3": "+5",
+        "R4": "+1"
+      },
+      "roundsCompleted": 4,
+      "thru": 12,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 47880
