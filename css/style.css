@@ -69,6 +69,7 @@ header {
 #search:focus { background: rgba(255,255,255,0.25); }
 
 #refresh-btn {
+  margin-left: auto;
   padding: 7px 14px;
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(255,255,255,0.3);
