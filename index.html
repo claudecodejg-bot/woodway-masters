@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Woodway Pool</title>
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
 
@@ -30,6 +30,7 @@
     <button class="tab-btn active" data-tab="leaderboard">🏆 Pool Leaderboard</button>
     <button class="tab-btn" data-tab="teams">👥 Teams &amp; Picks</button>
     <button class="tab-btn" data-tab="tournament">⛳ Tournament</button>
+    <button class="tab-btn" data-tab="instructions">📋 How to Use</button>
   </nav>
 </header>
 
@@ -104,6 +105,107 @@
         </thead>
         <tbody id="tournament-tbody"></tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- ── Tab 4: Instructions ── -->
+  <div id="tab-instructions" class="tab-panel">
+    <div class="instructions-wrap">
+
+      <h2>How to Use the Woodway Pool Website</h2>
+      <p>This site is a live leaderboard tracking every team's estimated winnings during the Masters Tournament. Scores and standings update automatically — no login required.</p>
+
+      <h3>The Header</h3>
+      <p>At the top of every page you'll see the tournament name, current round, total purse, and the last time data was refreshed.</p>
+      <ul>
+        <li><strong>Search bar</strong> — type any part of a team name to filter results instantly.</li>
+        <li><strong>↻ Refresh button</strong> — pull the latest scores on demand. The site also auto-refreshes every 5 minutes.</li>
+      </ul>
+
+      <h3>🏆 Pool Leaderboard</h3>
+      <p>The main view — all teams ranked by estimated pool earnings. The top 3 are highlighted in gold, silver, and bronze.</p>
+      <p><strong>Click any team row</strong> to expand it and see a full breakdown of that team's golfers:</p>
+      <table class="instructions-table">
+        <thead><tr><th>Column</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Golfer</strong></td><td>Player name — click it to open the Golfer Popup</td></tr>
+          <tr><td><strong>Pos</strong></td><td>Current tournament position (or MC / NIF)</td></tr>
+          <tr><td><strong>Score</strong></td><td>Total score to par</td></tr>
+          <tr><td><strong>Rounds</strong></td><td>Colored score badges for R1–R4</td></tr>
+          <tr><td><strong>Odds</strong></td><td>This golfer's multiplier (e.g., "10-1")</td></tr>
+          <tr><td><strong>Est. Earnings</strong></td><td>Estimated prize money at their current position</td></tr>
+          <tr><td><strong>Odds Adj Earnings</strong></td><td>Est. Earnings × Odds — their contribution to the team total</td></tr>
+        </tbody>
+      </table>
+      <p>Golfers who missed the cut appear at the bottom and contribute $0. Click the row again to collapse it.</p>
+      <p><strong>Daily movement</strong> — in rounds 2–4, a green/red badge (e.g., <span class="delta-example delta-up">+1.2mm</span> <span class="delta-example delta-down">−0.8mm</span>) shows how much each team has gained or lost vs. the end of the prior round.</p>
+
+      <h3>👥 Teams &amp; Picks</h3>
+      <p>A quick-glance view of every team and their 6 golfer picks. Each golfer appears as a colored chip showing their name and position:</p>
+      <table class="instructions-table">
+        <thead><tr><th>Chip color</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Green</strong></td><td>Active — golfer is still in the tournament</td></tr>
+          <tr><td><strong>Gray</strong></td><td>Missed Cut (MC) or Projected Cut (PC)</td></tr>
+          <tr><td><strong>Red/dim</strong></td><td>Not In Field (NIF) — golfer withdrew or wasn't entered</td></tr>
+        </tbody>
+      </table>
+      <p>Click any golfer chip to open the Golfer Popup. Sort the table by clicking the <strong>Team</strong> or <strong>Est. Earnings</strong> column headers.</p>
+
+      <h3>⛳ Tournament</h3>
+      <p>The full golf leaderboard — every player in the field ranked by score. A <strong>✂ cut line</strong> divider separates active players from those who missed the cut.</p>
+      <table class="instructions-table">
+        <thead><tr><th>Column</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pos</strong></td><td>Tournament position</td></tr>
+          <tr><td><strong>Player</strong></td><td>Golfer name — click to open the Golfer Popup</td></tr>
+          <tr><td><strong>Total</strong></td><td>Cumulative score to par</td></tr>
+          <tr><td><strong>Today</strong></td><td>Score so far in the current round</td></tr>
+          <tr><td><strong>Thru</strong></td><td>Holes completed today (F = finished)</td></tr>
+          <tr><td><strong>R1–R4</strong></td><td>Score for each individual round</td></tr>
+          <tr><td><strong>Est. Earnings</strong></td><td>Estimated prize money at current position</td></tr>
+          <tr><td><strong>Odds</strong></td><td>Pool multiplier for this player</td></tr>
+          <tr><td><strong>Odds Adj Earnings</strong></td><td>Est. Earnings × Odds (pool value)</td></tr>
+        </tbody>
+      </table>
+      <p>Click any column header to sort. Click again to reverse the order.</p>
+
+      <h3>Golfer Popup</h3>
+      <p>Click <strong>any golfer name</strong> on any tab to open a popup showing:</p>
+      <ul>
+        <li>The golfer's current <strong>position and score</strong></li>
+        <li>Every <strong>team that picked them</strong>, with their pool rank, full 6-golfer roster, and the clicked golfer highlighted in dark green</li>
+      </ul>
+      <p>Close the popup by clicking <strong>×</strong> or anywhere outside it.</p>
+
+      <h3>Score Badges</h3>
+      <table class="instructions-table">
+        <thead><tr><th>Badge</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>MC</strong></td><td>Missed Cut — player is out of the tournament</td></tr>
+          <tr><td><strong>PC</strong></td><td>Projected Cut — on the bubble during round 2</td></tr>
+          <tr><td><strong>NIF</strong></td><td>Not In Field — player wasn't in this tournament</td></tr>
+          <tr><td><span class="score score-under">−5</span></td><td>Under par (green)</td></tr>
+          <tr><td><span class="score score-over">+3</span></td><td>Over par (red)</td></tr>
+          <tr><td><span class="score score-even">E</span></td><td>Even par</td></tr>
+        </tbody>
+      </table>
+
+      <h3>How Pool Earnings Are Calculated</h3>
+      <p>Each team's <strong>Estimated Pool Earnings</strong> = the sum of every active golfer's estimated prize money × their odds multiplier.</p>
+      <blockquote class="instructions-example">
+        <strong>Example:</strong> A golfer in 5th place earns ~$500,000 in prize money. If their odds multiplier is 10-1, they contribute <strong>$5,000,000</strong> to the team total.
+      </blockquote>
+      <p>Golfers who missed the cut contribute $0. All earnings are <em>estimates</em> based on current position — final payouts are determined after the tournament ends.</p>
+
+      <h3>Tips</h3>
+      <ul>
+        <li>Works on <strong>mobile</strong> — all tabs and popups are touch-friendly.</li>
+        <li>Data refreshes <strong>automatically every 5 minutes</strong> during tournament rounds.</li>
+        <li>Use the <strong>search bar</strong> to quickly find your own team without scrolling.</li>
+        <li><strong>Bookmark this page</strong> and check back any time during the tournament.</li>
+      </ul>
+
     </div>
   </div>
 

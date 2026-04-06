@@ -505,13 +505,14 @@ function switchTab(tabName) {
     panel.classList.toggle('active', panel.id === `tab-${tabName}`);
   });
 
-  // Search bar: visible on leaderboard + teams, hidden on tournament
+  // Search bar: visible on leaderboard + teams, hidden on tournament + instructions
   const search = document.getElementById('search');
-  search.style.display = tabName === 'tournament' ? 'none' : '';
-  if (tabName === 'tournament') search.value = '';
+  const hideSearch = tabName === 'tournament' || tabName === 'instructions';
+  search.style.display = hideSearch ? 'none' : '';
+  if (hideSearch) search.value = '';
 
   // Re-apply any active search
-  if (tabName !== 'tournament') applySearch(search.value);
+  if (!hideSearch) applySearch(search.value);
 }
 
 // ─── Sort state ───────────────────────────────────────────────────────────────
