@@ -9,6 +9,10 @@ const NAME_ALIASES = {
   'maverick mcnealey':   'maverick mcnealy',
   'charl scwartzel':     'charl schwartzel',
   'billy horshel':       'billy horschel',
+  'samuel stevens':      'sam stevens',
+  'john keefer':         'johnny keefer',
+  'nicolas echavarria':  'nico echavarria',
+  'corey connors':       'corey conners',
 };
 
 function normalizeName(name) {
@@ -27,11 +31,12 @@ function normalizeName(name) {
 let picks = [], oddsMap = {}, leaderboard = {}, purseData = {}, priorData = null;
 
 async function loadAll() {
+  const ts = Date.now();
   const [p, o, l, pu] = await Promise.all([
-    fetch('data/picks.json').then(r => r.json()),
-    fetch('data/odds.json').then(r => r.json()),
-    fetch('data/leaderboard.json').then(r => r.json()),
-    fetch('data/purse.json').then(r => r.json()),
+    fetch(`data/picks.json?t=${ts}`).then(r => r.json()),
+    fetch(`data/odds.json?t=${ts}`).then(r => r.json()),
+    fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json()),
+    fetch(`data/purse.json?t=${ts}`).then(r => r.json()),
   ]);
   picks      = p;
   oddsMap    = buildNormalizedOdds(o);

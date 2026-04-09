@@ -1,13 +1,13 @@
 {
-  "tournament": "Valero Texas Open",
-  "eventId": "401811940",
+  "tournament": "The Masters",
+  "eventId": "401580333",
   "purse": 21000000,
   "status": "STATUS_IN_PROGRESS",
   "statusDisplay": "In Progress",
   "isComplete": false,
   "round": 1,
   "cutLineScore": "+5",
-  "lastUpdated": "2026-04-09T21:34:00.423205+00:00",
+  "lastUpdated": "2026-04-09T22:07:47.275322+00:00",
   "players": [
     {
       "name": "Sam Burns",
