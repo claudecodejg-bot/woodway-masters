@@ -7,7 +7,7 @@
   "isComplete": false,
   "round": 2,
   "cutLineScore": "+4",
-  "lastUpdated": "2026-04-10T23:06:57.643981+00:00",
+  "lastUpdated": "2026-04-10T23:51:06.921175+00:00",
   "players": [
     {
       "name": "Rory McIlroy",
@@ -355,6 +355,21 @@
       "estimatedPrize": 244650
     },
     {
+      "name": "Patrick Cantlay",
+      "normalizedName": "patrick cantlay",
+      "position": 24,
+      "score": "E",
+      "roundScores": {
+        "R1": "+5",
+        "R2": "-5"
+      },
+      "roundsCompleted": 2,
+      "thru": "F",
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 162488
+    },
+    {
       "name": "Ludvig \u00c5berg",
       "normalizedName": "ludvig aberg",
       "position": 24,
@@ -455,21 +470,6 @@
       },
       "roundsCompleted": 2,
       "thru": "F",
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 162488
-    },
-    {
-      "name": "Patrick Cantlay",
-      "normalizedName": "patrick cantlay",
-      "position": 24,
-      "score": "E",
-      "roundScores": {
-        "R1": "+5",
-        "R2": "-5"
-      },
-      "roundsCompleted": 2,
-      "thru": 17,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 162488
@@ -580,6 +580,21 @@
       "estimatedPrize": 113700
     },
     {
+      "name": "Viktor Hovland",
+      "normalizedName": "viktor hovland",
+      "position": 39,
+      "score": "+2",
+      "roundScores": {
+        "R1": "+3",
+        "R2": "-1"
+      },
+      "roundsCompleted": 2,
+      "thru": "F",
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 84000
+    },
+    {
       "name": "Sam Stevens",
       "normalizedName": "sam stevens",
       "position": 39,
@@ -650,21 +665,6 @@
       },
       "roundsCompleted": 2,
       "thru": "F",
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 84000
-    },
-    {
-      "name": "Viktor Hovland",
-      "normalizedName": "viktor hovland",
-      "position": 39,
-      "score": "+2",
-      "roundScores": {
-        "R1": "+3",
-        "R2": "-1"
-      },
-      "roundsCompleted": 2,
-      "thru": 17,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 84000
@@ -745,6 +745,21 @@
       "estimatedPrize": 53760
     },
     {
+      "name": "Alex Noren",
+      "normalizedName": "alex noren",
+      "position": 47,
+      "score": "+4",
+      "roundScores": {
+        "R1": "+5",
+        "R2": "-1"
+      },
+      "roundsCompleted": 2,
+      "thru": "F",
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 53760
+    },
+    {
       "name": "Corey Conners",
       "normalizedName": "corey conners",
       "position": 47,
@@ -800,21 +815,6 @@
       },
       "roundsCompleted": 2,
       "thru": "F",
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 53760
-    },
-    {
-      "name": "Alex Noren",
-      "normalizedName": "alex noren",
-      "position": 47,
-      "score": "+4",
-      "roundScores": {
-        "R1": "+5",
-        "R2": "-1"
-      },
-      "roundsCompleted": 2,
-      "thru": 17,
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 53760
