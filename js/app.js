@@ -27,6 +27,40 @@ function normalizeName(name) {
     .trim();
 }
 
+// ─── Favorites ────────────────────────────────────────────────────────────────
+const FAV_TEAMS_KEY   = 'ww_fav_teams';
+const FAV_PLAYERS_KEY = 'ww_fav_players';
+
+function loadFavorites(key) {
+  try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')); }
+  catch(e) { return new Set(); }
+}
+function saveFavorites(key, set) {
+  try { localStorage.setItem(key, JSON.stringify([...set])); } catch(e) {}
+}
+function toggleFavorite(key, id) {
+  const favs = loadFavorites(key);
+  if (favs.has(id)) favs.delete(id); else favs.add(id);
+  saveFavorites(key, favs);
+  return favs.has(id);
+}
+function isFavorite(key, id) { return loadFavorites(key).has(id); }
+
+function makeStar(key, id, onClick) {
+  const span = document.createElement('span');
+  span.className = 'fav-star' + (isFavorite(key, id) ? ' favorited' : '');
+  span.textContent = isFavorite(key, id) ? '\u2605' : '\u2606';
+  span.title = 'Click to favorite';
+  span.addEventListener('click', e => {
+    e.stopPropagation();
+    const on = toggleFavorite(key, id);
+    span.classList.toggle('favorited', on);
+    span.textContent = on ? '\u2605' : '\u2606';
+    if (onClick) onClick(on);
+  });
+  return span;
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 let picks = [], oddsMap = {}, leaderboard = {}, purseData = {}, priorData = null;
 
@@ -281,13 +315,18 @@ function renderLeaderboard(rankings) {
 
   const priorTotals = priorData ? priorData.teamTotals : null;
   const priorRanks  = priorData ? priorData.teamRanks : null;
+  const favTeams    = loadFavorites(FAV_TEAMS_KEY);
 
-  rankings.forEach((team, idx) => {
+  // Split into favorites and non-favorites
+  const favList  = rankings.filter(t => favTeams.has(t.name));
+  const restList = rankings.filter(t => !favTeams.has(t.name));
+
+  function addTeamRow(team, idx) {
     const rank     = idx + 1;
     const isTied   = idx > 0 && rankings[idx - 1].total === team.total;
     const rankDisp = isTied ? 'T' + rank : rank;
     const rankClass = rank <= 5 ? `rank-${rank}` : '';
-    // Today's earnings change (computed from prior round standings)
+    const isFav    = favTeams.has(team.name);
     let todayHtml = '';
     if (priorTotals && priorTotals[team.name] != null) {
       const delta = team.total - priorTotals[team.name];
@@ -297,14 +336,21 @@ function renderLeaderboard(rankings) {
     }
 
     const tr = document.createElement('tr');
-    tr.className = `team-row ${rankClass}`;
+    tr.className = `team-row ${rankClass}${isFav ? ' fav-highlight' : ''}`;
     tr.setAttribute('data-team', idx);
     tr.innerHTML = `
       <td class="rank">${rankDisp}</td>
-      <td class="team-name">${escHtml(team.name)}</td>
+      <td class="team-name"><span class="fav-star-slot"></span> ${escHtml(team.name)}</td>
       <td class="earnings">${fmt$(team.total)}${todayHtml}</td>
       <td class="expand-icon">▶</td>
     `;
+    // Insert star
+    const starSlot = tr.querySelector('.fav-star-slot');
+    const star = makeStar(FAV_TEAMS_KEY, team.name, () => {
+      renderLeaderboard(sortRankings(allRankings, sortState.pool));
+      applySearch(document.getElementById('search').value);
+    });
+    starSlot.replaceWith(star);
     tr.addEventListener('click', () => toggleDetail(idx));
     tbody.appendChild(tr);
 
@@ -313,7 +359,26 @@ function renderLeaderboard(rankings) {
     detailTr.id = `detail-${idx}`;
     detailTr.innerHTML = `<td colspan="4">${renderGolfers(team.golfers)}</td>`;
     tbody.appendChild(detailTr);
-  });
+  }
+
+  // Render favorites section
+  if (favList.length > 0) {
+    const hdr = document.createElement('tr');
+    hdr.className = 'fav-section-header';
+    hdr.innerHTML = '<td colspan="4">\u2605 Favorites</td>';
+    tbody.appendChild(hdr);
+    favList.forEach(team => {
+      const idx = rankings.indexOf(team);
+      addTeamRow(team, idx);
+    });
+    const allHdr = document.createElement('tr');
+    allHdr.className = 'fav-section-header all-section';
+    allHdr.innerHTML = '<td colspan="4">All Teams</td>';
+    tbody.appendChild(allHdr);
+  }
+
+  // Render all teams
+  rankings.forEach((team, idx) => addTeamRow(team, idx));
 
   document.getElementById('loading').style.display        = 'none';
   document.getElementById('pool-table-wrap').style.display = '';
@@ -376,8 +441,10 @@ function toggleDetail(idx) {
 function renderPicksTab(rankings) {
   const tbody = document.getElementById('picks-tbody');
   tbody.innerHTML = '';
+  const favTeams = loadFavorites(FAV_TEAMS_KEY);
 
-  rankings.forEach(team => {
+  function addPicksRow(team) {
+    const isFav = favTeams.has(team.name);
     const chips = team.golfers.map(g => {
       const chipClass = g.status === 'cut'          ? 'chip-cut'
                       : g.status === 'not-in-field' ? 'chip-nif'
@@ -393,15 +460,37 @@ function renderPicksTab(rankings) {
     }).join('');
 
     const tr = document.createElement('tr');
-    tr.className = 'picks-row';
+    tr.className = 'picks-row' + (isFav ? ' fav-highlight' : '');
     tr.setAttribute('data-team-name', team.name.toLowerCase());
     tr.innerHTML = `
-      <td class="team-name">${escHtml(team.name)}</td>
+      <td class="team-name"><span class="fav-star-slot"></span> ${escHtml(team.name)}</td>
       <td class="earnings">${fmt$(team.total)}</td>
       <td><div class="picks-chips">${chips}</div></td>
     `;
+    const starSlot = tr.querySelector('.fav-star-slot');
+    const star = makeStar(FAV_TEAMS_KEY, team.name, () => {
+      renderPicksTab(sortRankings(allRankings, sortState.picks));
+      applySearch(document.getElementById('search').value);
+    });
+    starSlot.replaceWith(star);
     tbody.appendChild(tr);
-  });
+  }
+
+  const favList  = rankings.filter(t => favTeams.has(t.name));
+  const restList = rankings.filter(t => !favTeams.has(t.name));
+
+  if (favList.length > 0) {
+    const hdr = document.createElement('tr');
+    hdr.className = 'fav-section-header';
+    hdr.innerHTML = '<td colspan="3">\u2605 Favorites</td>';
+    tbody.appendChild(hdr);
+    favList.forEach(addPicksRow);
+    const allHdr = document.createElement('tr');
+    allHdr.className = 'fav-section-header all-section';
+    allHdr.innerHTML = '<td colspan="3">All Teams</td>';
+    tbody.appendChild(allHdr);
+  }
+  rankings.forEach(addPicksRow);
 }
 
 // ─── Render: Tournament Leaderboard (Tab 3) ──────────────────────────────────
@@ -412,29 +501,19 @@ function renderTournamentTab() {
 
   const sameRoundTourn = prevSnapshot.round === currentRound;
   const players = [...(leaderboard.players || [])];
-  const totalCols = 12; // pos, player, total, today, thru, R1-R4, winnings, odds, odds adj
+  const totalCols = 12;
+  const favPlayers = loadFavorites(FAV_PLAYERS_KEY);
 
-  // Determine if we need a cut line divider
-  let cutLineInserted = false;
+  // Build favorites section first
+  const favPlayerList = players.filter(p => favPlayers.has(p.name));
+  const hasFavPlayers = favPlayerList.length > 0;
 
-  players.forEach(p => {
+  function buildTournRow(p) {
     const mc         = p.missedCut;
     const pc         = p.projectedCut;
     const isCut      = mc || pc;
     const todayScore = p.roundScores ? p.roundScores[`R${currentRound}`] : null;
     const posDisp    = mc ? 'MC' : pc ? 'PC' : (p.position ? p.position : '—');
-
-    // Insert cut line divider before the first cut/projected-cut player
-    if (isCut && !cutLineInserted) {
-      cutLineInserted = true;
-      const divider = document.createElement('tr');
-      divider.className = 'cut-line-row';
-      const label = currentRound >= 3 ? 'Missed Cut' : 'Projected Cut Line';
-      const cutScore = leaderboard.cutLineScore || '';
-      const scoreLabel = cutScore ? ` (${cutScore})` : '';
-      divider.innerHTML = `<td colspan="${totalCols}" class="cut-line-cell">✂ ${label}${scoreLabel}</td>`;
-      tbody.appendChild(divider);
-    }
 
     const roundCells = [1,2,3,4].map(r => {
       const v        = p.roundScores ? p.roundScores[`R${r}`] : null;
@@ -477,9 +556,12 @@ function renderTournamentTab() {
       else                tournDelta = `<span class="today-delta delta-even">—</span>`;
     }
 
+    const isFavP = favPlayers.has(p.name);
+    if (isFavP) tr.classList.add('fav-highlight');
+
     tr.innerHTML = `
       <td class="pos-col">${escHtml(String(posDisp))}</td>
-      <td><span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
+      <td class="player-cell"><span class="fav-star-slot"></span> <span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
       <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (isCut ? (mc ? 'MC' : 'PC') : '—')}</td>
       <td class="score-col">${isCut ? '—' : thru}</td>
@@ -488,7 +570,41 @@ function renderTournamentTab() {
       <td class="odds-col" style="text-align:center">${odds ? odds + '-1' : '—'}</td>
       <td class="prize-col">${isCut ? '—' : (odds ? fmt$(oddsAdj) + tournDelta : '—')}</td>
     `;
-    tbody.appendChild(tr);
+    // Insert star
+    const starSlot = tr.querySelector('.fav-star-slot');
+    const star = makeStar(FAV_PLAYERS_KEY, p.name, () => renderTournamentTab());
+    starSlot.replaceWith(star);
+    return tr;
+  }
+
+  // Render favorites section
+  if (hasFavPlayers) {
+    const favHdr = document.createElement('tr');
+    favHdr.className = 'fav-section-header';
+    favHdr.innerHTML = `<td colspan="${totalCols}">\u2605 Favorites</td>`;
+    tbody.appendChild(favHdr);
+    favPlayerList.forEach(p => tbody.appendChild(buildTournRow(p)));
+    const allHdr = document.createElement('tr');
+    allHdr.className = 'fav-section-header all-section';
+    allHdr.innerHTML = `<td colspan="${totalCols}">All Players</td>`;
+    tbody.appendChild(allHdr);
+  }
+
+  // Render all players with cut line
+  let cutLineInserted = false;
+  players.forEach(p => {
+    const isCut = p.missedCut || p.projectedCut;
+    if (isCut && !cutLineInserted) {
+      cutLineInserted = true;
+      const divider = document.createElement('tr');
+      divider.className = 'cut-line-row';
+      const label = currentRound >= 3 ? 'Missed Cut' : 'Projected Cut Line';
+      const cutScore = leaderboard.cutLineScore || '';
+      const scoreLabel = cutScore ? ` (${cutScore})` : '';
+      divider.innerHTML = `<td colspan="${totalCols}" class="cut-line-cell">\u2702 ${label}${scoreLabel}</td>`;
+      tbody.appendChild(divider);
+    }
+    tbody.appendChild(buildTournRow(p));
   });
 }
 

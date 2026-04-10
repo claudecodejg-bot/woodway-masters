@@ -20,6 +20,7 @@
     <div class="header-meta">
       <div id="purse-display"></div>
       <div id="last-updated"></div>
+      <div class="auto-refresh-note">Auto-refreshes every 5 minutes</div>
     </div>
   </div>
   <div class="header-controls">
@@ -90,7 +91,7 @@
         <thead>
           <tr>
             <th class="rank sortable" data-col="pos">Pos <span class="sort-icon">↕</span></th>
-            <th class="sortable" data-col="name">Player <span class="sort-icon">↕</span></th>
+            <th class="sortable player-col" data-col="name">Player <span class="sort-icon">↕</span></th>
             <th class="score-col sortable" data-col="score">Total <span class="sort-icon">↕</span></th>
             <th class="score-col today-col sortable" data-col="today">Today <span class="sort-icon">↕</span></th>
             <th class="score-col sortable" data-col="thru">Thru <span class="sort-icon">↕</span></th>
@@ -100,7 +101,7 @@
             <th class="score-col sortable" data-col="r4">R4 <span class="sort-icon">↕</span></th>
             <th class="earnings sortable" data-col="prize">Est. Earnings <span class="sort-icon">↕</span></th>
             <th class="sortable" data-col="odds">Odds <span class="sort-icon">↕</span></th>
-            <th class="earnings sortable" data-col="oddsAdj">Odds Adj Earnings <span class="sort-icon">↕</span></th>
+            <th class="earnings sortable" data-col="oddsAdj">Odds Adj <span class="sort-icon">↕</span></th>
           </tr>
         </thead>
         <tbody id="tournament-tbody"></tbody>
@@ -198,13 +199,49 @@
       </blockquote>
       <p>Golfers who missed the cut contribute $0. All earnings are <em>estimates</em> based on current position — final payouts are determined after the tournament ends.</p>
 
+      <h3>Favorites</h3>
+      <p>Track the teams and players you care about most. Click the <strong>☆ star</strong> next to any team or player to favorite them.</p>
+      <ul>
+        <li><strong>Pool Leaderboard &amp; Teams &amp; Picks</strong> — star any team to pin it to the top under a <strong>★ Favorites</strong> section.</li>
+        <li><strong>Tournament</strong> — star any player to pin them at the top of the leaderboard.</li>
+        <li>Favorites are <strong>saved in your browser</strong> — they persist across visits and refreshes. Each person's favorites are independent.</li>
+        <li>Click the star again to unfavorite.</li>
+      </ul>
+
       <h3>Tips</h3>
       <ul>
         <li>Works on <strong>mobile</strong> — all tabs and popups are touch-friendly.</li>
         <li>Data refreshes <strong>automatically every 5 minutes</strong> during tournament rounds.</li>
         <li>Use the <strong>search bar</strong> to quickly find your own team without scrolling.</li>
+        <li>Use <strong>favorites</strong> to pin your team and favorite players to the top of each tab.</li>
         <li><strong>Bookmark this page</strong> and check back any time during the tournament.</li>
       </ul>
+
+      <h3>Prize Money Payout by Position</h3>
+      <p>The 2026 Masters purse is <strong>$21,000,000</strong>. Below is the payout for each finishing position. When players are tied, they split the combined prize money for their positions equally.</p>
+      <table class="instructions-table">
+        <thead><tr><th>Pos</th><th>Payout</th><th>Pos</th><th>Payout</th><th>Pos</th><th>Payout</th></tr></thead>
+        <tbody>
+          <tr><td>1st</td><td>$4,200,000</td><td>18th</td><td>$315,000</td><td>35th</td><td>$113,400</td></tr>
+          <tr><td>2nd</td><td>$2,268,000</td><td>19th</td><td>$294,000</td><td>36th</td><td>$108,150</td></tr>
+          <tr><td>3rd</td><td>$1,428,000</td><td>20th</td><td>$273,000</td><td>37th</td><td>$102,900</td></tr>
+          <tr><td>4th</td><td>$1,008,000</td><td>21st</td><td>$252,000</td><td>38th</td><td>$98,700</td></tr>
+          <tr><td>5th</td><td>$840,000</td><td>22nd</td><td>$235,200</td><td>39th</td><td>$94,500</td></tr>
+          <tr><td>6th</td><td>$756,000</td><td>23rd</td><td>$218,400</td><td>40th</td><td>$90,300</td></tr>
+          <tr><td>7th</td><td>$703,500</td><td>24th</td><td>$201,600</td><td>41st</td><td>$86,100</td></tr>
+          <tr><td>8th</td><td>$651,000</td><td>25th</td><td>$184,800</td><td>42nd</td><td>$81,900</td></tr>
+          <tr><td>9th</td><td>$609,000</td><td>26th</td><td>$168,000</td><td>43rd</td><td>$77,700</td></tr>
+          <tr><td>10th</td><td>$567,000</td><td>27th</td><td>$161,700</td><td>44th</td><td>$73,500</td></tr>
+          <tr><td>11th</td><td>$525,000</td><td>28th</td><td>$155,400</td><td>45th</td><td>$69,300</td></tr>
+          <tr><td>12th</td><td>$483,000</td><td>29th</td><td>$149,100</td><td>46th</td><td>$65,100</td></tr>
+          <tr><td>13th</td><td>$441,000</td><td>30th</td><td>$142,800</td><td>47th</td><td>$60,900</td></tr>
+          <tr><td>14th</td><td>$399,000</td><td>31st</td><td>$136,500</td><td>48th</td><td>$57,540</td></tr>
+          <tr><td>15th</td><td>$378,000</td><td>32nd</td><td>$130,200</td><td>49th</td><td>$54,600</td></tr>
+          <tr><td>16th</td><td>$357,000</td><td>33rd</td><td>$123,900</td><td>50th</td><td>$52,920</td></tr>
+          <tr><td>17th</td><td>$336,000</td><td>34th</td><td>$118,650</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <p>Amateurs do not receive prize money.</p>
 
     </div>
   </div>
