@@ -596,6 +596,8 @@ table.leaderboard thead th.rank { width: 72px; }
   border-color: #ddd;
   font-style: italic;
 }
+.modal-chip-link { cursor: pointer; }
+.modal-chip-link:hover { opacity: 0.8; transform: scale(1.02); }
 .modal-chip-pos {
   font-size: 0.65rem;
   font-weight: 700;

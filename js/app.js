@@ -914,7 +914,7 @@ function showPlayerModal(playerName) {
                           : g.projectedCut              ? 'PC'
                           : g.position                  ? `T${g.position}` : '—';
           const earningsLabel = ` ${fmtMM(g.poolEarnings)}`;
-          return `<span class="${chipClass}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}${earningsLabel}</span></span>`;
+          return `<span class="${chipClass} modal-chip-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}${earningsLabel}</span></span>`;
         }).join('');
         return `<li><span class="modal-team-name"><span class="modal-team-rank">${rankDisp}</span>${escHtml(team.name)}</span><span class="modal-team-earnings">${fmt$(team.total)}</span><div class="modal-chips">${chips}</div></li>`;
       }).join('')
@@ -975,7 +975,9 @@ async function init() {
       const link = e.target.closest('.player-link');
       if (link && link.dataset.name) { showPlayerModal(link.dataset.name); return; }
       const chip = e.target.closest('.pick-chip');
-      if (chip && chip.dataset.name) showPlayerModal(chip.dataset.name);
+      if (chip && chip.dataset.name) { showPlayerModal(chip.dataset.name); return; }
+      const modalChip = e.target.closest('.modal-chip-link');
+      if (modalChip && modalChip.dataset.name) showPlayerModal(modalChip.dataset.name);
     });
 
   } catch (e) {
