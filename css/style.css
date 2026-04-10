@@ -556,7 +556,7 @@ table.leaderboard thead th.rank { width: 72px; }
 
 .modal-chips {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 4px;
   flex: 1;
 }
@@ -564,6 +564,7 @@ table.leaderboard thead th.rank { width: 72px; }
 .modal-chip {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
   gap: 3px;
   padding: 2px 7px;
   border-radius: 10px;
