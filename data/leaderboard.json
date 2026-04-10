@@ -7,7 +7,7 @@
   "isComplete": false,
   "round": 1,
   "cutLineScore": "+5",
-  "lastUpdated": "2026-04-10T02:00:54.541233+00:00",
+  "lastUpdated": "2026-04-10T11:50:58.025307+00:00",
   "players": [
     {
       "name": "Sam Burns",
@@ -679,7 +679,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53592
+      "estimatedPrize": 52395
     },
     {
       "name": "Viktor Hovland",
@@ -693,7 +693,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53592
+      "estimatedPrize": 52395
     },
     {
       "name": "Andrew Novak",
@@ -707,7 +707,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53592
+      "estimatedPrize": 52395
     },
     {
       "name": "Tom McKibbin",
@@ -721,7 +721,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53592
+      "estimatedPrize": 52395
     },
     {
       "name": "Zach Johnson",
@@ -735,26 +735,26 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53592
+      "estimatedPrize": 52395
     },
     {
       "name": "Michael Kim",
       "normalizedName": "michael kim",
-      "position": 53,
-      "score": "+1",
+      "position": 48,
+      "score": "+3",
       "roundScores": {
         "R1": "+3"
       },
       "roundsCompleted": 1,
-      "thru": 7,
+      "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 50820
+      "estimatedPrize": 52395
     },
     {
       "name": "Corey Conners",
       "normalizedName": "corey conners",
-      "position": 54,
+      "position": 48,
       "score": "+3",
       "roundScores": {
         "R1": "+3"
@@ -763,12 +763,12 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 50190
+      "estimatedPrize": 52395
     },
     {
       "name": "Si Woo Kim",
       "normalizedName": "si woo kim",
-      "position": 54,
+      "position": 48,
       "score": "+3",
       "roundScores": {
         "R1": "+3"
@@ -777,7 +777,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 50190
+      "estimatedPrize": 52395
     },
     {
       "name": "Johnny Keefer",
