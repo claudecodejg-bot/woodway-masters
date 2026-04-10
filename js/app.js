@@ -27,6 +27,15 @@ function normalizeName(name) {
     .trim();
 }
 
+// ─── Amateurs ────────────────────────────────────────────────────────────────
+const AMATEURS = new Set([
+  'ethan fang', 'jackson herrington', 'mason howell',
+  'fifa laopakdee', 'mateo pulcini', 'brandon holtz',
+]);
+function amateurTag(name) {
+  return AMATEURS.has(normalizeName(name)) ? ' (A)' : '';
+}
+
 // ─── Favorites ────────────────────────────────────────────────────────────────
 const FAV_TEAMS_KEY   = 'ww_fav_teams';
 const FAV_PLAYERS_KEY = 'ww_fav_players';
@@ -403,7 +412,7 @@ function renderGolfers(golfers) {
 
     return `
       <tr class="golfer-row ${g.status}">
-        <td><span class="player-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}</span></td>
+        <td><span class="player-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}${amateurTag(g.pickName)}</span></td>
         <td class="pos">${g.status === 'not-in-field' ? 'NIF' : (g.missedCut || g.projectedCut ? 'MC' : posDisp)}</td>
         <td class="score ${scoreClass(g.score)}">${g.status === 'not-in-field' ? '—' : fmtScore(g.score)}</td>
         <td><div class="rounds">${roundBadges(g.roundScores || {}, currentRound)}</div></td>
@@ -454,7 +463,7 @@ function renderPicksTab(rankings) {
                      : g.projectedCut              ? 'PC'
                      : g.position                  ? `T${g.position}` : '—';
       return `<span class="pick-chip ${chipClass}" data-name="${escHtml(g.pickName)}">
-        ${escHtml(g.pickName)}
+        ${escHtml(g.pickName)}${amateurTag(g.pickName)}
         <span class="chip-pos">${posLabel}</span>
       </span>`;
     }).join('');
@@ -561,7 +570,7 @@ function renderTournamentTab() {
 
     tr.innerHTML = `
       <td class="pos-col">${escHtml(String(posDisp))}</td>
-      <td class="player-cell"><span class="fav-star-slot"></span> <span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}</span></td>
+      <td class="player-cell"><span class="fav-star-slot"></span> <span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}${amateurTag(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
       <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (isCut ? (mc ? 'MC' : 'PC') : '—')}</td>
       <td class="score-col">${isCut ? '—' : thru}</td>
@@ -914,13 +923,13 @@ function showPlayerModal(playerName) {
                           : g.projectedCut              ? 'PC'
                           : g.position                  ? `T${g.position}` : '—';
           const earningsLabel = ` ${fmtMM(g.poolEarnings)}`;
-          return `<span class="${chipClass} modal-chip-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}<span class="modal-chip-pos">${posLabel}${earningsLabel}</span></span>`;
+          return `<span class="${chipClass} modal-chip-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}${amateurTag(g.pickName)}<span class="modal-chip-pos">${posLabel}${earningsLabel}</span></span>`;
         }).join('');
         return `<li><span class="modal-team-name"><span class="modal-team-rank">${rankDisp}</span>${escHtml(team.name)}</span><span class="modal-team-earnings">${fmt$(team.total)}</span><div class="modal-chips">${chips}</div></li>`;
       }).join('')
     : '<li class="modal-no-teams">Not picked by any team</li>';
 
-  document.getElementById('player-modal-name').textContent  = playerName;
+  document.getElementById('player-modal-name').textContent  = playerName + amateurTag(playerName);
   document.getElementById('player-modal-info').textContent  = infoText;
   document.getElementById('player-modal-teams').innerHTML   = teamsHtml;
   document.getElementById('player-modal').classList.add('open');
