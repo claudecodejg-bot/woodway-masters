@@ -766,15 +766,19 @@ footer {
   table.leaderboard thead th,
   .team-row td { padding: 9px 8px; font-size: 0.82rem; }
 
-  /* Tournament: hide R1-R4 on mobile, keep Today */
-  table.tournament-table th:nth-child(5),
+  /* Tournament: hide R1-R4, Est. Earnings, and Odds on mobile; keep Thru, Today, Odds Adj */
   table.tournament-table th:nth-child(6),
   table.tournament-table th:nth-child(7),
   table.tournament-table th:nth-child(8),
-  table.tournament-table td:nth-child(5),
+  table.tournament-table th:nth-child(9),
+  table.tournament-table th:nth-child(10),
+  table.tournament-table th:nth-child(11),
   table.tournament-table td:nth-child(6),
   table.tournament-table td:nth-child(7),
-  table.tournament-table td:nth-child(8) { display: none; }
+  table.tournament-table td:nth-child(8),
+  table.tournament-table td:nth-child(9),
+  table.tournament-table td:nth-child(10),
+  table.tournament-table td:nth-child(11) { display: none; }
 
   /* Picks: hide earnings column */
   table.picks-table th:nth-child(2),
