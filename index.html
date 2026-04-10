@@ -29,8 +29,8 @@
   </div>
   <nav class="tab-bar">
     <button class="tab-btn active" data-tab="leaderboard">🏆 Pool Leaderboard</button>
-    <button class="tab-btn" data-tab="teams">👥 Teams &amp; Picks</button>
     <button class="tab-btn" data-tab="tournament">⛳ Tournament</button>
+    <button class="tab-btn" data-tab="teams">👥 Teams &amp; Picks</button>
     <button class="tab-btn" data-tab="instructions">📋 How to Use</button>
   </nav>
 </header>
@@ -59,27 +59,7 @@
     </div>
   </div>
 
-  <!-- ── Tab 2: Teams & Picks ── -->
-  <div id="tab-teams" class="tab-panel">
-    <div class="legend">
-      <span>All teams and their golfer selections</span>
-      <span><span class="badge badge-cut">MC</span> Missed Cut</span>
-    </div>
-    <div class="table-wrap">
-      <table class="leaderboard picks-table" id="picks-table">
-        <thead>
-          <tr>
-            <th class="sortable" data-col="name">Team <span class="sort-icon">↕</span></th>
-            <th class="earnings sortable" data-col="earnings">Est. Earnings <span class="sort-icon">↕</span></th>
-            <th>Golfer Picks</th>
-          </tr>
-        </thead>
-        <tbody id="picks-tbody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ── Tab 3: Tournament Leaderboard ── -->
+  <!-- ── Tab 2: Tournament Leaderboard ── -->
   <div id="tab-tournament" class="tab-panel">
     <div class="legend">
       <span>Live tournament standings with estimated prize money</span>
@@ -108,6 +88,26 @@
           </tr>
         </thead>
         <tbody id="tournament-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Tab 3: Teams & Picks ── -->
+  <div id="tab-teams" class="tab-panel">
+    <div class="legend">
+      <span>All teams and their golfer selections</span>
+      <span><span class="badge badge-cut">MC</span> Missed Cut</span>
+    </div>
+    <div class="table-wrap">
+      <table class="leaderboard picks-table" id="picks-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-col="name">Team <span class="sort-icon">↕</span></th>
+            <th class="earnings sortable" data-col="earnings">Est. Earnings <span class="sort-icon">↕</span></th>
+            <th>Golfer Picks</th>
+          </tr>
+        </thead>
+        <tbody id="picks-tbody"></tbody>
       </table>
     </div>
   </div>
