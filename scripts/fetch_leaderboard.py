@@ -226,15 +226,15 @@ def main():
             "estimatedPrize": estimated_prize
         })
 
-    # Projected cut for Rounds 1-2: top 65 and ties make the cut
+    # Projected cut for Rounds 1-2: Masters uses top 50 + ties
     cut_line_score = None
     if max_round <= 2:
         # Sort by position to find the cut line
         by_pos = sorted(players, key=lambda x: x["position"])
-        # Find the score at position 65 (PGA cut = top 65 + ties)
+        # Find the score at position 50 (Masters cut = top 50 + ties)
         cut_pos_score = None
         for p in by_pos:
-            if p["position"] >= 65:
+            if p["position"] >= 50:
                 cut_pos_score = p["score"]
                 break
         if cut_pos_score is not None:
