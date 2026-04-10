@@ -292,12 +292,18 @@ function scoreTeam(entry, lbIndex) {
     if (odds && status === 'active') { poolEarnings = prize * odds; }
     total += poolEarnings;
 
+    const currentRd = leaderboard.round || 0;
+    const todayScore = player && player.roundScores ? player.roundScores[`R${currentRd}`] : null;
+    const thru = player ? player.thru : null;
+
     return {
       pickName,
       espnName:    player ? player.name : null,
       position:    player ? player.position : null,
       score:       player ? player.score : null,
       roundScores: player ? player.roundScores : {},
+      todayScore,
+      thru,
       missedCut:   player ? player.missedCut : false,
       projectedCut: player ? player.projectedCut : false,
       odds, prize, poolEarnings, status,
@@ -577,12 +583,17 @@ function renderGolfers(golfers) {
       else                deltaHtml = `<span class="today-delta delta-even">—</span>`;
     }
 
+    const isCut = g.status === 'cut' || g.status === 'not-in-field';
+    const todayDisp = g.todayScore || (g.missedCut ? 'MC' : g.projectedCut ? '--' : '—');
+    const thruDisp = g.missedCut ? '—' : (g.thru != null ? g.thru : '—');
+
     return `
       <tr class="golfer-row ${g.status}">
         <td><span class="player-link" data-name="${escHtml(g.pickName)}">${escHtml(g.pickName)}${amateurTag(g.pickName)}</span></td>
         <td class="pos">${g.status === 'not-in-field' ? 'NIF' : (g.missedCut || g.projectedCut ? 'MC' : posDisp)}</td>
         <td class="score ${scoreClass(g.score)}">${g.status === 'not-in-field' ? '—' : fmtScore(g.score)}</td>
-        <td><div class="rounds">${roundBadges(g.roundScores || {}, currentRound)}</div></td>
+        <td class="score ${scoreClass(g.todayScore)}">${todayDisp}</td>
+        <td>${thruDisp}</td>
         <td class="odds-col">${oddsDisp}</td>
         <td class="prize-col">${fmt$(g.prize)}</td>
         <td class="pool-col">${fmt$(g.poolEarnings)}${deltaHtml}</td>
@@ -594,8 +605,8 @@ function renderGolfers(golfers) {
     <table class="golfer-table">
       <thead>
         <tr>
-          <th>Golfer</th><th>Pos</th><th>Score</th><th>Rounds</th>
-          <th>Odds</th><th>Est. Earnings</th><th>Odds Adj Earnings</th><th></th>
+          <th>Golfer</th><th>Pos</th><th>Score</th><th>Today</th><th>Thru</th>
+          <th>Odds</th><th>Est. Earnings</th><th>Odds Adj</th><th></th>
         </tr>
       </thead>
       <tbody>${rows}</tbody>
