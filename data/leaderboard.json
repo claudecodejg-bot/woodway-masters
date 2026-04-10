@@ -7,7 +7,7 @@
   "isComplete": false,
   "round": 2,
   "cutLineScore": "+3",
-  "lastUpdated": "2026-04-10T12:49:34.934790+00:00",
+  "lastUpdated": "2026-04-10T13:07:39.285156+00:00",
   "players": [
     {
       "name": "Sam Burns",
@@ -881,7 +881,7 @@
         "R2": "+1"
       },
       "roundsCompleted": 2,
-      "thru": 4,
+      "thru": 5,
       "missedCut": false,
       "projectedCut": true,
       "estimatedPrize": 0
