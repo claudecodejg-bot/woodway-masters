@@ -229,14 +229,16 @@ def main():
     # Projected cut for Rounds 1-2: Masters uses top 50 + ties
     cut_line_score = None
     if max_round <= 2:
-        # Sort by position to find the cut line
-        by_pos = sorted(players, key=lambda x: x["position"])
-        # Find the score at position 50 (Masters cut = top 50 + ties)
+        # Sort by score (best first) to find the 50th player's score
+        def score_to_num_sort(s):
+            if not s or s == "E":
+                return 0
+            return int(str(s).replace("+", ""))
+        by_score = sorted(players, key=lambda x: score_to_num_sort(x["score"]))
+        # The 50th player's score is the cut line (top 50 + ties)
         cut_pos_score = None
-        for p in by_pos:
-            if p["position"] >= 50:
-                cut_pos_score = p["score"]
-                break
+        if len(by_score) >= 50:
+            cut_pos_score = by_score[49]["score"]  # 0-indexed, so index 49 = 50th player
         if cut_pos_score is not None:
             cut_line_score = cut_pos_score
             for p in players:

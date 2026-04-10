@@ -6,8 +6,8 @@
   "statusDisplay": "In Progress",
   "isComplete": false,
   "round": 2,
-  "cutLineScore": "+4",
-  "lastUpdated": "2026-04-10T12:47:29.731175+00:00",
+  "cutLineScore": "+3",
+  "lastUpdated": "2026-04-10T12:49:34.934790+00:00",
   "players": [
     {
       "name": "Sam Burns",
@@ -754,8 +754,8 @@
       "roundsCompleted": 2,
       "thru": 1,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Danny Willett",
@@ -769,8 +769,8 @@
       "roundsCompleted": 2,
       "thru": 1,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Michael Kim",
@@ -784,8 +784,8 @@
       "roundsCompleted": 2,
       "thru": 1,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Johnny Keefer",
@@ -798,8 +798,8 @@
       "roundsCompleted": 1,
       "thru": 0,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Jackson Herrington",
@@ -812,8 +812,8 @@
       "roundsCompleted": 1,
       "thru": 0,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Bubba Watson",
@@ -826,8 +826,8 @@
       "roundsCompleted": 1,
       "thru": 0,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Bryson DeChambeau",
@@ -840,8 +840,8 @@
       "roundsCompleted": 1,
       "thru": 0,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Daniel Berger",
@@ -854,8 +854,8 @@
       "roundsCompleted": 1,
       "thru": 0,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Marco Penge",
@@ -868,8 +868,8 @@
       "roundsCompleted": 1,
       "thru": 0,
       "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 49187
+      "projectedCut": true,
+      "estimatedPrize": 0
     },
     {
       "name": "Sungjae Im",
