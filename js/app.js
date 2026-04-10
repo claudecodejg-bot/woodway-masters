@@ -73,18 +73,185 @@ function makeStar(key, id, onClick) {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 let picks = [], oddsMap = {}, leaderboard = {}, purseData = {}, priorData = null;
 
+// ─── Live ESPN fetch (client-side) ───────────────────────────────────────────
+function scoreToNum(s) {
+  if (!s || s === 'E') return 0;
+  return parseInt(String(s).replace('+', ''), 10);
+}
+
+function prizeForPosition(pos, purse, pctTable) {
+  if (pos < 1 || !pctTable.length) return 0;
+  const idx = Math.min(pos - 1, pctTable.length - 1);
+  return Math.round(purse * pctTable[idx]);
+}
+
+function splitPrizeForTies(positions, purse, pctTable) {
+  const total = positions.reduce((s, p) => s + prizeForPosition(p, purse, pctTable), 0);
+  return positions.length ? Math.round(total / positions.length) : 0;
+}
+
+async function fetchLiveLeaderboard(purseData) {
+  const eventId = purseData.eventId;
+  const purse   = purseData.purse;
+  const pct     = purseData.payoutPercentages;
+  const url     = `https://site.api.espn.com/apis/site/v2/sports/golf/pga/scoreboard?event=${eventId}`;
+
+  const data   = await fetch(url).then(r => r.json());
+  const events = data.events || [];
+  if (!events.length) throw new Error('No events from ESPN');
+
+  const event       = events[0];
+  const eventStatus = event.status?.type || {};
+  const statusName  = eventStatus.name || '';
+  const statusDisplay = eventStatus.description || 'In Progress';
+  const isComplete  = eventStatus.completed || false;
+
+  const comp        = (event.competitions || [])[0];
+  if (!comp) throw new Error('No competition data');
+  const competitors = comp.competitors || [];
+
+  // Determine max round with actual data
+  let maxRound = 0;
+  for (const c of competitors) {
+    for (const ls of (c.linescores || [])) {
+      const p = ls.period || 0;
+      if (p <= 4) {
+        const hasHoles = !!(ls.linescores && ls.linescores.length);
+        const hasReal  = ls.value != null && !(ls.value === 0 && ls.displayValue === '-');
+        if (hasHoles || hasReal) maxRound = Math.max(maxRound, p);
+      }
+    }
+  }
+
+  // Sort by ESPN order
+  competitors.sort((a, b) => (a.order || 999) - (b.order || 999));
+
+  // Group by score for tie-splitting
+  const scoreGroups = [];
+  let currentPos = 1, i = 0;
+  while (i < competitors.length) {
+    const score = competitors[i].score || 'E';
+    const group = [competitors[i]];
+    let j = i + 1;
+    while (j < competitors.length && (competitors[j].score || 'E') === score) {
+      group.push(competitors[j]); j++;
+    }
+    scoreGroups.push({ startPos: currentPos, group });
+    currentPos += group.length;
+    i = j;
+  }
+
+  const posPrizeMap = {};
+  for (const { startPos, group } of scoreGroups) {
+    if (group.length === 1) {
+      posPrizeMap[group[0].order || 999] = { pos: startPos, prize: prizeForPosition(startPos, purse, pct) };
+    } else {
+      const tied = Array.from({ length: group.length }, (_, k) => startPos + k);
+      const avg  = splitPrizeForTies(tied, purse, pct);
+      for (const c of group) posPrizeMap[c.order || 999] = { pos: startPos, prize: avg };
+    }
+  }
+
+  // Build players
+  const players = [];
+  for (const c of competitors) {
+    const fullName = c.athlete?.fullName || 'Unknown';
+    const pos      = c.order || 999;
+    const score    = c.score || 'E';
+    const linescores = c.linescores || [];
+
+    const rounds = linescores.filter(ls =>
+      (ls.period || 0) <= 4 && ls.value != null && !(ls.value === 0 && ls.displayValue === '-')
+    );
+    const roundsCompleted = rounds.length;
+    let missedCut = false;
+    if (maxRound >= 3 && roundsCompleted <= 2) missedCut = true;
+
+    const roundScores = {};
+    for (const ls of rounds) {
+      if (ls.period >= 1 && ls.period <= 4) roundScores[`R${ls.period}`] = ls.displayValue || '';
+    }
+
+    let thru = null;
+    for (const ls of linescores) {
+      if (ls.period === maxRound) {
+        const holes = (ls.linescores || []).filter(h => h.value != null).length;
+        thru = holes < 18 ? holes : 'F';
+        break;
+      }
+    }
+
+    const { pos: tiedPos, prize } = posPrizeMap[pos] || { pos, prize: 0 };
+    const estimatedPrize = missedCut ? 0 : prize;
+
+    players.push({
+      name: fullName,
+      normalizedName: normalizeName(fullName),
+      position: tiedPos,
+      score,
+      roundScores,
+      roundsCompleted,
+      thru,
+      missedCut,
+      projectedCut: false,
+      estimatedPrize,
+    });
+  }
+
+  // Projected cut (top 50 + ties) for rounds 1-2
+  let cutLineScore = null;
+  if (maxRound <= 2) {
+    const byScore = [...players].sort((a, b) => scoreToNum(a.score) - scoreToNum(b.score));
+    if (byScore.length >= 50) {
+      const cutScore = byScore[49].score;
+      cutLineScore = cutScore;
+      const cutNum = scoreToNum(cutScore);
+      for (const p of players) {
+        if (scoreToNum(p.score) > cutNum) {
+          p.projectedCut = true;
+          p.estimatedPrize = 0;
+        }
+      }
+    }
+  }
+
+  // Sort: active by position, then cut by score
+  const active = players.filter(p => !p.missedCut && !p.projectedCut).sort((a, b) => a.position - b.position);
+  const cut    = players.filter(p => p.missedCut || p.projectedCut).sort((a, b) => scoreToNum(a.score) - scoreToNum(b.score));
+
+  return {
+    tournament: purseData.tournament,
+    eventId,
+    purse,
+    status: statusName,
+    statusDisplay,
+    isComplete,
+    round: maxRound,
+    cutLineScore,
+    lastUpdated: new Date().toISOString(),
+    players: [...active, ...cut],
+  };
+}
+
 async function loadAll() {
   const ts = Date.now();
-  const [p, o, l, pu] = await Promise.all([
+  const [p, o, pu] = await Promise.all([
     fetch(`data/picks.json?t=${ts}`).then(r => r.json()),
     fetch(`data/odds.json?t=${ts}`).then(r => r.json()),
-    fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json()),
     fetch(`data/purse.json?t=${ts}`).then(r => r.json()),
   ]);
-  picks      = p;
-  oddsMap    = buildNormalizedOdds(o);
-  leaderboard = l;
-  purseData  = pu;
+  picks     = p;
+  oddsMap   = buildNormalizedOdds(o);
+  purseData = pu;
+
+  // Try live ESPN first, fall back to static file
+  try {
+    leaderboard = await fetchLiveLeaderboard(pu);
+    console.log('Loaded live leaderboard from ESPN');
+  } catch (e) {
+    console.warn('ESPN fetch failed, falling back to static file:', e);
+    leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
+  }
 }
 
 function buildNormalizedOdds(raw) {
@@ -845,8 +1012,12 @@ const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 
 async function refresh() {
   try {
-    const ts = Date.now();
-    leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
+    try {
+      leaderboard = await fetchLiveLeaderboard(purseData);
+    } catch (e) {
+      const ts = Date.now();
+      leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
+    }
     allRankings = buildRankings();
     priorData = buildPriorRoundTotals();
     loadSnapshot();
