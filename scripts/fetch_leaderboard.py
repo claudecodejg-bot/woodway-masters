@@ -119,12 +119,18 @@ def main():
         return completed
 
     # Find the max round in progress
+    # A round counts if it has hole-by-hole data (linescores) OR a real score
+    # (not just a placeholder with value=0 and display="-")
     max_round = 0
     for c in competitors:
         for ls in c.get("linescores", []):
             p = ls.get("period", 0)
-            if p <= 4 and ls.get("value") is not None:
-                max_round = max(max_round, p)
+            if p <= 4:
+                has_holes = bool(ls.get("linescores"))
+                has_real_score = (ls.get("value") is not None
+                                 and not (ls.get("value") == 0 and ls.get("displayValue") == "-"))
+                if has_holes or has_real_score:
+                    max_round = max(max_round, p)
 
     # Build position map to handle ties by grouping on SCORE, not ESPN order.
     # ESPN 'order' gives sequential positions even for ties, so we must
@@ -249,8 +255,12 @@ def main():
     # Sort: active players by position, then missed/projected cut players
     active = sorted([p for p in players if not p["missedCut"] and not p["projectedCut"]],
                     key=lambda x: x["position"])
+    def score_to_num(s):
+        if not s or s == "E":
+            return 0
+        return int(str(s).replace("+", ""))
     cut = sorted([p for p in players if p["missedCut"] or p["projectedCut"]],
-                 key=lambda x: x["name"])
+                 key=lambda x: score_to_num(x["score"]))
     players_sorted = active + cut
 
     output = {
