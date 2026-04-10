@@ -905,15 +905,6 @@ function sortRankings(rankings, state) {
 
 function sortTournamentTable(state) {
   const tbody = document.getElementById('tournament-tbody');
-  const rows  = Array.from(tbody.querySelectorAll('tr.tourn-row'));
-
-  // Remove existing cut line row before re-sorting
-  const cutLine = tbody.querySelector('.cut-line-row');
-  if (cutLine) cutLine.remove();
-
-  // Separate active and cut players
-  const active = rows.filter(r => r.dataset.cut === '0');
-  const cut    = rows.filter(r => r.dataset.cut === '1');
 
   function getVal(row) {
     const col = state.col;
@@ -940,15 +931,54 @@ function sortTournamentTable(state) {
     return state.dir === 'asc' ? va - vb : vb - va;
   }
 
-  active.sort(compare);
-  cut.sort(compare);
+  // Collect all children and split into fav section, "All Players" header, and main section
+  const allChildren = Array.from(tbody.children);
+  const favHeader = allChildren.find(r => r.classList.contains('fav-section-header') && !r.classList.contains('all-section'));
+  const allHeader = allChildren.find(r => r.classList.contains('fav-section-header') && r.classList.contains('all-section'));
 
-  // Re-append: active rows, then cut line, then cut rows
+  let favRows = [];
+  let mainRows = [];
+
+  if (favHeader && allHeader) {
+    // Rows between favHeader and allHeader are favorites
+    let inFav = false;
+    let pastAll = false;
+    for (const child of allChildren) {
+      if (child === favHeader) { inFav = true; continue; }
+      if (child === allHeader) { inFav = false; pastAll = true; continue; }
+      if (child.classList.contains('tourn-row')) {
+        if (inFav) favRows.push(child);
+        else if (pastAll) mainRows.push(child);
+      }
+      // skip cut-line-row, will be re-inserted
+    }
+  } else {
+    // No favorites section — all rows are main
+    mainRows = allChildren.filter(r => r.classList.contains('tourn-row'));
+  }
+
+  // Sort favorites
+  favRows.sort(compare);
+
+  // Split main into active and cut, sort each group
+  const mainActive = mainRows.filter(r => r.dataset.cut === '0');
+  const mainCut    = mainRows.filter(r => r.dataset.cut === '1');
+  mainActive.sort(compare);
+  mainCut.sort(compare);
+
+  // Rebuild tbody
   tbody.innerHTML = '';
-  active.forEach(r => tbody.appendChild(r));
+
+  if (favHeader && allHeader) {
+    tbody.appendChild(favHeader);
+    favRows.forEach(r => tbody.appendChild(r));
+    tbody.appendChild(allHeader);
+  }
+
+  mainActive.forEach(r => tbody.appendChild(r));
 
   // Re-insert cut line divider
-  if (cut.length > 0) {
+  if (mainCut.length > 0) {
     const currentRound = leaderboard.round || 0;
     const divider = document.createElement('tr');
     divider.className = 'cut-line-row';
@@ -959,7 +989,7 @@ function sortTournamentTable(state) {
     tbody.appendChild(divider);
   }
 
-  cut.forEach(r => tbody.appendChild(r));
+  mainCut.forEach(r => tbody.appendChild(r));
 }
 
 // ─── Search / Filter ──────────────────────────────────────────────────────────
@@ -973,10 +1003,9 @@ function applySearch(query) {
     document.querySelectorAll('#team-tbody .team-row').forEach(row => {
       const name  = (row.querySelector('.team-name').textContent || '').toLowerCase();
       const show  = !q || name.includes(q);
-      const teamIdx = parseInt(row.dataset.team, 10);
       row.style.display = show ? '' : 'none';
-      const detail = document.getElementById(`detail-${teamIdx}`);
-      if (detail) detail.style.display = show ? '' : 'none';
+      const detail = row.nextElementSibling;
+      if (detail && detail.classList.contains('detail-row')) detail.style.display = show ? '' : 'none';
       if (show) visIdx++;
     });
   }
