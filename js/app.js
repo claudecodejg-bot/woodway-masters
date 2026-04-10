@@ -572,8 +572,8 @@ function renderTournamentTab() {
       <td class="pos-col">${escHtml(String(posDisp))}</td>
       <td class="player-cell"><span class="fav-star-slot"></span> <span class="player-link" data-name="${escHtml(p.name || '')}">${escHtml(p.name || '')}${amateurTag(p.name || '')}</span></td>
       <td class="score-col ${scoreClass(p.score)}">${fmtScore(p.score)}</td>
-      <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (isCut ? (mc ? 'MC' : 'PC') : '—')}</td>
-      <td class="score-col">${isCut ? '—' : thru}</td>
+      <td class="score-col today-col ${scoreClass(todayScore)}">${todayScore || (mc ? 'MC' : pc ? 'PC' : '—')}</td>
+      <td class="score-col">${mc ? '—' : thru}</td>
       ${roundCells}
       <td class="prize-col">${isCut ? '—' : fmt$(p.estimatedPrize)}</td>
       <td class="odds-col" style="text-align:center">${odds ? odds + '-1' : '—'}</td>
