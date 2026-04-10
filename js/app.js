@@ -621,7 +621,12 @@ function renderPicksTab(rankings) {
 
   function addPicksRow(team) {
     const isFav = favTeams.has(team.name);
-    const chips = team.golfers.map(g => {
+    const sortedGolfers = [...team.golfers].sort((a, b) => {
+      const lastA = (a.pickName || '').split(' ').slice(-1)[0].toLowerCase();
+      const lastB = (b.pickName || '').split(' ').slice(-1)[0].toLowerCase();
+      return lastA.localeCompare(lastB);
+    });
+    const chips = sortedGolfers.map(g => {
       const chipClass = g.status === 'cut'          ? 'chip-cut'
                       : g.status === 'not-in-field' ? 'chip-nif'
                       : 'chip-active';
