@@ -503,7 +503,9 @@ function renderLeaderboard(rankings) {
   const favList  = rankings.filter(t => favTeams.has(t.name));
   const restList = rankings.filter(t => !favTeams.has(t.name));
 
+  let teamRowUid = 0;
   function addTeamRow(team, idx) {
+    const uid = teamRowUid++;
     const rank     = idx + 1;
     const isTied   = idx > 0 && rankings[idx - 1].total === team.total;
     const rankDisp = isTied ? 'T' + rank : rank;
@@ -533,12 +535,12 @@ function renderLeaderboard(rankings) {
       applySearch(document.getElementById('search').value);
     });
     starSlot.replaceWith(star);
-    tr.addEventListener('click', () => toggleDetail(idx));
+    tr.addEventListener('click', () => toggleDetail(uid));
     tbody.appendChild(tr);
 
     const detailTr = document.createElement('tr');
     detailTr.className = 'detail-row hidden';
-    detailTr.id = `detail-${idx}`;
+    detailTr.id = `detail-${uid}`;
     detailTr.innerHTML = `<td colspan="4">${renderGolfers(team.golfers)}</td>`;
     tbody.appendChild(detailTr);
   }
@@ -614,9 +616,9 @@ function renderGolfers(golfers) {
   </div>`;
 }
 
-function toggleDetail(idx) {
-  const detailRow = document.getElementById(`detail-${idx}`);
-  const teamRow   = document.querySelector(`[data-team="${idx}"]`);
+function toggleDetail(uid) {
+  const detailRow = document.getElementById(`detail-${uid}`);
+  const teamRow   = detailRow.previousElementSibling;
   const icon      = teamRow.querySelector('.expand-icon');
   const isHidden  = detailRow.classList.contains('hidden');
   detailRow.classList.toggle('hidden', !isHidden);
