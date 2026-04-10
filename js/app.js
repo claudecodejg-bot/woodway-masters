@@ -971,6 +971,18 @@ function applySearch(query) {
   }
 }
 
+function applyPlayerSearch(query) {
+  const q = query.toLowerCase().trim();
+  document.querySelectorAll('#tournament-table tbody .tourn-row').forEach(row => {
+    const name = (row.dataset.name || '').toLowerCase();
+    row.style.display = (!q || name.includes(q)) ? '' : 'none';
+  });
+  // Also show/hide section headers and cut line
+  document.querySelectorAll('#tournament-table tbody .fav-section-header, #tournament-table tbody .cut-line-row').forEach(row => {
+    row.style.display = q ? 'none' : '';
+  });
+}
+
 // ─── Movement Tracking ────────────────────────────────────────────────────────
 let prevSnapshot = {};
 
@@ -1133,6 +1145,7 @@ async function init() {
 
     // Search
     document.getElementById('search').addEventListener('input', e => applySearch(e.target.value));
+    document.getElementById('player-search').addEventListener('input', e => applyPlayerSearch(e.target.value));
 
     // Refresh button
     document.getElementById('refresh-btn').addEventListener('click', refresh);
