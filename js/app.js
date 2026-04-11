@@ -164,16 +164,19 @@ async function fetchLiveLeaderboard(purseData) {
       (ls.period || 0) <= 4 && ls.value != null && !(ls.value === 0 && ls.displayValue === '-')
     );
     const roundsCompleted = rounds.length;
-    let missedCut = false;
-    if (maxRound >= 3) {
-      // Player missed cut if ESPN doesn't include a linescore entry for the current round
-      const hasCurrentRoundEntry = linescores.some(ls => ls.period === maxRound);
-      if (!hasCurrentRoundEntry) missedCut = true;
-    }
 
     const roundScores = {};
     for (const ls of rounds) {
       if (ls.period >= 1 && ls.period <= 4) roundScores[`R${ls.period}`] = ls.displayValue || '';
+    }
+
+    // Calculate R1+R2 score for cut determination
+    let r2Total = 0;
+    for (const ls of linescores) {
+      if (ls.period === 1 || ls.period === 2) {
+        const dv = ls.displayValue;
+        if (dv && dv !== '-') r2Total += scoreToNum(dv);
+      }
     }
 
     let thru = null;
@@ -186,7 +189,6 @@ async function fetchLiveLeaderboard(purseData) {
     }
 
     const { pos: tiedPos, prize } = posPrizeMap[pos] || { pos, prize: 0 };
-    const estimatedPrize = missedCut ? 0 : prize;
 
     players.push({
       name: fullName,
@@ -195,16 +197,18 @@ async function fetchLiveLeaderboard(purseData) {
       score,
       roundScores,
       roundsCompleted,
+      r2Total,
       thru,
-      missedCut,
+      missedCut: false,
       projectedCut: false,
-      estimatedPrize,
+      estimatedPrize: prize,
     });
   }
 
-  // Projected cut (top 50 + ties) for rounds 1-2
+  // Determine cut line
   let cutLineScore = null;
   if (maxRound <= 2) {
+    // During rounds 1-2: projected cut based on current scores (top 50 + ties)
     const byScore = [...players].sort((a, b) => scoreToNum(a.score) - scoreToNum(b.score));
     if (byScore.length >= 50) {
       const cutScore = byScore[49].score;
@@ -215,6 +219,17 @@ async function fetchLiveLeaderboard(purseData) {
           p.projectedCut = true;
           p.estimatedPrize = 0;
         }
+      }
+    }
+  } else {
+    // Round 3+: actual cut based on R1+R2 totals (Masters top 50 + ties)
+    const r2Scores = players.map(p => p.r2Total).sort((a, b) => a - b);
+    const cutNum = r2Scores.length >= 50 ? r2Scores[49] : Infinity;
+    cutLineScore = cutNum > 0 ? `+${cutNum}` : cutNum === 0 ? 'E' : String(cutNum);
+    for (const p of players) {
+      if (p.r2Total > cutNum) {
+        p.missedCut = true;
+        p.estimatedPrize = 0;
       }
     }
   }
