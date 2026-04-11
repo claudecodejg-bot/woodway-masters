@@ -73,8 +73,24 @@ header {
 #search::placeholder { color: rgba(255,255,255,0.6); }
 #search:focus { background: rgba(255,255,255,0.25); }
 
+#notify-btn {
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+#notify-btn:hover { background: rgba(255,255,255,0.3); }
+#notify-btn.active {
+  background: rgba(76,175,80,0.35);
+  border-color: rgba(76,175,80,0.6);
+}
+
 #refresh-btn {
-  margin-left: auto;
   padding: 7px 14px;
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(255,255,255,0.3);
@@ -762,6 +778,8 @@ footer {
   .header-titles h1 { font-size: 1.1rem; }
   .header-meta { text-align: left; width: 100%; }
   .tab-btn { padding: 8px 12px; font-size: 0.78rem; }
+  #search { min-width: 100px; }
+  #notify-btn, #refresh-btn { padding: 7px 8px; font-size: 0.75rem; }
 
   table.leaderboard thead th,
   .team-row td { padding: 9px 8px; font-size: 0.82rem; }
@@ -787,4 +805,6 @@ footer {
   /* Pool leaderboard: hide expand icon */
   .golfer-row td.prize-col { display: none; }
   table.golfer-table thead th:nth-child(6) { display: none; }
+
 }
+

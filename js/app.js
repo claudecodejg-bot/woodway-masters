@@ -1071,6 +1071,9 @@ const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 
 async function refresh() {
   try {
+    // Capture state before refresh for notifications
+    preRefreshState = capturePreRefreshState();
+
     try {
       leaderboard = await fetchLiveLeaderboard(purseData);
     } catch (e) {
@@ -1090,6 +1093,9 @@ async function refresh() {
     updateSortIcons('#tournament-table', sortState.tournament);
     applySearch(document.getElementById('search').value);
     showToast('Leaderboard refreshed');
+
+    // Fire notifications for favorite changes
+    checkAndNotify(preRefreshState);
   } catch (e) {
     console.error('Refresh failed:', e);
   }
@@ -1169,6 +1175,159 @@ function closePlayerModal() {
   document.getElementById('player-modal').classList.remove('open');
 }
 
+// ─── Notifications ───────────────────────────────────────────────────────────
+const NOTIFY_KEY = 'ww_notify_enabled';
+let notifyEnabled = localStorage.getItem(NOTIFY_KEY) === 'true';
+let preRefreshState = null; // captured before each refresh
+
+function capturePreRefreshState() {
+  const favTeams   = loadFavorites(FAV_TEAMS_KEY);
+  const favPlayers = loadFavorites(FAV_PLAYERS_KEY);
+  if (!favTeams.size && !favPlayers.size) return null;
+
+  const teamState = {};
+  allRankings.forEach((team, idx) => {
+    if (favTeams.has(team.name)) {
+      teamState[team.name] = { rank: idx + 1, total: team.total };
+    }
+  });
+
+  const playerState = {};
+  (leaderboard.players || []).forEach(p => {
+    if (favPlayers.has(p.name)) {
+      playerState[p.name] = {
+        position: p.position,
+        score: p.score,
+        missedCut: p.missedCut,
+        projectedCut: p.projectedCut,
+      };
+    }
+  });
+
+  return { teamState, playerState };
+}
+
+function checkAndNotify(oldState) {
+  if (!notifyEnabled || !oldState || Notification.permission !== 'granted') return;
+
+  const favTeams   = loadFavorites(FAV_TEAMS_KEY);
+  const favPlayers = loadFavorites(FAV_PLAYERS_KEY);
+  const alerts = [];
+
+  // Check favorite teams for rank changes
+  allRankings.forEach((team, idx) => {
+    if (!favTeams.has(team.name)) return;
+    const prev = oldState.teamState[team.name];
+    if (!prev) return;
+    const newRank = idx + 1;
+    const rankDiff = prev.rank - newRank;
+    const earningsDiff = team.total - prev.total;
+
+    if (rankDiff !== 0 || Math.abs(earningsDiff) > 1000) {
+      let msg = `${team.name}: `;
+      if (rankDiff > 0)       msg += `⬆️ moved up to #${newRank} (was #${prev.rank})`;
+      else if (rankDiff < 0)  msg += `⬇️ dropped to #${newRank} (was #${prev.rank})`;
+      else                    msg += `holds at #${newRank}`;
+
+      if (Math.abs(earningsDiff) > 1000) {
+        const sign = earningsDiff > 0 ? '+' : '-';
+        msg += ` | ${sign}${fmt$(Math.abs(earningsDiff))}`;
+      }
+      alerts.push(msg);
+    }
+  });
+
+  // Check favorite players for position changes
+  (leaderboard.players || []).forEach(p => {
+    if (!favPlayers.has(p.name)) return;
+    const prev = oldState.playerState[p.name];
+    if (!prev) return;
+
+    // Newly missed cut
+    if ((p.missedCut || p.projectedCut) && !prev.missedCut && !prev.projectedCut) {
+      alerts.push(`${p.name}: ✂️ missed the cut`);
+      return;
+    }
+
+    if (p.position && prev.position && p.position !== prev.position) {
+      const diff = prev.position - p.position;
+      if (diff > 0)       alerts.push(`${p.name}: ⬆️ moved to ${posLabel(p.position)} (was ${posLabel(prev.position)})`);
+      else if (diff < 0)  alerts.push(`${p.name}: ⬇️ dropped to ${posLabel(p.position)} (was ${posLabel(prev.position)})`);
+    }
+  });
+
+  if (alerts.length === 0) return;
+
+  // Group into a single notification (max 4 lines, truncate if more)
+  const shown = alerts.slice(0, 4);
+  if (alerts.length > 4) shown.push(`...and ${alerts.length - 4} more updates`);
+  const body = shown.join('\n');
+
+  try {
+    new Notification('🏌️ Woodway Pool Update', {
+      body,
+      icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛳</text></svg>',
+      tag: 'woodway-update', // replaces previous notification
+      silent: false,
+    });
+  } catch(e) {
+    console.warn('Notification failed:', e);
+  }
+}
+
+function posLabel(pos) {
+  return pos ? `T${pos}` : '—';
+}
+
+function toggleNotifications() {
+  const btn = document.getElementById('notify-btn');
+  if (!notifyEnabled) {
+    // Turning on — request permission first
+    if (!('Notification' in window)) {
+      showToast('Notifications not supported in this browser');
+      return;
+    }
+    if (Notification.permission === 'granted') {
+      notifyEnabled = true;
+      localStorage.setItem(NOTIFY_KEY, 'true');
+      btn.classList.add('active');
+      btn.textContent = '🔔 Alerts On';
+      showToast('Alerts enabled for your favorites');
+    } else if (Notification.permission === 'denied') {
+      showToast('Notifications blocked — check browser settings');
+    } else {
+      Notification.requestPermission().then(perm => {
+        if (perm === 'granted') {
+          notifyEnabled = true;
+          localStorage.setItem(NOTIFY_KEY, 'true');
+          btn.classList.add('active');
+          btn.textContent = '🔔 Alerts On';
+          showToast('Alerts enabled for your favorites');
+        } else {
+          showToast('Notification permission denied');
+        }
+      });
+    }
+  } else {
+    // Turning off
+    notifyEnabled = false;
+    localStorage.setItem(NOTIFY_KEY, 'false');
+    btn.classList.remove('active');
+    btn.textContent = '🔔 Alerts';
+    showToast('Alerts disabled');
+  }
+}
+
+function initNotifyButton() {
+  const btn = document.getElementById('notify-btn');
+  // Restore saved state
+  if (notifyEnabled && Notification.permission === 'granted') {
+    btn.classList.add('active');
+    btn.textContent = '🔔 Alerts On';
+  }
+  btn.addEventListener('click', toggleNotifications);
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 async function init() {
   try {
@@ -1199,6 +1358,9 @@ async function init() {
 
     // Sort listeners
     attachSortListeners();
+
+    // Notifications
+    initNotifyButton();
 
     // Auto-refresh
     setInterval(refresh, REFRESH_INTERVAL_MS);
