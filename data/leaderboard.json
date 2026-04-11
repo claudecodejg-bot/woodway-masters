@@ -7,7 +7,7 @@
   "isComplete": false,
   "round": 3,
   "cutLineScore": null,
-  "lastUpdated": "2026-04-11T22:54:55.820966+00:00",
+  "lastUpdated": "2026-04-11T23:34:53.716855+00:00",
   "players": [
     {
       "name": "Cameron Young",
@@ -36,7 +36,7 @@
         "R3": "+1"
       },
       "roundsCompleted": 3,
-      "thru": 17,
+      "thru": "F",
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 3234000
@@ -52,7 +52,7 @@
         "R3": "-4"
       },
       "roundsCompleted": 3,
-      "thru": 17,
+      "thru": "F",
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 1428000
@@ -100,7 +100,7 @@
         "R3": "-3"
       },
       "roundsCompleted": 3,
-      "thru": 17,
+      "thru": "F",
       "missedCut": false,
       "projectedCut": false,
       "estimatedPrize": 798000
@@ -119,7 +119,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 654500
+      "estimatedPrize": 677250
     },
     {
       "name": "Haotong Li",
@@ -135,28 +135,12 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 654500
-    },
-    {
-      "name": "Patrick Reed",
-      "normalizedName": "patrick reed",
-      "position": 7,
-      "score": "-7",
-      "roundScores": {
-        "R1": "-3",
-        "R2": "-3",
-        "R3": "-1"
-      },
-      "roundsCompleted": 3,
-      "thru": 17,
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 654500
+      "estimatedPrize": 677250
     },
     {
       "name": "Patrick Cantlay",
       "normalizedName": "patrick cantlay",
-      "position": 10,
+      "position": 9,
       "score": "-6",
       "roundScores": {
         "R1": "+5",
@@ -167,12 +151,12 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 546000
+      "estimatedPrize": 567000
     },
     {
       "name": "Russell Henley",
       "normalizedName": "russell henley",
-      "position": 10,
+      "position": 9,
       "score": "-6",
       "roundScores": {
         "R1": "+1",
@@ -183,7 +167,23 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 546000
+      "estimatedPrize": 567000
+    },
+    {
+      "name": "Patrick Reed",
+      "normalizedName": "patrick reed",
+      "position": 9,
+      "score": "-6",
+      "roundScores": {
+        "R1": "-3",
+        "R2": "-3",
+        "R3": "E"
+      },
+      "roundsCompleted": 3,
+      "thru": "F",
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 567000
     },
     {
       "name": "Collin Morikawa",
