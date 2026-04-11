@@ -165,7 +165,11 @@ async function fetchLiveLeaderboard(purseData) {
     );
     const roundsCompleted = rounds.length;
     let missedCut = false;
-    if (maxRound >= 3 && roundsCompleted <= 2) missedCut = true;
+    if (maxRound >= 3) {
+      // Player missed cut if ESPN doesn't include a linescore entry for the current round
+      const hasCurrentRoundEntry = linescores.some(ls => ls.period === maxRound);
+      if (!hasCurrentRoundEntry) missedCut = true;
+    }
 
     const roundScores = {};
     for (const ls of rounds) {
