@@ -852,41 +852,6 @@ function renderInsights(team, idx, uid) {
     </div>`;
   }
 
-  // ── Threats (team directly below) ──
-  if (idx < rankings.length - 1) {
-    const teamBelow = rankings[idx + 1];
-    const cushion = team.total - teamBelow.total;
-    const myRank = idx + 1;
-
-    if (cushion === 0) {
-      html += `<div class="insight-section insight-threats">
-        <span class="insight-icon">⚔️</span>
-        <span class="insight-text">Tied with <strong>${escHtml(teamBelow.name)}</strong> (#${idx + 2}) — any movement could change the order.</span>
-      </div>`;
-    } else {
-      // Find smallest move from their golfers that puts them ahead of us
-      const belowActive = teamBelow.golfers.filter(g => g.status === 'active' && g.odds && g.position > 1);
-      let bestThreat = null;
-      for (const g of belowActive) {
-        const result = findSmallestSimMove(g, teamBelow.name, team.name, 'up');
-        if (result && (!bestThreat || result.spots < bestThreat.spots)) {
-          bestThreat = result;
-        }
-      }
-
-      html += `<div class="insight-section insight-threats">
-        <span class="insight-icon">⚠️</span>
-        <span class="insight-text"><strong>${escHtml(teamBelow.name)}</strong> (#${idx + 2}) is ${fmt$(cushion)} behind. `;
-
-      if (bestThreat) {
-        const g = bestThreat.golfer;
-        html += `If <strong>${escHtml(g.pickName)}</strong> (${g.odds}-1) moves up ${bestThreat.spots === 1 ? '1 spot' : bestThreat.spots + ' spots'} from T${g.position}, they'd jump to #${bestThreat.newRank} and pass you.`;
-      } else {
-        html += `No single golfer move from their roster would pass you — solid cushion.`;
-      }
-      html += `</span></div>`;
-    }
-  }
 
   html += '</div>';
   return html;
