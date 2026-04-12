@@ -694,123 +694,94 @@ function findSmallestSimMove(golfer, myTeamName, rivalTeamName, direction) {
   return null;
 }
 
-function buildPathUpText(team, idx, targetIdx) {
+function buildInsightText(team, idx) {
   const rankings = allRankings;
-
-  // "Best" mode: simulate each golfer at T1 and find the best achievable rank
-  if (targetIdx === -1) {
-    const myActive = team.golfers.filter(g => g.status === 'active' && g.odds && g.position > 1);
-    let best = null;
-    for (const g of myActive) {
-      const simRanks = simulateMove(g.pickName, 1);
-      if (!simRanks) continue;
-      const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
-      if (newRank > 0 && (!best || newRank < best.newRank)) {
-        best = { golfer: g, newRank, newPos: 1, spots: g.position - 1 };
-      }
-    }
-
-    if (!best) {
-      return `<span class="insight-icon">⬆️</span>
-        <span class="insight-text">No active golfers with upside to simulate.</span>`;
-    }
-
-    const g = best.golfer;
-    let text = `<span class="insight-icon">🏆</span>
-      <span class="insight-text">Best case: if <strong>${escHtml(g.pickName)}</strong> (${g.odds}-1) wins the tournament from T${g.position}, you'd jump to <strong>#${best.newRank}</strong>.`;
-
-    // Also check: what's the best rank with just a few spots gained (more realistic)?
-    let bestRealistic = null;
-    for (const g2 of myActive) {
-      const maxMove = Math.min(g2.position - 1, 5); // max 5 spots
-      for (let move = 1; move <= maxMove; move++) {
-        const simRanks = simulateMove(g2.pickName, g2.position - move);
-        if (!simRanks) break;
-        const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
-        if (newRank > 0 && newRank <= 5 && (!bestRealistic || newRank < bestRealistic.newRank)) {
-          bestRealistic = { golfer: g2, newRank, newPos: g2.position - move, spots: move };
-        }
-      }
-    }
-
-    if (bestRealistic && bestRealistic.newRank > best.newRank) {
-      // Realistic move is worse than winning — show both
-      const g2 = bestRealistic.golfer;
-      text += ` More realistically, <strong>${escHtml(g2.pickName)}</strong> gaining ${bestRealistic.spots === 1 ? '1 spot' : bestRealistic.spots + ' spots'} to T${bestRealistic.newPos} gets you to <strong>#${bestRealistic.newRank}</strong>.`;
-    } else if (bestRealistic && bestRealistic.newRank === best.newRank) {
-      // Realistic move achieves the same rank
-      const g2 = bestRealistic.golfer;
-      text += ` Even just <strong>${escHtml(g2.pickName)}</strong> gaining ${bestRealistic.spots === 1 ? '1 spot' : bestRealistic.spots + ' spots'} to T${bestRealistic.newPos} gets you there.`;
-    }
-
-    text += `</span>`;
-    return text;
+  if (idx === 0) {
+    return `<span class="insight-icon">🏆</span><span class="insight-text">You're in 1st place!</span>`;
   }
 
-  // Standard mode: target a specific team
-  if (targetIdx >= idx) return '';
-  const targetTeam = rankings[targetIdx];
-  const gap = targetTeam.total - team.total;
-  const spotsUp = idx - targetIdx;
-  const targetRank = targetIdx + 1;
-
-  if (gap <= 0) {
-    return `<span class="insight-icon">⚔️</span>
-      <span class="insight-text">Already tied or ahead of <strong>${escHtml(targetTeam.name)}</strong> (#${targetRank}).</span>`;
-  }
-
-  let text = `<span class="insight-icon">⬆️</span>
-    <span class="insight-text">${fmt$(gap)} behind <strong>${escHtml(targetTeam.name)}</strong> (#${targetRank})${spotsUp > 1 ? ` — ${spotsUp} spots up` : ''}. `;
-
-  // YOUR GOLFERS MOVING UP: find smallest move that puts you ahead of targetTeam
+  // ── ROOT FOR: which of your golfers moving up helps you most ──
   const myActive = team.golfers.filter(g => g.status === 'active' && g.odds && g.position > 1);
-  let bestUp = null;
+  const rootFor = [];
   for (const g of myActive) {
-    const result = findSmallestSimMove(g, team.name, targetTeam.name, 'up');
-    if (result && (!bestUp || result.spots < bestUp.spots)) {
-      bestUp = result;
+    // Simulate this golfer moving to T1 and see how much rank improves
+    const simRanks = simulateMove(g.pickName, 1);
+    if (!simRanks) continue;
+    const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
+    const improvement = (idx + 1) - newRank;
+    if (improvement > 0) {
+      rootFor.push({ golfer: g, improvement, bestRank: newRank });
+    }
+  }
+  // Sort by most improvement
+  rootFor.sort((a, b) => b.improvement - a.improvement);
+
+  // ── ROOT AGAINST: golfers on teams ahead that, if they drop, help you ──
+  // Look at teams in the ~5 spots above and find their key golfers
+  const teamsAbove = rankings.slice(Math.max(0, idx - 5), idx);
+  const rivalGolferMap = new Map(); // golferName -> { golfer, teamsHelped }
+  for (const rival of teamsAbove) {
+    const rivalActive = rival.golfers.filter(g => g.status === 'active' && g.odds && g.position);
+    for (const g of rivalActive) {
+      // Skip golfers that are also on my team (shared golfers)
+      const gn = NAME_ALIASES[normalizeName(g.pickName)] || normalizeName(g.pickName);
+      const isOnMyTeam = team.golfers.some(mg => {
+        const mgn = NAME_ALIASES[normalizeName(mg.pickName)] || normalizeName(mg.pickName);
+        return mgn === gn;
+      });
+      if (isOnMyTeam) continue;
+
+      const key = gn;
+      if (!rivalGolferMap.has(key)) {
+        rivalGolferMap.set(key, { golfer: g, teams: [] });
+      }
+      rivalGolferMap.get(key).teams.push(rival.name);
     }
   }
 
-  if (bestUp) {
-    const g = bestUp.golfer;
-    text += `If <strong>${escHtml(g.pickName)}</strong> (${g.odds}-1) moves up ${bestUp.spots === 1 ? '1 spot' : bestUp.spots + ' spots'} from T${g.position} to T${bestUp.newPos}, you'd jump to <strong>#${bestUp.newRank}</strong>.`;
-  } else if (myActive.length) {
-    text += `No single golfer move gets you there.`;
-  }
-
-  // RIVAL GOLFERS DROPPING: find smallest drop that puts you ahead of targetTeam
-  const rivalActive = targetTeam.golfers.filter(g => g.status === 'active' && g.odds && g.position);
-  let bestDrop = null;
-  for (const g of rivalActive) {
-    const result = findSmallestSimMove(g, team.name, targetTeam.name, 'drop');
-    if (result && (!bestDrop || result.spots < bestDrop.spots)) {
-      bestDrop = result;
+  // Simulate each rival golfer dropping 5 spots and see impact
+  const rootAgainst = [];
+  for (const [key, info] of rivalGolferMap) {
+    const g = info.golfer;
+    const dropPos = Math.min(54, g.position + 5);
+    const simRanks = simulateMove(g.pickName, dropPos);
+    if (!simRanks) continue;
+    const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
+    const improvement = (idx + 1) - newRank;
+    if (improvement > 0) {
+      rootAgainst.push({ golfer: g, improvement, teamsAffected: info.teams.length });
     }
   }
+  rootAgainst.sort((a, b) => b.improvement - a.improvement);
 
-  if (bestDrop) {
-    const g = bestDrop.golfer;
-    text += ` Alternatively, if <strong>${escHtml(g.pickName)}</strong> (${g.odds}-1) drops ${bestDrop.spots === 1 ? '1 spot' : bestDrop.spots + ' spots'} from T${g.position} to T${bestDrop.newPos}, you'd move to <strong>#${bestDrop.newRank}</strong>.`;
+  // ── Build output ──
+  let html = '<div class="insight-header">Paths to climb the leaderboard</div>';
+
+  if (rootFor.length) {
+    const names = rootFor.slice(0, 3).map(r =>
+      `<strong>${escHtml(r.golfer.pickName)}</strong>`
+    );
+    html += `<div class="insight-line"><span class="insight-text"><strong>Your team:</strong> ${joinNames(names)} moving up the leaderboard ${rootFor.length === 1 ? 'is your' : 'are your'} best path to climb.</span></div>`;
   }
 
-  text += `</span>`;
-  return text;
+  if (rootAgainst.length) {
+    const names = rootAgainst.slice(0, 3).map(r =>
+      `<strong>${escHtml(r.golfer.pickName)}</strong>`
+    );
+    html += `<div class="insight-line"><span class="insight-text"><strong>Other teams:</strong> ${joinNames(names)} falling back would move teams above you down.</span></div>`;
+  }
+
+  if (!rootFor.length && !rootAgainst.length) {
+    html += `<div class="insight-line"><span class="insight-text">No clear path to move up right now.</span></div>`;
+  }
+
+  return html;
 }
 
-function updatePathUp(uid, teamIdx, targetIdx) {
-  const team = allRankings[teamIdx];
-  if (!team) return;
-  const container = document.querySelector(`#detail-${uid} .insight-path-up-content`);
-  if (!container) return;
-  container.innerHTML = buildPathUpText(team, teamIdx, targetIdx);
-
-  const bar = container.closest('.team-insights').querySelector('.insight-btn-bar');
-  if (bar) {
-    bar.querySelectorAll('.insight-btn').forEach(btn => {
-      btn.classList.toggle('active', parseInt(btn.dataset.target) === targetIdx);
-    });
-  }
+function joinNames(names) {
+  if (names.length === 1) return names[0];
+  if (names.length === 2) return names[0] + ' and ' + names[1];
+  return names.slice(0, -1).join(', ') + ', and ' + names[names.length - 1];
 }
 
 function renderInsights(team, idx, uid) {
@@ -824,34 +795,9 @@ function renderInsights(team, idx, uid) {
 
   let html = '<div class="team-insights">';
 
-  // ── Path Up with button bar ──
   if (idx > 0) {
-    const buttons = [];
-    const seen = new Set();
-    for (const jump of [1, 2, 3, 5]) {
-      const targetIdx = idx - jump;
-      if (targetIdx >= 0 && !seen.has(targetIdx)) {
-        seen.add(targetIdx);
-        buttons.push({ label: `+${jump}`, targetIdx });
-      }
-    }
-    if (idx > 5) {
-      buttons.push({ label: 'Best', targetIdx: -1 });
-    }
-
-    html += `<div class="insight-btn-bar">
-      <span class="insight-btn-label">What do I need to move up?</span>`;
-    for (const b of buttons) {
-      const isActive = b.targetIdx === idx - 1 ? ' active' : '';
-      html += `<button class="insight-btn${isActive}" data-target="${b.targetIdx}" onclick="updatePathUp(${uid},${idx},${b.targetIdx})">${b.label}</button>`;
-    }
-    html += `</div>`;
-
-    html += `<div class="insight-section insight-path-up">
-      <div class="insight-path-up-content">${buildPathUpText(team, idx, idx - 1)}</div>
-    </div>`;
+    html += `<div class="insight-section insight-path-up">${buildInsightText(team, idx)}</div>`;
   }
-
 
   html += '</div>';
   return html;

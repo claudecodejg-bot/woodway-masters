@@ -809,40 +809,24 @@ footer {
   color: #1a4c2e;
 }
 
-.insight-btn-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-
-.insight-btn-label {
-  font-size: 0.78rem;
-  font-weight: 600;
+.insight-header {
+  font-size: 0.82rem;
+  font-weight: 700;
   color: #1a4c2e;
-  margin-right: 4px;
+  margin-bottom: 8px;
 }
 
-.insight-btn {
-  padding: 3px 10px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  border: 1px solid #2d7a4f;
-  border-radius: 12px;
-  background: #fff;
-  color: #2d7a4f;
-  cursor: pointer;
-  transition: all 0.15s ease;
+.insight-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+  line-height: 1.4;
 }
 
-.insight-btn:hover {
-  background: #e8f5e9;
-}
-
-.insight-btn.active {
-  background: #2d7a4f;
-  color: #fff;
+.insight-line:last-child {
+  margin-bottom: 0;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────  */
