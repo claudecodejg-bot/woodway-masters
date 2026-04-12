@@ -560,7 +560,7 @@ function renderLeaderboard(rankings) {
     const detailTr = document.createElement('tr');
     detailTr.className = 'detail-row hidden';
     detailTr.id = `detail-${uid}`;
-    detailTr.innerHTML = `<td colspan="4">${renderGolfers(team.golfers)}</td>`;
+    detailTr.innerHTML = `<td colspan="4">${renderGolfers(team.golfers)}${renderInsights(team, idx, uid)}</td>`;
     tbody.appendChild(detailTr);
   }
 
@@ -633,6 +633,257 @@ function renderGolfers(golfers) {
       <tbody>${rows}</tbody>
     </table>
   </div>`;
+}
+
+// ── Insight helpers (shared by renderInsights and updatePathUp) ──
+function insightCalcGain(golfer, targetPos) {
+  if (!golfer.position || !golfer.odds) return 0;
+  const currentPrize = golfer.prize || 0;
+  const newPrize = prizeForPosition(targetPos, purseData.purse, purseData.payoutPercentages);
+  return (newPrize - currentPrize) * golfer.odds;
+}
+
+function insightFindSmallestMove(golfers, gapToClose) {
+  let best = null;
+  for (const g of golfers) {
+    if (!g.position || g.position <= 1 || !g.odds || g.status !== 'active') continue;
+    for (let target = g.position - 1; target >= 1; target--) {
+      const gain = insightCalcGain(g, target);
+      if (gain >= gapToClose) {
+        const spots = g.position - target;
+        if (!best || spots < best.spotsNeeded || (spots === best.spotsNeeded && gain < best.gain)) {
+          best = { golfer: g, spotsNeeded: spots, targetPos: target, gain };
+        }
+        break;
+      }
+    }
+  }
+  return best;
+}
+
+function insightFindCombinedMove(golfers, gapToClose) {
+  const moves = [];
+  for (const g of golfers) {
+    if (!g.position || g.position <= 1 || !g.odds || g.status !== 'active') continue;
+    const gainPerSpot = insightCalcGain(g, g.position - 1);
+    if (gainPerSpot > 0) moves.push({ golfer: g, gainPerSpot });
+  }
+  moves.sort((a, b) => b.gainPerSpot - a.gainPerSpot);
+  if (!moves.length) return null;
+
+  let remaining = gapToClose;
+  const plan = [];
+  for (const m of moves) {
+    if (remaining <= 0) break;
+    const maxSpots = Math.min(m.golfer.position - 1, 10);
+    for (let s = 1; s <= maxSpots; s++) {
+      const gain = insightCalcGain(m.golfer, m.golfer.position - s);
+      if (gain >= remaining) {
+        plan.push({ golfer: m.golfer, spots: s, gain });
+        remaining = 0;
+        break;
+      }
+    }
+    if (remaining > 0 && maxSpots > 0) {
+      const gain = insightCalcGain(m.golfer, m.golfer.position - maxSpots);
+      plan.push({ golfer: m.golfer, spots: maxSpots, gain });
+      remaining -= gain;
+    }
+  }
+  return plan.length ? { plan, closed: remaining <= 0 } : null;
+}
+
+// Find the smallest DROP for a rival golfer that costs their team enough to close the gap.
+// Only considers golfers NOT on your team.
+function insightFindSmallestDrop(rivalGolfers, myGolferNames, gapToClose) {
+  let best = null;
+  for (const g of rivalGolfers) {
+    if (!g.position || !g.odds || g.status !== 'active') continue;
+    // Skip golfers that are also on our team
+    if (myGolferNames.has(normalizeName(g.pickName))) continue;
+    const maxDrop = Math.min(54, g.position + 20); // max realistic drop
+    for (let target = g.position + 1; target <= maxDrop; target++) {
+      const loss = insightCalcGain(g, target); // will be negative
+      if (Math.abs(loss) >= gapToClose) {
+        const spots = target - g.position;
+        if (!best || spots < best.spotsNeeded) {
+          best = { golfer: g, spotsNeeded: spots, targetPos: target, loss: Math.abs(loss) };
+        }
+        break;
+      }
+    }
+  }
+  return best;
+}
+
+function buildPathUpText(team, idx, targetIdx) {
+  const rankings = allRankings;
+  const myGolferNames = new Set(team.golfers.map(g => normalizeName(g.pickName)));
+
+  if (targetIdx < 0 || targetIdx >= idx) return '';
+  const targetTeam = rankings[targetIdx];
+  const rivalGolferNames = new Set(targetTeam.golfers.map(g => normalizeName(g.pickName)));
+  const gap = targetTeam.total - team.total;
+  const spotsUp = idx - targetIdx;
+
+  if (gap <= 0) {
+    return `<span class="insight-icon">⚔️</span>
+      <span class="insight-text">Already tied or ahead of <strong>${escHtml(targetTeam.name)}</strong> (#${targetIdx + 1}).</span>`;
+  }
+
+  // Only consider golfers unique to each team (shared golfers are a wash)
+  const myUniqueGolfers = team.golfers.filter(g =>
+    g.status === 'active' && g.odds && !rivalGolferNames.has(normalizeName(g.pickName))
+  );
+  const sharedGolfers = team.golfers.filter(g =>
+    g.status === 'active' && rivalGolferNames.has(normalizeName(g.pickName))
+  );
+
+  let text = `<span class="insight-icon">⬆️</span>
+    <span class="insight-text">${fmt$(gap)} behind <strong>${escHtml(targetTeam.name)}</strong> (#${targetIdx + 1})${spotsUp > 1 ? ` — ${spotsUp} spots up` : ''}.`;
+
+  if (sharedGolfers.length > 0) {
+    const names = sharedGolfers.map(g => g.pickName).join(', ');
+    text += ` <em>(You share ${names} — their moves are a wash.)</em>`;
+  }
+  text += ' ';
+
+  // YOUR side: what your UNIQUE golfers need to do
+  const singleMove = insightFindSmallestMove(myUniqueGolfers, gap);
+  if (singleMove) {
+    const spots = singleMove.spotsNeeded;
+    text += `If <strong>${escHtml(singleMove.golfer.pickName)}</strong> (${singleMove.golfer.odds}-1) moves up ${spots === 1 ? '1 spot' : spots + ' spots'} from T${singleMove.golfer.position} to T${singleMove.targetPos}, that alone closes the gap.`;
+  } else if (myUniqueGolfers.length) {
+    const combo = insightFindCombinedMove(myUniqueGolfers, gap);
+    if (combo && combo.closed && combo.plan.length <= 3) {
+      const parts = combo.plan.map(p =>
+        `<strong>${escHtml(p.golfer.pickName)}</strong> up ${p.spots === 1 ? '1 spot' : p.spots + ' spots'}`
+      );
+      text += `Needs a combination: ${parts.join(' + ')} would do it.`;
+    } else if (combo && combo.plan.length) {
+      const top = combo.plan[0];
+      text += `Best lever: <strong>${escHtml(top.golfer.pickName)}</strong> (${top.golfer.odds}-1) gaining ${top.spots === 1 ? '1 spot' : top.spots + ' spots'} from T${top.golfer.position} adds ~${fmt$(top.gain)}, but would need more help.`;
+    } else {
+      text += `No realistic move from your unique golfers closes this gap.`;
+    }
+  } else {
+    text += `All your active golfers are shared — you need their unique golfers to slide.`;
+  }
+
+  // THEIR side: what their UNIQUE golfers dropping would do
+  const rivalActive = targetTeam.golfers.filter(g => g.status === 'active' && g.odds);
+  const theirDrop = insightFindSmallestDrop(rivalActive, myGolferNames, gap);
+  if (theirDrop) {
+    const spots = theirDrop.spotsNeeded;
+    text += ` Alternatively, their <strong>${escHtml(theirDrop.golfer.pickName)}</strong> (${theirDrop.golfer.odds}-1) dropping ${spots === 1 ? '1 spot' : spots + ' spots'} from T${theirDrop.golfer.position} would cost them enough.`;
+  }
+
+  text += `</span>`;
+  return text;
+}
+
+function updatePathUp(uid, teamIdx, targetIdx) {
+  const team = allRankings[teamIdx];
+  if (!team) return;
+  const container = document.querySelector(`#detail-${uid} .insight-path-up-content`);
+  if (!container) return;
+  container.innerHTML = buildPathUpText(team, teamIdx, targetIdx);
+
+  // Update active button
+  const bar = container.closest('.team-insights').querySelector('.insight-btn-bar');
+  if (bar) {
+    bar.querySelectorAll('.insight-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.target) === targetIdx);
+    });
+  }
+}
+
+function renderInsights(team, idx, uid) {
+  const rankings = allRankings;
+  if (!rankings.length) return '';
+
+  const activeGolfers = team.golfers.filter(g => g.status === 'active' && g.odds);
+  if (!activeGolfers.length) {
+    return `<div class="team-insights"><div class="insight-section"><span class="insight-icon">📋</span><span class="insight-text">All golfers have missed the cut or are not in the field.</span></div></div>`;
+  }
+
+  let html = '<div class="team-insights">';
+
+  // ── Path Up with button bar ──
+  if (idx > 0) {
+    // Build button options: +1, +2, +3, +5, Top 5
+    const buttons = [];
+    const seen = new Set();
+    for (const jump of [1, 2, 3, 5]) {
+      const targetIdx = idx - jump;
+      if (targetIdx >= 0 && !seen.has(targetIdx)) {
+        seen.add(targetIdx);
+        buttons.push({ label: `+${jump}`, targetIdx });
+      }
+    }
+    // Top 5 button (jump to rank 5, i.e. index 4)
+    if (idx > 5 && !seen.has(4)) {
+      buttons.push({ label: 'Top 5', targetIdx: 4 });
+    }
+
+    html += `<div class="insight-btn-bar">
+      <span class="insight-btn-label">What do I need to move up?</span>`;
+    for (const b of buttons) {
+      const isActive = b.targetIdx === idx - 1 ? ' active' : '';
+      html += `<button class="insight-btn${isActive}" data-target="${b.targetIdx}" onclick="updatePathUp(${uid},${idx},${b.targetIdx})">${b.label}</button>`;
+    }
+    html += `</div>`;
+
+    // Default: show +1 (team directly above)
+    html += `<div class="insight-section insight-path-up">
+      <div class="insight-path-up-content">${buildPathUpText(team, idx, idx - 1)}</div>
+    </div>`;
+  }
+
+  // ── Threats (always shows team directly below) ──
+  if (idx < rankings.length - 1) {
+    const teamBelow = rankings[idx + 1];
+    const myNames = new Set(team.golfers.map(g => normalizeName(g.pickName)));
+    const cushion = team.total - teamBelow.total;
+
+    if (cushion === 0) {
+      html += `<div class="insight-section insight-threats">
+        <span class="insight-icon">⚔️</span>
+        <span class="insight-text">Tied with <strong>${escHtml(teamBelow.name)}</strong> (#${idx + 2}) — any movement could change the order.</span>
+      </div>`;
+    } else {
+      // Only consider their golfers that are NOT on our team
+      const belowUnique = teamBelow.golfers.filter(g =>
+        g.status === 'active' && g.odds && !myNames.has(normalizeName(g.pickName))
+      );
+      const theirMove = insightFindSmallestMove(belowUnique, cushion);
+
+      html += `<div class="insight-section insight-threats">
+        <span class="insight-icon">⚠️</span>
+        <span class="insight-text"><strong>${escHtml(teamBelow.name)}</strong> (#${idx + 2}) is ${fmt$(cushion)} behind. `;
+
+      if (theirMove) {
+        const spots = theirMove.spotsNeeded;
+        html += `Their <strong>${escHtml(theirMove.golfer.pickName)}</strong> (${theirMove.golfer.odds}-1) moving up ${spots === 1 ? '1 spot' : spots + ' spots'} from T${theirMove.golfer.position} would pass you.`;
+      } else if (belowUnique.length) {
+        const combo = insightFindCombinedMove(belowUnique, cushion);
+        if (combo && combo.closed && combo.plan.length <= 3) {
+          const parts = combo.plan.map(p =>
+            `<strong>${escHtml(p.golfer.pickName)}</strong> up ${p.spots === 1 ? '1 spot' : p.spots + ' spots'}`
+          );
+          html += `They'd need ${parts.join(' + ')} to pass you.`;
+        } else {
+          html += `No realistic move from their unique golfers would pass you — solid cushion.`;
+        }
+      } else {
+        html += `All their active golfers are shared with you — they can't gain on you through golfer movement.`;
+      }
+      html += `</span></div>`;
+    }
+  }
+
+  html += '</div>';
+  return html;
 }
 
 function toggleDetail(uid) {
