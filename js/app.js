@@ -784,7 +784,7 @@ function renderInsights(team, idx, uid) {
       }
     }
     if (idx > 5 && !seen.has(4)) {
-      buttons.push({ label: 'Top 5', targetIdx: 4 });
+      buttons.push({ label: 'Best', targetIdx: 4 });
     }
 
     html += `<div class="insight-btn-bar">
