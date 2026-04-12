@@ -2,12 +2,12 @@
   "tournament": "The Masters",
   "eventId": "401580333",
   "purse": 21000000,
-  "status": "STATUS_IN_PROGRESS",
-  "statusDisplay": "In Progress",
-  "isComplete": false,
+  "status": "STATUS_FINAL",
+  "statusDisplay": "Final",
+  "isComplete": true,
   "round": 4,
   "cutLineScore": null,
-  "lastUpdated": "2026-04-12T22:58:03.152445+00:00",
+  "lastUpdated": "2026-04-12T23:46:28.801630+00:00",
   "players": [
     {
       "name": "Rory McIlroy",
@@ -401,6 +401,23 @@
       "estimatedPrize": 235200
     },
     {
+      "name": "Matt McCarty",
+      "normalizedName": "matt mccarty",
+      "position": 24,
+      "score": "-2",
+      "roundScores": {
+        "R1": "E",
+        "R2": "+1",
+        "R3": "E",
+        "R4": "-3"
+      },
+      "roundsCompleted": 4,
+      "thru": "F",
+      "missedCut": false,
+      "projectedCut": false,
+      "estimatedPrize": 170100
+    },
+    {
       "name": "Adam Scott",
       "normalizedName": "adam scott",
       "position": 24,
@@ -478,23 +495,6 @@
         "R2": "-3",
         "R3": "E",
         "R4": "+1"
-      },
-      "roundsCompleted": 4,
-      "thru": "F",
-      "missedCut": false,
-      "projectedCut": false,
-      "estimatedPrize": 170100
-    },
-    {
-      "name": "Matt McCarty",
-      "normalizedName": "matt mccarty",
-      "position": 24,
-      "score": "-2",
-      "roundScores": {
-        "R1": "E",
-        "R2": "+1",
-        "R3": "E",
-        "R4": "-3"
       },
       "roundsCompleted": 4,
       "thru": "F",
