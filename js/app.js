@@ -731,30 +731,66 @@ function buildPathUpText(team, idx, targetIdx) {
       <span class="insight-text">Already tied or ahead of <strong>${escHtml(targetTeam.name)}</strong> (#${targetIdx + 1}).</span>`;
   }
 
-  // Only consider golfers unique to each team (shared golfers are a wash)
-  const myUniqueGolfers = team.golfers.filter(g =>
-    g.status === 'active' && g.odds && !rivalGolferNames.has(normalizeName(g.pickName))
-  );
-  const sharedGolfers = team.golfers.filter(g =>
+  // For multi-spot jumps, check which of our golfers are also on teams in between.
+  // A golfer shared with the target team is a pure wash (both gain equally).
+  // A golfer shared with teams IN BETWEEN is a blocker — those teams ride up too,
+  // so that golfer can't help you pass them even if they gain.
+  const betweenTeams = rankings.slice(targetIdx + 1, idx); // teams between target and us
+  const blockerMap = {}; // golferName -> count of teams in between that also have them
+  for (const g of team.golfers) {
+    if (g.status !== 'active' || !g.odds) continue;
+    const gn = normalizeName(g.pickName);
+    let blockerCount = 0;
+    for (const bt of betweenTeams) {
+      if (bt.golfers.some(bg => normalizeName(bg.pickName) === gn)) blockerCount++;
+    }
+    blockerMap[gn] = blockerCount;
+  }
+
+  // Categorize golfers
+  const sharedWithTarget = team.golfers.filter(g =>
     g.status === 'active' && rivalGolferNames.has(normalizeName(g.pickName))
   );
+  const blockedGolfers = team.golfers.filter(g => {
+    if (g.status !== 'active' || !g.odds) return false;
+    const gn = normalizeName(g.pickName);
+    return !rivalGolferNames.has(gn) && (blockerMap[gn] || 0) > 0;
+  });
+  const trulyUniqueGolfers = team.golfers.filter(g => {
+    if (g.status !== 'active' || !g.odds) return false;
+    const gn = normalizeName(g.pickName);
+    return !rivalGolferNames.has(gn) && (blockerMap[gn] || 0) === 0;
+  });
 
   let text = `<span class="insight-icon">⬆️</span>
     <span class="insight-text">${fmt$(gap)} behind <strong>${escHtml(targetTeam.name)}</strong> (#${targetIdx + 1})${spotsUp > 1 ? ` — ${spotsUp} spots up` : ''}.`;
 
-  if (sharedGolfers.length > 0) {
-    const names = sharedGolfers.map(g => g.pickName).join(', ');
-    text += ` <em>(You share ${names} — their moves are a wash.)</em>`;
+  // Note shared/blocked golfers
+  const notes = [];
+  if (sharedWithTarget.length > 0) {
+    notes.push(`share ${sharedWithTarget.map(g => g.pickName).join(', ')} with #${targetIdx + 1}`);
+  }
+  if (blockedGolfers.length > 0 && spotsUp > 1) {
+    const blockerNames = blockedGolfers.map(g => {
+      const count = blockerMap[normalizeName(g.pickName)];
+      return `${g.pickName} (on ${count} team${count > 1 ? 's' : ''} in between)`;
+    });
+    notes.push(`${blockerNames.join(', ')} would also boost teams ahead of you`);
+  }
+  if (notes.length) {
+    text += ` <em>(${notes.join('; ')} — their moves don't help you here.)</em>`;
   }
   text += ' ';
 
-  // YOUR side: what your UNIQUE golfers need to do
-  const singleMove = insightFindSmallestMove(myUniqueGolfers, gap);
+  // YOUR side: only truly unique golfers (not shared with target, not on teams in between)
+  const effectiveGolfers = trulyUniqueGolfers;
+
+  const singleMove = insightFindSmallestMove(effectiveGolfers, gap);
   if (singleMove) {
     const spots = singleMove.spotsNeeded;
     text += `If <strong>${escHtml(singleMove.golfer.pickName)}</strong> (${singleMove.golfer.odds}-1) moves up ${spots === 1 ? '1 spot' : spots + ' spots'} from T${singleMove.golfer.position} to T${singleMove.targetPos}, that alone closes the gap.`;
-  } else if (myUniqueGolfers.length) {
-    const combo = insightFindCombinedMove(myUniqueGolfers, gap);
+  } else if (effectiveGolfers.length) {
+    const combo = insightFindCombinedMove(effectiveGolfers, gap);
     if (combo && combo.closed && combo.plan.length <= 3) {
       const parts = combo.plan.map(p =>
         `<strong>${escHtml(p.golfer.pickName)}</strong> up ${p.spots === 1 ? '1 spot' : p.spots + ' spots'}`
@@ -767,7 +803,7 @@ function buildPathUpText(team, idx, targetIdx) {
       text += `No realistic move from your unique golfers closes this gap.`;
     }
   } else {
-    text += `All your active golfers are shared — you need their unique golfers to slide.`;
+    text += `All your active golfers are shared with teams above you — you need their golfers to slide.`;
   }
 
   // THEIR side: what their UNIQUE golfers dropping would do
