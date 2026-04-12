@@ -637,20 +637,21 @@ function renderGolfers(golfers) {
 
 // ── Insight simulation engine ────────────────────────────────────────────────
 // Simulate a golfer moving to a new position: recalculate all 192 team totals,
-// re-rank, and return the new rank for any team.
-function simulateMove(golferName, newPos, direction) {
+// re-rank, and return the new rankings array.
+function simulateMove(golferName, newPos) {
   const purse = purseData.purse;
   const pct   = purseData.payoutPercentages;
-  const gn    = normalizeName(golferName);
+  // Resolve aliases so pick names match leaderboard names
+  const gn    = NAME_ALIASES[normalizeName(golferName)] || normalizeName(golferName);
 
-  // Find current prize and odds for this golfer from leaderboard
+  // Find current prize for this golfer from leaderboard
   const lbPlayer = (leaderboard.players || []).find(p => p.normalizedName === gn);
   if (!lbPlayer) return null;
   const currentPrize = lbPlayer.estimatedPrize || 0;
   const newPrize     = prizeForPosition(newPos, purse, pct);
   const prizeDelta   = newPrize - currentPrize;
 
-  // Recalculate totals for all teams
+  // Recalculate totals for all teams that have this golfer
   const newTotals = allRankings.map(team => {
     let delta = 0;
     for (const g of team.golfers) {
@@ -669,22 +670,25 @@ function simulateMove(golferName, newPos, direction) {
   return newTotals;
 }
 
-// Find the smallest move (up or drop) for a golfer that gets myTeamName to targetRank or better.
-// direction: 'up' = try positions 1..current-1, 'drop' = try positions current+1..54
-function findSmallestSimMove(golfer, myTeamName, targetRank, direction) {
+// Find the smallest move for a golfer where myTeam ends up ahead of rivalTeam.
+// direction: 'up' = positions current-1..1, 'drop' = positions current+1..current+20
+function findSmallestSimMove(golfer, myTeamName, rivalTeamName, direction) {
   if (!golfer.position || !golfer.odds || golfer.status !== 'active') return null;
+  if (direction === 'up' && golfer.position <= 1) return null;
 
   const start = direction === 'up' ? golfer.position - 1 : golfer.position + 1;
   const end   = direction === 'up' ? 1 : Math.min(54, golfer.position + 20);
   const step  = direction === 'up' ? -1 : 1;
 
   for (let pos = start; (direction === 'up' ? pos >= end : pos <= end); pos += step) {
-    const simRanks = simulateMove(golfer.pickName, pos, direction);
+    const simRanks = simulateMove(golfer.pickName, pos);
     if (!simRanks) return null;
-    const newRank = simRanks.findIndex(t => t.name === myTeamName) + 1;
-    if (newRank > 0 && newRank <= targetRank) {
+    const myNewRank    = simRanks.findIndex(t => t.name === myTeamName) + 1;
+    const rivalNewRank = simRanks.findIndex(t => t.name === rivalTeamName) + 1;
+    // My team must end up strictly ahead of the rival team
+    if (myNewRank > 0 && rivalNewRank > 0 && myNewRank < rivalNewRank) {
       const spots = Math.abs(golfer.position - pos);
-      return { golfer, newPos: pos, spots, newRank };
+      return { golfer, newPos: pos, spots, newRank: myNewRank };
     }
   }
   return null;
@@ -706,11 +710,11 @@ function buildPathUpText(team, idx, targetIdx) {
   let text = `<span class="insight-icon">⬆️</span>
     <span class="insight-text">${fmt$(gap)} behind <strong>${escHtml(targetTeam.name)}</strong> (#${targetRank})${spotsUp > 1 ? ` — ${spotsUp} spots up` : ''}. `;
 
-  // YOUR GOLFERS MOVING UP: find smallest single-golfer move that gets you to targetRank
+  // YOUR GOLFERS MOVING UP: find smallest move that puts you ahead of targetTeam
   const myActive = team.golfers.filter(g => g.status === 'active' && g.odds && g.position > 1);
   let bestUp = null;
   for (const g of myActive) {
-    const result = findSmallestSimMove(g, team.name, targetRank, 'up');
+    const result = findSmallestSimMove(g, team.name, targetTeam.name, 'up');
     if (result && (!bestUp || result.spots < bestUp.spots)) {
       bestUp = result;
     }
@@ -723,11 +727,11 @@ function buildPathUpText(team, idx, targetIdx) {
     text += `No single golfer move gets you there.`;
   }
 
-  // RIVAL GOLFERS DROPPING: find smallest drop from target team's golfers
+  // RIVAL GOLFERS DROPPING: find smallest drop that puts you ahead of targetTeam
   const rivalActive = targetTeam.golfers.filter(g => g.status === 'active' && g.odds && g.position);
   let bestDrop = null;
   for (const g of rivalActive) {
-    const result = findSmallestSimMove(g, team.name, targetRank, 'drop');
+    const result = findSmallestSimMove(g, team.name, targetTeam.name, 'drop');
     if (result && (!bestDrop || result.spots < bestDrop.spots)) {
       bestDrop = result;
     }
@@ -808,11 +812,11 @@ function renderInsights(team, idx, uid) {
         <span class="insight-text">Tied with <strong>${escHtml(teamBelow.name)}</strong> (#${idx + 2}) — any movement could change the order.</span>
       </div>`;
     } else {
-      // Find smallest move from their golfers that gets them past us
+      // Find smallest move from their golfers that puts them ahead of us
       const belowActive = teamBelow.golfers.filter(g => g.status === 'active' && g.odds && g.position > 1);
       let bestThreat = null;
       for (const g of belowActive) {
-        const result = findSmallestSimMove(g, teamBelow.name, myRank, 'up');
+        const result = findSmallestSimMove(g, teamBelow.name, team.name, 'up');
         if (result && (!bestThreat || result.spots < bestThreat.spots)) {
           bestThreat = result;
         }
