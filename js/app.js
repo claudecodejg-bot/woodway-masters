@@ -696,7 +696,59 @@ function findSmallestSimMove(golfer, myTeamName, rivalTeamName, direction) {
 
 function buildPathUpText(team, idx, targetIdx) {
   const rankings = allRankings;
-  if (targetIdx < 0 || targetIdx >= idx) return '';
+
+  // "Best" mode: simulate each golfer at T1 and find the best achievable rank
+  if (targetIdx === -1) {
+    const myActive = team.golfers.filter(g => g.status === 'active' && g.odds && g.position > 1);
+    let best = null;
+    for (const g of myActive) {
+      const simRanks = simulateMove(g.pickName, 1);
+      if (!simRanks) continue;
+      const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
+      if (newRank > 0 && (!best || newRank < best.newRank)) {
+        best = { golfer: g, newRank, newPos: 1, spots: g.position - 1 };
+      }
+    }
+
+    if (!best) {
+      return `<span class="insight-icon">⬆️</span>
+        <span class="insight-text">No active golfers with upside to simulate.</span>`;
+    }
+
+    const g = best.golfer;
+    let text = `<span class="insight-icon">🏆</span>
+      <span class="insight-text">Best case: if <strong>${escHtml(g.pickName)}</strong> (${g.odds}-1) wins the tournament from T${g.position}, you'd jump to <strong>#${best.newRank}</strong>.`;
+
+    // Also check: what's the best rank with just a few spots gained (more realistic)?
+    let bestRealistic = null;
+    for (const g2 of myActive) {
+      const maxMove = Math.min(g2.position - 1, 5); // max 5 spots
+      for (let move = 1; move <= maxMove; move++) {
+        const simRanks = simulateMove(g2.pickName, g2.position - move);
+        if (!simRanks) break;
+        const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
+        if (newRank > 0 && newRank < idx + 1 && (!bestRealistic || newRank < bestRealistic.newRank)) {
+          bestRealistic = { golfer: g2, newRank, newPos: g2.position - move, spots: move };
+        }
+      }
+    }
+
+    if (bestRealistic && bestRealistic.newRank > best.newRank) {
+      // Realistic move is worse than winning — show both
+      const g2 = bestRealistic.golfer;
+      text += ` More realistically, <strong>${escHtml(g2.pickName)}</strong> gaining ${bestRealistic.spots === 1 ? '1 spot' : bestRealistic.spots + ' spots'} to T${bestRealistic.newPos} gets you to <strong>#${bestRealistic.newRank}</strong>.`;
+    } else if (bestRealistic && bestRealistic.newRank === best.newRank) {
+      // Realistic move achieves the same rank
+      const g2 = bestRealistic.golfer;
+      text += ` Even just <strong>${escHtml(g2.pickName)}</strong> gaining ${bestRealistic.spots === 1 ? '1 spot' : bestRealistic.spots + ' spots'} to T${bestRealistic.newPos} gets you there.`;
+    }
+
+    text += `</span>`;
+    return text;
+  }
+
+  // Standard mode: target a specific team
+  if (targetIdx >= idx) return '';
   const targetTeam = rankings[targetIdx];
   const gap = targetTeam.total - team.total;
   const spotsUp = idx - targetIdx;
@@ -783,8 +835,8 @@ function renderInsights(team, idx, uid) {
         buttons.push({ label: `+${jump}`, targetIdx });
       }
     }
-    if (idx > 5 && !seen.has(4)) {
-      buttons.push({ label: 'Best', targetIdx: 4 });
+    if (idx > 5) {
+      buttons.push({ label: 'Best', targetIdx: -1 });
     }
 
     html += `<div class="insight-btn-bar">
