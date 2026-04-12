@@ -727,7 +727,7 @@ function buildPathUpText(team, idx, targetIdx) {
         const simRanks = simulateMove(g2.pickName, g2.position - move);
         if (!simRanks) break;
         const newRank = simRanks.findIndex(t => t.name === team.name) + 1;
-        if (newRank > 0 && newRank < idx + 1 && (!bestRealistic || newRank < bestRealistic.newRank)) {
+        if (newRank > 0 && newRank <= 5 && (!bestRealistic || newRank < bestRealistic.newRank)) {
           bestRealistic = { golfer: g2, newRank, newPos: g2.position - move, spots: move };
         }
       }
