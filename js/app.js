@@ -1,7 +1,9 @@
 'use strict';
 
 // ─── Name normalization ───────────────────────────────────────────────────────
-const NAME_ALIASES = {
+// NAME_ALIASES and AMATEURS are loaded from the database (Neon) or fallback to
+// hardcoded defaults if the database is unavailable.
+let NAME_ALIASES = {
   'matthew fitzpatrick': 'matt fitzpatrick',
   'mattew fitzpatrick':  'matt fitzpatrick',
   'jj spaun':            'jj spaun',
@@ -28,7 +30,7 @@ function normalizeName(name) {
 }
 
 // ─── Amateurs ────────────────────────────────────────────────────────────────
-const AMATEURS = new Set([
+let AMATEURS = new Set([
   'ethan fang', 'jackson herrington', 'mason howell',
   'fifa laopakdee', 'mateo pulcini', 'brandon holtz',
 ]);
@@ -254,18 +256,38 @@ async function fetchLiveLeaderboard(purseData) {
 
 async function loadAll() {
   const ts = Date.now();
-  const [p, o, pu] = await Promise.all([
-    fetch(`data/picks.json?t=${ts}`).then(r => r.json()),
-    fetch(`data/odds.json?t=${ts}`).then(r => r.json()),
-    fetch(`data/purse.json?t=${ts}`).then(r => r.json()),
-  ]);
-  picks     = p;
-  oddsMap   = buildNormalizedOdds(o);
-  purseData = pu;
 
-  // Try live ESPN first, fall back to static file
+  // ── Try Neon database first, fall back to static JSON files ──
+  let dataSource = 'static';
   try {
-    leaderboard = await fetchLiveLeaderboard(pu);
+    if (typeof loadFromNeon === 'function') {
+      const neonData = await loadFromNeon();
+      picks     = neonData.picks;
+      oddsMap   = neonData.oddsMap;
+      purseData = neonData.purseData;
+      // Update aliases and amateurs from DB
+      NAME_ALIASES = neonData.aliases;
+      AMATEURS     = neonData.amateurs;
+      dataSource = 'neon';
+      console.log(`Loaded pool data from Neon (${picks.length} entries, ${Object.keys(oddsMap).length} golfers)`);
+    } else {
+      throw new Error('Neon client not loaded');
+    }
+  } catch (e) {
+    console.warn('Neon fetch failed, falling back to static files:', e);
+    const [p, o, pu] = await Promise.all([
+      fetch(`data/picks.json?t=${ts}`).then(r => r.json()),
+      fetch(`data/odds.json?t=${ts}`).then(r => r.json()),
+      fetch(`data/purse.json?t=${ts}`).then(r => r.json()),
+    ]);
+    picks     = p;
+    oddsMap   = buildNormalizedOdds(o);
+    purseData = pu;
+  }
+
+  // ── Live ESPN leaderboard (independent of data source) ──
+  try {
+    leaderboard = await fetchLiveLeaderboard(purseData);
     console.log('Loaded live leaderboard from ESPN');
   } catch (e) {
     console.warn('ESPN fetch failed, falling back to static file:', e);
