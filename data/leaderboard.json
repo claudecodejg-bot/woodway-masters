@@ -1,13 +1,13 @@
 {
   "tournament": "The Masters",
   "eventId": "401580333",
-  "purse": 21000000,
+  "purse": 22500000,
   "status": "STATUS_FINAL",
   "statusDisplay": "Final",
   "isComplete": true,
   "round": 4,
   "cutLineScore": null,
-  "lastUpdated": "2026-04-13T14:10:11.793388+00:00",
+  "lastUpdated": "2026-04-13T14:47:29.448934+00:00",
   "players": [
     {
       "name": "Rory McIlroy",
@@ -24,7 +24,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 4200000
+      "estimatedPrize": 4500000
     },
     {
       "name": "Scottie Scheffler",
@@ -41,7 +41,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 2268000
+      "estimatedPrize": 2430000
     },
     {
       "name": "Tyrrell Hatton",
@@ -58,7 +58,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 1008000
+      "estimatedPrize": 1080000
     },
     {
       "name": "Russell Henley",
@@ -75,7 +75,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 1008000
+      "estimatedPrize": 1080000
     },
     {
       "name": "Justin Rose",
@@ -92,7 +92,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 1008000
+      "estimatedPrize": 1080000
     },
     {
       "name": "Cameron Young",
@@ -109,7 +109,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 1008000
+      "estimatedPrize": 1080000
     },
     {
       "name": "Collin Morikawa",
@@ -126,7 +126,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 677250
+      "estimatedPrize": 725625
     },
     {
       "name": "Sam Burns",
@@ -143,7 +143,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 677250
+      "estimatedPrize": 725625
     },
     {
       "name": "Max Homa",
@@ -160,7 +160,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 588000
+      "estimatedPrize": 630000
     },
     {
       "name": "Xander Schauffele",
@@ -177,7 +177,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 588000
+      "estimatedPrize": 630000
     },
     {
       "name": "Jake Knapp",
@@ -194,7 +194,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 525000
+      "estimatedPrize": 562500
     },
     {
       "name": "Jordan Spieth",
@@ -211,7 +211,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 399000
+      "estimatedPrize": 427500
     },
     {
       "name": "Hideki Matsuyama",
@@ -228,7 +228,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 399000
+      "estimatedPrize": 427500
     },
     {
       "name": "Brooks Koepka",
@@ -245,7 +245,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 399000
+      "estimatedPrize": 427500
     },
     {
       "name": "Patrick Cantlay",
@@ -262,7 +262,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 399000
+      "estimatedPrize": 427500
     },
     {
       "name": "Patrick Reed",
@@ -279,7 +279,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 399000
+      "estimatedPrize": 427500
     },
     {
       "name": "Jason Day",
@@ -296,7 +296,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 399000
+      "estimatedPrize": 427500
     },
     {
       "name": "Maverick McNealy",
@@ -313,7 +313,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 294000
+      "estimatedPrize": 315000
     },
     {
       "name": "Viktor Hovland",
@@ -330,7 +330,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 294000
+      "estimatedPrize": 315000
     },
     {
       "name": "Matt Fitzpatrick",
@@ -347,7 +347,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 294000
+      "estimatedPrize": 315000
     },
     {
       "name": "Keegan Bradley",
@@ -364,7 +364,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 235200
+      "estimatedPrize": 252000
     },
     {
       "name": "Ludvig \u00c5berg",
@@ -381,7 +381,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 235200
+      "estimatedPrize": 252000
     },
     {
       "name": "Wyndham Clark",
@@ -398,7 +398,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 235200
+      "estimatedPrize": 252000
     },
     {
       "name": "Matt McCarty",
@@ -415,7 +415,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 170100
+      "estimatedPrize": 182250
     },
     {
       "name": "Adam Scott",
@@ -432,7 +432,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 170100
+      "estimatedPrize": 182250
     },
     {
       "name": "Sam Stevens",
@@ -449,7 +449,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 170100
+      "estimatedPrize": 182250
     },
     {
       "name": "Brian Campbell",
@@ -466,7 +466,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 170100
+      "estimatedPrize": 182250
     },
     {
       "name": "Michael Brennan",
@@ -483,7 +483,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 170100
+      "estimatedPrize": 182250
     },
     {
       "name": "Chris Gotterup",
@@ -500,7 +500,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 170100
+      "estimatedPrize": 182250
     },
     {
       "name": "Alex Noren",
@@ -517,7 +517,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 136500
+      "estimatedPrize": 146250
     },
     {
       "name": "Harris English",
@@ -534,7 +534,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 136500
+      "estimatedPrize": 146250
     },
     {
       "name": "Shane Lowry",
@@ -551,7 +551,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 136500
+      "estimatedPrize": 146250
     },
     {
       "name": "Gary Woodland",
@@ -568,7 +568,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 113400
+      "estimatedPrize": 121500
     },
     {
       "name": "Dustin Johnson",
@@ -585,7 +585,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 113400
+      "estimatedPrize": 121500
     },
     {
       "name": "Brian Harman",
@@ -602,7 +602,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 113400
+      "estimatedPrize": 121500
     },
     {
       "name": "Tommy Fleetwood",
@@ -619,7 +619,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 113400
+      "estimatedPrize": 121500
     },
     {
       "name": "Ben Griffin",
@@ -636,7 +636,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 113400
+      "estimatedPrize": 121500
     },
     {
       "name": "Jon Rahm",
@@ -653,7 +653,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 94500
+      "estimatedPrize": 101250
     },
     {
       "name": "Ryan Gerard",
@@ -670,7 +670,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 94500
+      "estimatedPrize": 101250
     },
     {
       "name": "Haotong Li",
@@ -687,7 +687,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 94500
+      "estimatedPrize": 101250
     },
     {
       "name": "Justin Thomas",
@@ -704,7 +704,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 77700
+      "estimatedPrize": 83250
     },
     {
       "name": "Jacob Bridgeman",
@@ -721,7 +721,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 77700
+      "estimatedPrize": 83250
     },
     {
       "name": "Sepp Straka",
@@ -738,7 +738,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 77700
+      "estimatedPrize": 83250
     },
     {
       "name": "Nick Taylor",
@@ -755,7 +755,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 77700
+      "estimatedPrize": 83250
     },
     {
       "name": "Kristoffer Reitan",
@@ -772,7 +772,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 77700
+      "estimatedPrize": 83250
     },
     {
       "name": "Sungjae Im",
@@ -789,7 +789,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 65100
+      "estimatedPrize": 69750
     },
     {
       "name": "Si Woo Kim",
@@ -806,7 +806,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 60900
+      "estimatedPrize": 65250
     },
     {
       "name": "Aaron Rai",
@@ -823,7 +823,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 57540
+      "estimatedPrize": 61650
     },
     {
       "name": "Corey Conners",
@@ -840,7 +840,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53760
+      "estimatedPrize": 57600
     },
     {
       "name": "Marco Penge",
@@ -857,7 +857,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 53760
+      "estimatedPrize": 57600
     },
     {
       "name": "Kurt Kitayama",
@@ -874,7 +874,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 51660
+      "estimatedPrize": 55350
     },
     {
       "name": "Sergio Garc\u00eda",
@@ -891,7 +891,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 51240
+      "estimatedPrize": 54900
     },
     {
       "name": "Rasmus H\u00f8jgaard",
@@ -908,7 +908,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 50820
+      "estimatedPrize": 54450
     },
     {
       "name": "Charl Schwartzel",
@@ -925,7 +925,7 @@
       "thru": "F",
       "missedCut": false,
       "projectedCut": false,
-      "estimatedPrize": 50400
+      "estimatedPrize": 54000
     },
     {
       "name": "Harry Hall",

@@ -1,8 +1,8 @@
 {
   "tournament": "The Masters",
   "eventId": "401580333",
-  "purse": 21000000,
-  "_payoutNote": "Masters 2026 - actual payout structure from Golf Digest ($21M purse). Amateurs do not receive prize money at the Masters.",
+  "purse": 22500000,
+  "_payoutNote": "Masters 2026 - actual $22.5M purse with payout percentages from Golf Digest. Amateurs do not receive prize money at the Masters.",
   "payoutPercentages": [
     0.2000,
     0.1080,
