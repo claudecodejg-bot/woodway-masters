@@ -1,0 +1,405 @@
+/* ─── Submit Page Styles ──────────────────────────────────────────────────── */
+
+.submit-main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.submit-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.submit-card.centered {
+  text-align: center;
+}
+
+.hidden { display: none !important; }
+
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+
+.submit-main .site-header {
+  padding: 16px 0;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ─── Mode Tabs ──────────────────────────────────────────────────────────── */
+
+.mode-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.mode-tab {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.mode-tab:hover { color: #1a4c2e; }
+
+.mode-tab.active {
+  color: #1a4c2e;
+  border-bottom-color: #2d7a4f;
+}
+
+/* ─── Form Fields ────────────────────────────────────────────────────────── */
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.form-row input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-row input:focus {
+  outline: none;
+  border-color: #2d7a4f;
+  box-shadow: 0 0 0 2px rgba(45, 122, 79, 0.2);
+}
+
+.required { color: #c0392b; }
+.optional { color: #999; font-weight: 400; }
+
+.field-hint {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.error-text {
+  color: #c0392b;
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+
+/* ─── Picks Section ──────────────────────────────────────────────────────── */
+
+.picks-section {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f8faf8;
+  border-radius: 8px;
+  border: 1px solid #e0e8e0;
+}
+
+.picks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.picks-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1a4c2e;
+}
+
+.picks-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2d7a4f;
+  background: #e8f4ed;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.picks-count.complete {
+  background: #2d7a4f;
+  color: #fff;
+}
+
+.picks-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 36px;
+  align-items: center;
+}
+
+.empty-picks {
+  color: #999;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+.pick-chip-selected {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #e8f4ed;
+  color: #1a4c2e;
+  border: 1px solid #b5ddc7;
+}
+
+.pick-chip-selected .chip-remove {
+  cursor: pointer;
+  font-size: 0.7rem;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  transition: background 0.15s;
+}
+
+.pick-chip-selected .chip-remove:hover {
+  background: rgba(192,57,43,0.2);
+  color: #c0392b;
+}
+
+/* ─── Golfer Picker ──────────────────────────────────────────────────────── */
+
+.picker-section {
+  margin-bottom: 20px;
+}
+
+#golfer-search {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+#golfer-search:focus {
+  outline: none;
+  border-color: #2d7a4f;
+  box-shadow: 0 0 0 2px rgba(45, 122, 79, 0.2);
+}
+
+.golfer-list {
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.golfer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.15s;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.golfer-item:last-child { border-bottom: none; }
+
+.golfer-item:hover { background: #f8faf8; }
+
+.golfer-item.selected {
+  background: #e8f4ed;
+}
+
+.golfer-item.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.golfer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.golfer-name {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.golfer-name .amateur-tag {
+  font-size: 0.72rem;
+  color: #888;
+  font-weight: 400;
+}
+
+.golfer-odds {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+.golfer-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: transparent;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.golfer-item.selected .golfer-check {
+  border-color: #2d7a4f;
+  background: #2d7a4f;
+  color: #fff;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.btn-primary {
+  background: #2d7a4f;
+  color: #fff;
+}
+
+.btn-primary:hover { background: #1a4c2e; }
+
+.btn-primary:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #e8f4ed;
+  color: #1a4c2e;
+  border: 1px solid #b5ddc7;
+}
+
+.btn-secondary:hover { background: #d0e8d8; }
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+/* ─── Success Screen ─────────────────────────────────────────────────────── */
+
+.success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2d7a4f;
+  color: #fff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.access-code-box {
+  margin: 20px 0;
+  padding: 16px;
+  background: #f8faf8;
+  border-radius: 8px;
+  border: 2px dashed #2d7a4f;
+}
+
+.code-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.code-display {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #1a4c2e;
+  font-family: 'Courier New', monospace;
+}
+
+.code-hint {
+  font-size: 0.78rem;
+  color: #888;
+  margin-top: 8px;
+}
+
+.success-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+
+.submit-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.82rem;
+}
+
+.submit-footer a {
+  color: #2d7a4f;
+  text-decoration: none;
+}
+
+.submit-footer a:hover { text-decoration: underline; }
+
+/* ─── Mobile ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .submit-main { padding: 10px; }
+  .submit-card { padding: 16px; }
+  .golfer-list { max-height: 300px; }
+  .code-display { font-size: 1.6rem; letter-spacing: 4px; }
+}

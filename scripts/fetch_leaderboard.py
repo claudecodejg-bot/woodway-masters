@@ -107,6 +107,11 @@ def main():
     comp = competitions[0]
     competitors = comp.get("competitors", [])
 
+    # If ESPN returns no competitors (event reset for next year), preserve existing data
+    if not competitors:
+        print("No competitors in ESPN data (event may have reset). Preserving existing leaderboard.json.")
+        return
+
     # Determine current round from linescores
     def get_rounds_played(competitor):
         ls = competitor.get("linescores", [])

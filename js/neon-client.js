@@ -93,3 +93,86 @@ async function loadFromNeon() {
 
   return { picks, oddsMap, purseData, amateurs, aliases };
 }
+
+// ─── Submission helpers (used by submit.js) ─────────────────────────────────
+
+async function loadActiveTournament() {
+  const sql = await getNeonSQL();
+  const rows = await sql`
+    SELECT id, name, submissions_open, submissions_deadline
+    FROM tournaments WHERE is_active = TRUE LIMIT 1
+  `;
+  return rows[0] || null;
+}
+
+async function loadTournamentGolfers(tournamentId) {
+  const sql = await getNeonSQL();
+  return sql`
+    SELECT id, golfer_name, normalized_name, odds_multiplier, is_amateur
+    FROM tournament_golfers
+    WHERE tournament_id = ${tournamentId}
+    ORDER BY golfer_name
+  `;
+}
+
+async function checkTeamNameExists(tournamentId, teamName) {
+  const sql = await getNeonSQL();
+  const rows = await sql`
+    SELECT id FROM entries
+    WHERE tournament_id = ${tournamentId} AND LOWER(team_name) = LOWER(${teamName})
+  `;
+  return rows.length > 0;
+}
+
+async function insertEntry(tournamentId, teamName, email, accessCode) {
+  const sql = await getNeonSQL();
+  const rows = await sql`
+    INSERT INTO entries (tournament_id, team_name, email, access_code)
+    VALUES (${tournamentId}, ${teamName}, ${email || null}, ${accessCode})
+    RETURNING id
+  `;
+  return rows[0].id;
+}
+
+async function insertPicks(entryId, golferIds) {
+  const sql = await getNeonSQL();
+  for (let i = 0; i < golferIds.length; i++) {
+    await sql`
+      INSERT INTO entry_picks (entry_id, golfer_id, pick_order)
+      VALUES (${entryId}, ${golferIds[i]}, ${i + 1})
+    `;
+  }
+}
+
+async function lookupEntry(teamName, accessCode) {
+  const sql = await getNeonSQL();
+  const rows = await sql`
+    SELECT e.id, e.team_name, e.tournament_id
+    FROM entries e
+    JOIN tournaments t ON t.id = e.tournament_id
+    WHERE LOWER(e.team_name) = LOWER(${teamName})
+      AND e.access_code = ${accessCode}
+      AND t.is_active = TRUE
+  `;
+  if (!rows.length) return null;
+  const entry = rows[0];
+  const picks = await sql`
+    SELECT tg.id as golfer_id, tg.golfer_name
+    FROM entry_picks ep
+    JOIN tournament_golfers tg ON tg.id = ep.golfer_id
+    WHERE ep.entry_id = ${entry.id}
+    ORDER BY ep.pick_order
+  `;
+  return { ...entry, picks };
+}
+
+async function updatePicks(entryId, golferIds) {
+  const sql = await getNeonSQL();
+  await sql`DELETE FROM entry_picks WHERE entry_id = ${entryId}`;
+  for (let i = 0; i < golferIds.length; i++) {
+    await sql`
+      INSERT INTO entry_picks (entry_id, golfer_id, pick_order)
+      VALUES (${entryId}, ${golferIds[i]}, ${i + 1})
+    `;
+  }
+}

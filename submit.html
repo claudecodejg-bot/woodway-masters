@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Picks — Woodway Pool</title>
+  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/submit.css?v=1" />
+</head>
+<body>
+
+<div class="page-wrap">
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-titles">
+        <h1>Submit Your Picks</h1>
+        <span class="header-subtitle" id="tournament-name">Loading...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="submit-main">
+    <!-- Loading state -->
+    <div id="loading" class="submit-card centered">
+      <p>Loading tournament data...</p>
+    </div>
+
+    <!-- Submissions closed -->
+    <div id="closed" class="submit-card centered hidden">
+      <h2>Submissions Closed</h2>
+      <p id="closed-message">Submissions for this tournament are closed.</p>
+      <a href="index.html" class="btn btn-primary">View Leaderboard</a>
+    </div>
+
+    <!-- Mode selector -->
+    <div id="mode-select" class="submit-card hidden">
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="new">New Entry</button>
+        <button class="mode-tab" data-mode="edit">Edit Existing</button>
+      </div>
+
+      <!-- Edit lookup -->
+      <div id="edit-lookup" class="hidden">
+        <p class="field-hint">Enter your team name and access code to edit your picks.</p>
+        <div class="form-row">
+          <label for="edit-team">Team Name</label>
+          <input type="text" id="edit-team" placeholder="Your team name" autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label for="edit-code">Access Code</label>
+          <input type="text" id="edit-code" placeholder="6-character code" maxlength="6" autocomplete="off" style="text-transform:uppercase" />
+        </div>
+        <button class="btn btn-primary" id="edit-lookup-btn">Look Up</button>
+        <p id="edit-error" class="error-text hidden"></p>
+      </div>
+
+      <!-- New / Edit form -->
+      <div id="pick-form">
+        <div class="form-row">
+          <label for="team-name">Team Name <span class="required">*</span></label>
+          <input type="text" id="team-name" placeholder="e.g., John Smith 1" autocomplete="off" />
+          <p id="name-error" class="error-text hidden"></p>
+        </div>
+        <div class="form-row">
+          <label for="email">Email <span class="optional">(optional)</span></label>
+          <input type="email" id="email" placeholder="for notifications" autocomplete="off" />
+        </div>
+
+        <!-- Selected picks -->
+        <div class="picks-section">
+          <div class="picks-header">
+            <span class="picks-label">Your Picks</span>
+            <span class="picks-count" id="picks-count">0 of 6</span>
+          </div>
+          <div class="picks-chips" id="selected-chips">
+            <span class="empty-picks">Select 6 golfers below</span>
+          </div>
+        </div>
+
+        <!-- Golfer picker -->
+        <div class="picker-section">
+          <input type="text" id="golfer-search" placeholder="Search golfers..." autocomplete="off" />
+          <div class="golfer-list" id="golfer-list"></div>
+        </div>
+
+        <!-- Submit -->
+        <button class="btn btn-primary btn-submit" id="submit-btn" disabled>Submit Picks</button>
+        <p id="submit-error" class="error-text hidden"></p>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div id="success" class="submit-card centered hidden">
+      <div class="success-icon">&#10003;</div>
+      <h2 id="success-title">Picks Submitted!</h2>
+      <p id="success-message">Your entry has been saved.</p>
+      <div class="access-code-box" id="access-code-box">
+        <p class="code-label">Your Access Code</p>
+        <div class="code-display" id="code-display"></div>
+        <p class="code-hint">Save this code! You'll need it to edit your picks.</p>
+      </div>
+      <div class="success-actions">
+        <a href="index.html" class="btn btn-primary">View Leaderboard</a>
+        <button class="btn btn-secondary" id="new-entry-btn">Submit Another</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="submit-footer">
+    <a href="index.html">Back to Leaderboard</a>
+  </footer>
+</div>
+
+<script src="js/neon-client.js?v=2"></script>
+<script src="js/submit.js?v=1"></script>
+</body>
+</html>
