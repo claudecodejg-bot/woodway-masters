@@ -109,6 +109,7 @@ async function fetchLiveLeaderboard(purseData) {
   const comp        = (event.competitions || [])[0];
   if (!comp) throw new Error('No competition data');
   const competitors = comp.competitors || [];
+  if (!competitors.length) throw new Error('No competitors in ESPN data (event may have reset)');
 
   // Determine max round with actual data
   let maxRound = 0;
