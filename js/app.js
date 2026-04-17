@@ -264,14 +264,8 @@ async function loadAll() {
   oddsMap   = buildNormalizedOdds(o);
   purseData = pu;
 
-  // Try live ESPN first, fall back to static file
-  try {
-    leaderboard = await fetchLiveLeaderboard(pu);
-    console.log('Loaded live leaderboard from ESPN');
-  } catch (e) {
-    console.warn('ESPN fetch failed, falling back to static file:', e);
-    leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
-  }
+  // Use static leaderboard data (Masters results preserved until next tournament)
+  leaderboard = await fetch(`data/leaderboard.json?t=${ts}`).then(r => r.json());
 }
 
 function buildNormalizedOdds(raw) {
